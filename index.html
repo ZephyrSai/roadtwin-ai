@@ -1,0 +1,1334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RoadTwin AI — Predictive Road & Asset Management Platform</title>
+<style>
+:root{
+  --bg:#070b14;
+  --bg2:#0c1322;
+  --panel:#101a2e;
+  --panel2:#162338;
+  --line:#1e3050;
+  --ink:#eaf2ff;
+  --muted:#8aa0c2;
+  --dim:#5a708f;
+  --cyan:#22d3ee;
+  --teal:#2dd4bf;
+  --blue:#3b82f6;
+  --violet:#8b5cf6;
+  --amber:#f5b53d;
+  --green:#34d399;
+  --red:#f87171;
+  --orange:#fb923c;
+  --grad:linear-gradient(135deg,#22d3ee,#3b82f6 55%,#8b5cf6);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  background:radial-gradient(1200px 800px at 80% -10%,#10213b 0%,transparent 60%),
+             radial-gradient(900px 700px at 0% 110%,#131a33 0%,transparent 55%),
+             var(--bg);
+  color:var(--ink);
+  overflow:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ---------- Deck framework ---------- */
+.deck{position:fixed;inset:0;}
+.slide{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;
+  padding:48px 64px 72px;
+  opacity:0;visibility:hidden;
+  transform:translateY(24px) scale(.99);
+  transition:opacity .55s ease,transform .55s ease,visibility .55s;
+  overflow:hidden;
+}
+.slide.active{opacity:1;visibility:visible;transform:none;z-index:2}
+.slide.prev{transform:translateY(-24px) scale(.99)}
+
+/* top eyebrow */
+.eyebrow{
+  display:flex;align-items:center;gap:10px;
+  font-size:12px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--cyan);font-weight:600;margin-bottom:14px;
+}
+.eyebrow .pulse{width:8px;height:8px;border-radius:50%;background:var(--cyan);
+  box-shadow:0 0 0 0 rgba(34,211,238,.6);animation:pulse 2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(34,211,238,.55)}70%{box-shadow:0 0 0 12px rgba(34,211,238,0)}100%{box-shadow:0 0 0 0 rgba(34,211,238,0)}}
+
+h1{font-size:54px;line-height:1.05;font-weight:800;letter-spacing:-.02em}
+h2{font-size:34px;line-height:1.1;font-weight:750;letter-spacing:-.01em;margin-bottom:6px}
+.sub{color:var(--muted);font-size:17px;max-width:760px;line-height:1.5}
+.grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* navigation */
+.nav{position:fixed;bottom:22px;left:0;right:0;display:flex;justify-content:center;align-items:center;gap:18px;z-index:50}
+.dots{display:flex;gap:7px;align-items:center}
+.dot{width:8px;height:8px;border-radius:50%;background:#27395a;cursor:pointer;transition:.3s;border:none}
+.dot:hover{background:#3d5680}
+.dot.active{width:26px;border-radius:5px;background:var(--cyan)}
+.arrow{
+  width:40px;height:40px;border-radius:11px;border:1px solid var(--line);
+  background:var(--panel);color:var(--ink);cursor:pointer;font-size:18px;
+  display:flex;align-items:center;justify-content:center;transition:.2s;
+}
+.arrow:hover{background:var(--panel2);border-color:var(--cyan);color:var(--cyan)}
+.progress{position:fixed;top:0;left:0;height:3px;background:var(--grad);z-index:60;transition:width .5s ease;box-shadow:0 0 12px rgba(34,211,238,.6)}
+.brandtag{position:fixed;top:20px;right:30px;font-size:12px;letter-spacing:.18em;color:var(--dim);text-transform:uppercase;z-index:40}
+.slideno{position:fixed;bottom:26px;right:30px;font-size:12px;color:var(--dim);z-index:50;font-variant-numeric:tabular-nums}
+
+/* generic cards/grids */
+.cardrow{display:grid;gap:18px;margin-top:auto}
+.card{
+  background:linear-gradient(180deg,var(--panel),var(--bg2));
+  border:1px solid var(--line);border-radius:16px;padding:20px;position:relative;overflow:hidden;
+  transition:.3s;
+}
+.card:hover{border-color:#2c466e}
+.card .ico{font-size:22px;margin-bottom:10px}
+.card h3{font-size:17px;margin-bottom:6px;font-weight:700}
+.card p{font-size:13.5px;color:var(--muted);line-height:1.5}
+.tag{display:inline-block;font-size:11px;padding:3px 9px;border-radius:20px;font-weight:600;letter-spacing:.03em}
+
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);background:var(--panel);border:1px solid var(--line);padding:5px 11px;border-radius:20px}
+
+/* hero canvas */
+.hero-wrap{position:absolute;inset:0;z-index:0;opacity:.85}
+.hero-content{position:relative;z-index:3;margin-top:auto;margin-bottom:auto}
+.hero-badges{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+.hbadge{background:rgba(16,26,46,.7);backdrop-filter:blur(8px);border:1px solid var(--line);border-radius:12px;padding:12px 16px;min-width:150px}
+.hbadge .lbl{font-size:11px;color:var(--dim);text-transform:uppercase;letter-spacing:.1em}
+.hbadge .val{font-size:15px;font-weight:700;margin-top:3px}
+
+/* metric gauges */
+.gauges{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.gauge{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 16px;position:relative}
+.gauge .gname{font-size:11px;color:var(--dim);text-transform:uppercase;letter-spacing:.09em}
+.gauge .gval{font-size:30px;font-weight:800;margin:4px 0;font-variant-numeric:tabular-nums}
+.gauge .gunit{font-size:13px;color:var(--muted);font-weight:600}
+.bar{height:6px;border-radius:4px;background:#1a2942;overflow:hidden;margin-top:8px}
+.bar > i{display:block;height:100%;border-radius:4px;transition:width .6s ease}
+
+/* two-col layout */
+.split{display:grid;grid-template-columns:1.05fr .95fr;gap:34px;flex:1;min-height:0;margin-top:18px}
+.split.r{grid-template-columns:.95fr 1.05fr}
+.vizbox{background:linear-gradient(180deg,#0a1322,#0a0f1c);border:1px solid var(--line);border-radius:18px;position:relative;overflow:hidden;display:flex;flex-direction:column}
+.vizhead{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1px solid var(--line);font-size:12px;color:var(--muted);letter-spacing:.04em}
+.viz-live{display:flex;align-items:center;gap:7px;color:var(--green);font-weight:600}
+.viz-live .d{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse2 1.4s infinite}
+@keyframes pulse2{0%,100%{opacity:1}50%{opacity:.3}}
+.rightcol{display:flex;flex-direction:column;gap:14px;min-height:0;overflow:auto}
+.feature{display:flex;gap:14px;align-items:flex-start;padding:14px 16px;background:var(--panel);border:1px solid var(--line);border-radius:13px;transition:.25s}
+.feature:hover{transform:translateX(4px);border-color:var(--cyan)}
+.feature .fic{width:38px;height:38px;flex:none;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;background:rgba(34,211,238,.1);border:1px solid rgba(34,211,238,.25)}
+.feature h4{font-size:15px;margin-bottom:3px;font-weight:700}
+.feature p{font-size:13px;color:var(--muted);line-height:1.45}
+
+/* detection log */
+.log{font-family:'SF Mono',ui-monospace,Menlo,monospace;font-size:12px;line-height:1.7;padding:10px 16px;overflow:hidden;flex:1}
+.log .ln{opacity:0;transform:translateX(-8px);animation:logIn .4s forwards}
+@keyframes logIn{to{opacity:1;transform:none}}
+.log .t{color:var(--dim)}
+.log .ok{color:var(--green)}.log .warn{color:var(--amber)}.log .crit{color:var(--red)}.log .info{color:var(--cyan)}
+
+/* pipeline */
+.pipe{display:grid;grid-template-columns:repeat(5,1fr);gap:0;align-items:stretch;margin-top:30px;flex:1}
+.stage{position:relative;display:flex;flex-direction:column;padding:22px 20px;border-radius:16px;background:linear-gradient(180deg,var(--panel),var(--bg2));border:1px solid var(--line);margin:0 10px}
+.stage .num{font-size:12px;color:var(--cyan);font-weight:700;letter-spacing:.1em}
+.stage h3{font-size:18px;margin:8px 0 8px;font-weight:750}
+.stage p{font-size:13px;color:var(--muted);line-height:1.5}
+.stage .ico{font-size:26px;margin-bottom:6px}
+.flowarrow{position:absolute;right:-22px;top:50%;transform:translateY(-50%);color:var(--cyan);font-size:22px;z-index:5;animation:flow 1.8s infinite}
+@keyframes flow{0%,100%{opacity:.3;transform:translateY(-50%) translateX(0)}50%{opacity:1;transform:translateY(-50%) translateX(4px)}}
+.stage .items{margin-top:12px;display:flex;flex-direction:column;gap:6px}
+.stage .it{font-size:11.5px;color:var(--dim);display:flex;align-items:center;gap:6px}
+.stage .it::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--cyan);flex:none}
+
+/* asset grid */
+.assetgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:20px;flex:1}
+.asset{background:linear-gradient(180deg,var(--panel),var(--bg2));border:1px solid var(--line);border-radius:15px;padding:18px;cursor:pointer;transition:.3s;position:relative;overflow:hidden}
+.asset:hover{transform:translateY(-4px);border-color:var(--cyan);box-shadow:0 12px 30px rgba(0,0,0,.4)}
+.asset .aico{font-size:30px;margin-bottom:12px}
+.asset h4{font-size:15px;font-weight:700;margin-bottom:4px}
+.asset p{font-size:12px;color:var(--muted);line-height:1.45;margin-bottom:12px}
+.asset .stat{display:flex;justify-content:space-between;align-items:center;font-size:11px}
+.health{display:inline-flex;align-items:center;gap:5px;font-weight:600;padding:3px 8px;border-radius:20px;font-size:11px}
+.h-ok{color:var(--green);background:rgba(52,211,153,.12)}
+.h-warn{color:var(--amber);background:rgba(245,181,61,.12)}
+.h-crit{color:var(--red);background:rgba(248,113,113,.12)}
+
+/* models */
+.models{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:18px;flex:1}
+.model{background:linear-gradient(180deg,var(--panel),var(--bg2));border:1px solid var(--line);border-radius:15px;padding:20px;display:flex;flex-direction:column}
+.model h3{font-size:18px;margin-bottom:4px;display:flex;align-items:center;gap:10px}
+.model .mdesc{font-size:13px;color:var(--muted);line-height:1.5;margin-bottom:14px}
+.model .spark{margin-top:auto}
+.sparkc{width:100%;display:block;height:90px}
+
+/* benefits */
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin:24px 0}
+.kpi{background:linear-gradient(180deg,var(--panel),var(--bg2));border:1px solid var(--line);border-radius:16px;padding:24px;text-align:center}
+.kpi .big{font-size:46px;font-weight:850;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1}
+.kpi .lbl{font-size:13px;color:var(--muted);margin-top:8px}
+.benefitlist{display:grid;grid-template-columns:repeat(2,1fr);gap:10px 30px;margin-top:8px}
+.bi{display:flex;gap:10px;align-items:center;font-size:14.5px;color:var(--ink)}
+.bi .ck{color:var(--green);font-weight:800}
+
+.legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:12px}
+.legend span{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--muted)}
+.legend i{width:10px;height:10px;border-radius:3px;display:inline-block}
+
+.kbd{font-size:12px;color:var(--dim)}
+.kbd b{display:inline-block;background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:1px 7px;color:var(--muted);font-weight:600}
+
+/* closing */
+.closing{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;height:100%}
+.closing h1{font-size:60px;margin-bottom:18px}
+.archring{display:flex;gap:14px;margin-top:30px;flex-wrap:wrap;justify-content:center}
+
+.hint{position:fixed;bottom:24px;left:30px;z-index:50}
+
+/* ---------- Brand logos ---------- */
+.logo-tl{position:fixed;top:18px;left:20px;z-index:45}
+.logo-tr{position:fixed;top:16px;right:30px;z-index:45}
+.rt-lock{display:flex;align-items:center;gap:11px}
+.rt-mark{flex:none;filter:drop-shadow(0 2px 10px rgba(34,211,238,.25))}
+.rt-txt{display:flex;flex-direction:column;line-height:1}
+.rt-word{font-weight:800;letter-spacing:-.02em;display:flex;align-items:center}
+.rt-word .rd{color:var(--ink)}
+.rt-word .tw{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.rt-word .ai{font-size:.5em;font-weight:800;letter-spacing:.04em;color:#0a0f1c;background:var(--cyan);border-radius:5px;padding:1px 5px;margin-left:7px;transform:translateY(-1px)}
+.rt-sub{font-size:9.5px;letter-spacing:.2em;color:var(--dim);text-transform:uppercase;margin-top:4px;font-weight:600}
+.tt-by{display:flex;align-items:center;gap:9px;font-size:11px;color:var(--dim);letter-spacing:.04em}
+.tt-frame{background:#fff;border-radius:8px;padding:7px 12px;display:inline-flex;line-height:0;box-shadow:0 4px 16px rgba(0,0,0,.4)}
+.hero-cred{display:flex;align-items:center;gap:14px;margin-top:30px;flex-wrap:wrap}
+
+/* ---------- technical components ---------- */
+/* stat strip */
+.statstrip{display:grid;grid-auto-flow:column;margin-top:26px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:rgba(16,26,46,.45);backdrop-filter:blur(6px)}
+.statstrip .st{padding:15px 24px;border-right:1px solid var(--line)}
+.statstrip .st:last-child{border-right:none}
+.statstrip .sv{font-size:25px;font-weight:850;color:var(--ink);font-variant-numeric:tabular-nums}
+.statstrip .sv b{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.statstrip .sl{font-size:11px;color:var(--dim);text-transform:uppercase;letter-spacing:.08em;margin-top:3px}
+
+/* data tables */
+.tablewrap{background:linear-gradient(180deg,var(--panel),var(--bg2));border:1px solid var(--line);border-radius:16px;overflow:hidden;flex:1;min-height:0;margin-top:18px;display:flex;flex-direction:column}
+.dtable{width:100%;border-collapse:collapse;font-size:13px}
+.dtable th{text-align:left;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--dim);font-weight:600;padding:12px 16px;border-bottom:1px solid var(--line);background:rgba(16,26,46,.6);position:sticky;top:0}
+.dtable td{padding:11px 16px;border-bottom:1px solid rgba(30,48,80,.45);color:var(--muted);vertical-align:middle}
+.dtable tr:hover td{background:rgba(34,211,238,.04)}
+.dtable td b{color:var(--ink);font-weight:700}
+.dtable .mono{font-family:ui-monospace,monospace;font-size:12px;color:var(--cyan);white-space:nowrap}
+
+/* technical detail grid */
+.tgrid{display:grid;gap:16px;margin-top:18px;flex:1;min-height:0}
+.tcard{background:linear-gradient(180deg,var(--panel),var(--bg2));border:1px solid var(--line);border-radius:14px;padding:16px 20px;display:flex;flex-direction:column}
+.tcard h3{font-size:15.5px;font-weight:750;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.tcard .kv{display:flex;justify-content:space-between;gap:12px;font-size:12.5px;padding:6px 0;border-bottom:1px dashed rgba(30,48,80,.7);color:var(--muted)}
+.tcard .kv:last-child{border-bottom:none}
+.tcard .kv b{color:var(--ink);font-weight:700;text-align:right}
+.tcard .kv .mono{font-family:ui-monospace,monospace;color:var(--cyan)}
+
+/* severity chips */
+.sev{display:inline-block;padding:2px 8px;border-radius:5px;font-size:11px;font-weight:700}
+.sev-l{background:rgba(52,211,153,.14);color:var(--green)}
+.sev-m{background:rgba(245,181,61,.14);color:var(--amber)}
+.sev-h{background:rgba(248,113,113,.14);color:var(--red)}
+
+/* matrix */
+.matrix{margin-top:18px;flex:1;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:linear-gradient(180deg,var(--panel),var(--bg2))}
+.matrix .mrow{display:grid;grid-template-columns:1.1fr 1.5fr 1fr 1.1fr;border-bottom:1px solid rgba(30,48,80,.5)}
+.matrix .mrow:last-child{border-bottom:none}
+.matrix .mrow.mh .mcell{font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--dim);font-weight:700;background:rgba(16,26,46,.6)}
+.matrix .mcell{padding:13px 18px;font-size:13px;color:var(--muted);border-right:1px solid rgba(30,48,80,.4);display:flex;flex-direction:column;justify-content:center}
+.matrix .mcell:last-child{border-right:none}
+.matrix .mcell b{color:var(--ink);font-weight:700}
+.matrix .mcell small{color:var(--dim);font-size:11px;margin-top:2px}
+
+/* timeline / roadmap */
+.timeline{display:grid;grid-template-columns:repeat(4,1fr);margin-top:30px;flex:1}
+.phase{position:relative;padding:0 20px;display:flex;flex-direction:column}
+.phase .pline{position:absolute;top:7px;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cyan),rgba(34,211,238,.15))}
+.phase .pdot{width:16px;height:16px;border-radius:50%;background:var(--cyan);position:relative;z-index:2;margin-bottom:16px;box-shadow:0 0 0 4px rgba(34,211,238,.18)}
+.phase h3{font-size:16px;font-weight:750;margin-bottom:3px}
+.phase .pno{font-size:11px;letter-spacing:.1em;color:var(--cyan);font-weight:700;text-transform:uppercase}
+.phase .pdur{font-size:11px;color:var(--dim);margin-bottom:10px}
+.phase ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.phase li{font-size:12.5px;color:var(--muted);padding-left:15px;position:relative;line-height:1.45}
+.phase li::before{content:'▸';position:absolute;left:0;color:var(--cyan);font-size:10px;top:2px}
+
+/* integration architecture */
+.archcols{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;margin-top:18px;flex:1;min-height:0}
+.archcol{display:flex;flex-direction:column;gap:11px}
+.archcol .ahdr{font-size:12px;text-transform:uppercase;letter-spacing:.09em;font-weight:700;padding:9px 12px;border-radius:9px;text-align:center}
+.anode{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:11px 14px}
+.anode b{display:block;color:var(--ink);font-weight:700;margin-bottom:2px;font-size:13.5px}
+.anode span{color:var(--dim);font-size:11.5px;line-height:1.4;display:block}
+
+/* generic two-col viz split with side facts */
+.factcol{display:flex;flex-direction:column;gap:12px;min-height:0;overflow:auto}
+.factcard{background:linear-gradient(180deg,var(--panel),var(--bg2));border:1px solid var(--line);border-radius:13px;padding:15px 17px}
+.factcard .fbig{font-size:27px;font-weight:850;line-height:1}
+.factcard .fl{font-size:12.5px;color:var(--muted);margin-top:6px;line-height:1.45}
+
+@media (max-width:1200px){
+  .slide{padding:32px 36px 70px}
+  h1{font-size:42px}.kpi .big{font-size:38px}
+  .gauges{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="logo-tl" id="logoTL"></div>
+<div class="logo-tr" id="logoTR"></div>
+
+<div class="deck" id="deck">
+
+  <!-- ============ SLIDE 1 — HERO ============ -->
+  <section class="slide active" data-anim="hero">
+    <canvas class="hero-wrap" id="heroCanvas"></canvas>
+    <div class="hero-content">
+      <div id="heroLogo" style="margin-bottom:22px"></div>
+      <div class="eyebrow"><span class="pulse"></span> AI · LiDAR · Acoustic Sensing · Digital Twin</div>
+      <h1>The Self-Aware Road.<br><span class="grad-text">Predictive pavement &amp; asset intelligence.</span></h1>
+      <p class="sub" style="margin-top:18px">A unified platform that captures the live <b>as-is</b> condition of every road and roadside asset, fuses it with history, materials science and predictive AI — and tells engineers <b>what to fix, where, and when</b>, before failure.</p>
+      <div class="hero-cred" id="heroCred"></div>
+      <div class="hero-badges">
+        <div class="hbadge"><div class="lbl">Pavement Surface</div><div class="val" style="color:var(--cyan)">XenoTrack · 6D LiDAR</div></div>
+        <div class="hbadge"><div class="lbl">Sub-surface Health</div><div class="val" style="color:var(--teal)">PaveSense · Acoustic</div></div>
+        <div class="hbadge"><div class="lbl">Roadside Assets</div><div class="val" style="color:var(--violet)">EchoTwin · Vision AI</div></div>
+        <div class="hbadge"><div class="lbl">Brain</div><div class="val" style="color:var(--amber)">Predictive &amp; Decision AI</div></div>
+      </div>
+      <div class="statstrip">
+        <div class="st"><div class="sv"><b>2,480 km</b></div><div class="sl">Network under management</div></div>
+        <div class="st"><div class="sv"><b>1.2 B</b></div><div class="sl">Data-points captured / year</div></div>
+        <div class="st"><div class="sv"><b>38</b></div><div class="sl">Asset classes tracked</div></div>
+        <div class="st"><div class="sv"><b>&lt;3 cm</b></div><div class="sl">RTK geo-accuracy</div></div>
+        <div class="st"><div class="sv"><b>0.45 mm</b></div><div class="sl">LiDAR vertical resolution</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 2 — THE SHIFT ============ -->
+  <section class="slide" data-anim="shift">
+    <div class="eyebrow"><span class="pulse"></span> The shift · Reactive → Predictive</div>
+    <h2>From “fix it when it breaks” to <span class="grad-text">“fix it before it breaks”</span></h2>
+    <p class="sub">Traditional road maintenance is reactive, manual and periodic. We close the loop: continuous sensing → AI correlation → optimised, budget-aware action.</p>
+    <div class="split" style="grid-template-columns:1fr 1fr;margin-top:26px">
+      <div class="vizbox">
+        <div class="vizhead"><span>❌ TODAY — Reactive Maintenance</span></div>
+        <div style="padding:24px 26px;display:flex;flex-direction:column;gap:16px">
+          <div class="feature" style="border-color:rgba(248,113,113,.25)"><div class="fic" style="background:rgba(248,113,113,.1);border-color:rgba(248,113,113,.3)">🚧</div><div><h4>Manual, periodic surveys</h4><p>Windshield inspections every 1–3 years; data stale before it’s filed.</p></div></div>
+          <div class="feature" style="border-color:rgba(248,113,113,.25)"><div class="fic" style="background:rgba(248,113,113,.1);border-color:rgba(248,113,113,.3)">💸</div><div><h4>Worst-first spending</h4><p>Budget chases failures; cheap preventive windows are missed.</p></div></div>
+          <div class="feature" style="border-color:rgba(248,113,113,.25)"><div class="fic" style="background:rgba(248,113,113,.1);border-color:rgba(248,113,113,.3)">🕳️</div><div><h4>Surface-only visibility</h4><p>Sub-surface delamination &amp; asset faults are invisible until they fail.</p></div></div>
+        </div>
+      </div>
+      <div class="vizbox" style="border-color:rgba(34,211,238,.35)">
+        <div class="vizhead"><span style="color:var(--cyan)">✓ ROADTWIN AI — Predictive Platform</span><span class="viz-live"><span class="d"></span>LIVE</span></div>
+        <div style="padding:24px 26px;display:flex;flex-direction:column;gap:16px">
+          <div class="feature"><div class="fic">📡</div><div><h4>Continuous, automated sensing</h4><p>Fleet-mounted LiDAR, acoustic &amp; vision capture every pass — surface, sub-surface &amp; assets.</p></div></div>
+          <div class="feature"><div class="fic">🧠</div><div><h4>AI correlation &amp; forecasting</h4><p>Live state × history × materials science × predictive models = deterioration curve per segment.</p></div></div>
+          <div class="feature"><div class="fic">🎯</div><div><h4>Optimised, budget-aware plans</h4><p>The right treatment, at the right time, prioritised by ROI within funding limits.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 3 — ARCHITECTURE / PIPELINE ============ -->
+  <section class="slide" data-anim="pipe">
+    <div class="eyebrow"><span class="pulse"></span> Platform architecture · End-to-end data flow</div>
+    <h2>Sense → Correlate → Predict → Decide → Act</h2>
+    <p class="sub">Three complementary sensing layers feed one correlation &amp; decision brain — a continuous, self-improving loop.</p>
+    <div class="pipe">
+      <div class="stage"><div class="ico">📡</div><div class="num">01 · SENSE</div><h3>Capture as-is</h3><p>Live condition of pavement &amp; assets.</p>
+        <div class="items"><div class="it">XenoTrack 6D LiDAR</div><div class="it">PaveSense acoustics</div><div class="it">EchoTwin vision AI</div></div>
+        <div class="flowarrow">➜</div></div>
+      <div class="stage"><div class="ico">🔗</div><div class="num">02 · CORRELATE</div><h3>Fuse &amp; contextualise</h3><p>Align live state with the past &amp; the science.</p>
+        <div class="items"><div class="it">Historical condition</div><div class="it">Traffic &amp; axle loads</div><div class="it">Materials-science inputs</div></div>
+        <div class="flowarrow">➜</div></div>
+      <div class="stage"><div class="ico">🧠</div><div class="num">03 · PREDICT</div><h3>Forecast deterioration</h3><p>Model the future of every segment.</p>
+        <div class="items"><div class="it">Time-series &amp; grey models</div><div class="it">Neural networks</div><div class="it">Hybrid physics + ML</div></div>
+        <div class="flowarrow">➜</div></div>
+      <div class="stage"><div class="ico">🎯</div><div class="num">04 · DECIDE</div><h3>Optimise the plan</h3><p>Best treatment within budget.</p>
+        <div class="items"><div class="it">Dynamic section division</div><div class="it">Treatment matching</div><div class="it">Fund allocation</div></div>
+        <div class="flowarrow">➜</div></div>
+      <div class="stage"><div class="ico">🛠️</div><div class="num">05 · ACT &amp; LEARN</div><h3>Execute &amp; verify</h3><p>Close the loop, improve the models.</p>
+        <div class="items"><div class="it">Work orders &amp; crews</div><div class="it">Effectiveness tracking</div><div class="it">Model feedback</div></div></div>
+    </div>
+    <div class="legend"><span><i style="background:var(--cyan)"></i>Sensing layer</span><span><i style="background:var(--violet)"></i>AI brain</span><span><i style="background:var(--amber)"></i>Decision &amp; ops</span><span><i style="background:var(--green)"></i>Continuous feedback loop</span></div>
+  </section>
+
+  <!-- ============ SLIDE 4 — XENOTRACK ============ -->
+  <section class="slide" data-anim="xeno">
+    <div class="eyebrow"><span class="pulse"></span> Road Health · Surface · XenoTrack</div>
+    <h2>6D LiDAR road scanning — <span class="grad-text">millimetre-precise pavement digitization</span></h2>
+    <p class="sub">Roof-mounted solid-state LiDAR + HD camera + RTK-GNSS fuse 3D geometry, 2D imagery and position into a georeferenced digital twin — while edge-AI flags every crack and pothole in real time.</p>
+    <div class="split r">
+      <div class="rightcol">
+        <div class="gauges">
+          <div class="gauge"><div class="gname">IRI · Roughness</div><div class="gval" style="color:var(--cyan)"><span id="g-iri">0.0</span> <span class="gunit">m/km</span></div><div class="bar"><i id="b-iri" style="background:var(--cyan);width:0"></i></div></div>
+          <div class="gauge"><div class="gname">Rutting</div><div class="gval" style="color:var(--teal)"><span id="g-rut">0</span> <span class="gunit">mm</span></div><div class="bar"><i id="b-rut" style="background:var(--teal);width:0"></i></div></div>
+          <div class="gauge"><div class="gname">PCI · Condition</div><div class="gval" style="color:var(--amber)"><span id="g-pci">0</span> <span class="gunit">/100</span></div><div class="bar"><i id="b-pci" style="background:var(--amber);width:0"></i></div></div>
+          <div class="gauge"><div class="gname">Cross-slope</div><div class="gval" style="color:var(--violet)"><span id="g-slope">0.0</span> <span class="gunit">%</span></div><div class="bar"><i id="b-slope" style="background:var(--violet);width:0"></i></div></div>
+        </div>
+        <div class="feature"><div class="fic">🛰️</div><div><h4>True solid-state LiDAR</h4><p>No moving parts · up to 7.5 m width · &lt;0.45 mm vertical accuracy · 5×5 mm point grid at highway speed.</p></div></div>
+        <div class="feature"><div class="fic">🤖</div><div><h4>Edge-AI distress detection</h4><p>Cracks, potholes, patches, ravelling &amp; manholes classified live — high consistency &amp; repeatability.</p></div></div>
+        <div class="feature"><div class="fic">🌐</div><div><h4>As-built 3D digital twin</h4><p>LAS point cloud + CRG geometry + imagery, RTK-georeferenced, ready for GIS &amp; longitudinal monitoring.</p></div></div>
+      </div>
+      <div class="vizbox">
+        <div class="vizhead"><span>XENOTRACK · LiDAR SURFACE SCAN — Segment A14 / Lane 2</span><span class="viz-live"><span class="d"></span>SCANNING</span></div>
+        <canvas id="xenoCanvas" style="flex:1;width:100%"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 5 — PAVESENSE ============ -->
+  <section class="slide" data-anim="pave">
+    <div class="eyebrow"><span class="pulse"></span> Road Health · Sub-surface · PaveSense</div>
+    <h2>Acoustic &amp; vibration sensing — <span class="grad-text">hearing the road from the inside out</span></h2>
+    <p class="sub">Sensors on routine fleet vehicles read the rolling sound &amp; vibration signature of the pavement. Different wavelengths probe different depths — revealing not just the surface, but the binder, base and sub-grade beneath it.</p>
+    <div class="split">
+      <div class="vizbox">
+        <div class="vizhead"><span>PAVESENSE · ACOUSTIC DEPTH PROFILE</span><span class="viz-live"><span class="d"></span>LISTENING</span></div>
+        <canvas id="paveCanvas" style="flex:1;width:100%"></canvas>
+      </div>
+      <div class="rightcol">
+        <div class="feature"><div class="fic">🔊</div><div><h4>Rolling-noise &amp; vibration analysis</h4><p>Characteristic wavelengths map to a range of length-scales — a full surface-to-substrate read on every pass.</p></div></div>
+        <div class="feature"><div class="fic">🧅</div><div><h4>Sub-surface defect detection</h4><p>Sees early raveling, delamination &amp; layer separation long before they break the surface.</p></div></div>
+        <div class="feature"><div class="fic">♻️</div><div><h4>Maintenance-free &amp; continuous</h4><p>Fully automatic — no road closures, no manual surveys, fresh data on every routine trip.</p></div></div>
+        <div class="feature" style="border-color:rgba(52,211,153,.3)"><div class="fic" style="background:rgba(52,211,153,.1);border-color:rgba(52,211,153,.3)">📉</div><div><h4>Up to 80% lower maintenance cost</h4><p>Runs at ~50% the operating cost of conventional scanning — data-driven, preventive planning.</p></div></div>
+        <div class="legend"><span><i style="background:var(--cyan)"></i>Surface course</span><span><i style="background:var(--teal)"></i>Binder</span><span><i style="background:var(--blue)"></i>Base</span><span><i style="background:var(--violet)"></i>Sub-grade</span><span><i style="background:var(--red)"></i>Detected defect</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 6 — ECHOTWIN ============ -->
+  <section class="slide" data-anim="echo">
+    <div class="eyebrow"><span class="pulse"></span> Road Assets · EchoTwin AI · Living Digital Twin</div>
+    <h2>Vision AI turns every fleet vehicle into a <span class="grad-text">roadside-asset sensor</span></h2>
+    <p class="sub">A visual-intelligence engine scans the streetscape, detects and geolocates every asset, scores its health, and flags changes — building a living digital twin of the entire corridor.</p>
+    <div class="split r">
+      <div class="rightcol">
+        <div class="feature"><div class="fic">👁️</div><div><h4>Visual intelligence engine</h4><p>Municipal fleets, drones &amp; robotics detect, classify &amp; geolocate assets automatically.</p></div></div>
+        <div class="feature"><div class="fic">🔄</div><div><h4>Automated change detection</h4><p>Spots new, moved, damaged or missing assets between passes — and reports to the right agency.</p></div></div>
+        <div class="feature"><div class="fic">🩺</div><div><h4>Per-asset health &amp; compliance</h4><p>Real-time condition, reflectivity, tilt, outage &amp; compliance status for every object.</p></div></div>
+        <div class="vizbox" style="flex:1">
+          <div class="vizhead"><span>DETECTION STREAM</span></div>
+          <div class="log" id="echoLog"></div>
+        </div>
+      </div>
+      <div class="vizbox">
+        <div class="vizhead"><span>ECHOTWIN · STREETSCAPE ASSET DETECTION</span><span class="viz-live"><span class="d"></span>DETECTING</span></div>
+        <svg id="echoSvg" viewBox="0 0 640 460" style="flex:1;width:100%"></svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ NEW — SENSOR FUSION SPEC SHEET ============ -->
+  <section class="slide" data-anim="specs">
+    <div class="eyebrow"><span class="pulse"></span> Sensing layer · Technical specifications</div>
+    <h2>Three modalities, <span class="grad-text">one fused data layer</span></h2>
+    <p class="sub">Each sensing technology captures a different physical signal at a different scale. Together they form a complete, georeferenced, time-stamped record of every metre of the network.</p>
+    <div class="tablewrap">
+      <table class="dtable">
+        <thead><tr><th>Modality</th><th>Measures</th><th>Resolution / Accuracy</th><th>Speed / Cadence</th><th>Output</th></tr></thead>
+        <tbody>
+          <tr><td><b>XenoTrack</b><br><span style="color:var(--cyan);font-size:11px">6D LiDAR + HD cam + RTK-GNSS</span></td><td>IRI, rutting, MPD, cross-slope, PCI, cracks, potholes, ravelling, manholes</td><td><span class="mono">&lt;0.45 mm</span> vertical · 5×5 mm grid · up to 7.5 m width</td><td>Highway speed <span class="mono">≤100 km/h</span> · per-survey pass</td><td><span class="mono">LAS · CRG · CSV · JPG</span></td></tr>
+          <tr><td><b>PaveSense</b><br><span style="color:var(--teal);font-size:11px">Acoustic + vibration</span></td><td>Surface &amp; sub-surface health — raveling, delamination, layer separation, voids</td><td>Multi-wavelength depth profiling (surface → sub-grade)</td><td>Continuous · every routine fleet trip</td><td><span class="mono">Spectra · depth index</span></td></tr>
+          <tr><td><b>EchoTwin</b><br><span style="color:var(--violet);font-size:11px">Vision AI</span></td><td>38 roadside asset classes · condition, reflectivity, tilt, outage, compliance, change</td><td>Object detection + geo-tag <span class="mono">&lt;3 cm</span> (RTK)</td><td>Continuous · municipal fleets, drones, robotics</td><td><span class="mono">GeoJSON · twin tiles</span></td></tr>
+          <tr><td><b>Reference data</b><br><span style="color:var(--amber);font-size:11px">ROMDAS · GPR</span></td><td>Calibration deflection, layer thickness, structural number</td><td>Ground-truth for model calibration</td><td>Periodic / on-demand</td><td><span class="mono">Structural profiles</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="legend"><span><i style="background:var(--cyan)"></i>Surface geometry</span><span><i style="background:var(--teal)"></i>Sub-surface integrity</span><span><i style="background:var(--violet)"></i>Roadside assets</span><span><i style="background:var(--amber)"></i>Structural ground-truth</span><span style="color:var(--dim)">All streams time-synced &amp; fused on a common linear-referencing system (LRS)</span></div>
+  </section>
+
+  <!-- ============ SLIDE 7 — CORRELATION ENGINE ============ -->
+  <section class="slide" data-anim="corr">
+    <div class="eyebrow"><span class="pulse"></span> The Brain · Multi-source correlation</div>
+    <h2>From <span class="grad-text">as-is condition</span> to <span class="grad-text">deep understanding</span></h2>
+    <p class="sub">Live sensing alone is a snapshot. We correlate it with history, traffic, materials science and the judgement of road-compound scientists — so the AI understands <i>why</i> a segment behaves the way it does.</p>
+    <div class="split" style="grid-template-columns:1fr 1.15fr">
+      <div class="rightcol">
+        <div class="feature"><div class="fic" style="background:rgba(34,211,238,.1);border-color:rgba(34,211,238,.3)">📷</div><div><h4>Live as-is state</h4><p>XenoTrack surface · PaveSense sub-surface · EchoTwin assets.</p></div></div>
+        <div class="feature"><div class="fic" style="background:rgba(59,130,246,.1);border-color:rgba(59,130,246,.3)">📚</div><div><h4>Historical condition records</h4><p>Past inspections, treatments &amp; ROMDAS / GPR surveys per segment.</p></div></div>
+        <div class="feature"><div class="fic" style="background:rgba(245,181,61,.1);border-color:rgba(245,181,61,.3)">🚚</div><div><h4>Traffic &amp; axle-load data</h4><p>Volumes, heavy-vehicle mix &amp; cumulative loading.</p></div></div>
+        <div class="feature"><div class="fic" style="background:rgba(45,212,191,.1);border-color:rgba(45,212,191,.3)">🧪</div><div><h4>Road-compound scientists</h4><p>Mix design, layer thickness, subgrade, climate &amp; materials expertise.</p></div></div>
+      </div>
+      <div class="vizbox">
+        <div class="vizhead"><span>CORRELATION ENGINE — FUSING SIGNALS INTO A DETERIORATION MODEL</span><span class="viz-live"><span class="d"></span>FUSING</span></div>
+        <canvas id="corrCanvas" style="flex:1;width:100%"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ NEW — DISTRESS TAXONOMY & INDICES ============ -->
+  <section class="slide" data-anim="distress">
+    <div class="eyebrow"><span class="pulse"></span> Condition assessment · Indices &amp; distress taxonomy</div>
+    <h2>From raw scans to <span class="grad-text">standardised condition indices</span></h2>
+    <p class="sub">Edge-AI classifies every distress by type, severity and extent, then rolls them into the industry-standard indices engineers already trust — fully traceable to ASTM &amp; AASHTO methods.</p>
+    <div class="split" style="grid-template-columns:1.25fr 1fr">
+      <div class="tablewrap" style="margin-top:18px">
+        <table class="dtable">
+          <thead><tr><th>Distress type</th><th>Detected by</th><th>Severity levels</th><th>Drives</th></tr></thead>
+          <tbody>
+            <tr><td><b>Fatigue / alligator cracking</b></td><td>LiDAR + vision</td><td><span class="sev sev-l">Low</span> <span class="sev sev-m">Med</span> <span class="sev sev-h">High</span></td><td>PCI</td></tr>
+            <tr><td><b>Longitudinal / transverse cracks</b></td><td>LiDAR + vision</td><td><span class="sev sev-l">L</span> <span class="sev sev-m">M</span> <span class="sev sev-h">H</span></td><td>PCI</td></tr>
+            <tr><td><b>Rutting</b></td><td>LiDAR profile</td><td>by depth (mm)</td><td>PCI · safety</td></tr>
+            <tr><td><b>Potholes</b></td><td>LiDAR + vision</td><td>by area + depth</td><td>PCI · work order</td></tr>
+            <tr><td><b>Ravelling / weathering</b></td><td>Vision + acoustic</td><td><span class="sev sev-l">L</span> <span class="sev sev-m">M</span> <span class="sev sev-h">H</span></td><td>PCI</td></tr>
+            <tr><td><b>Delamination / voids</b></td><td>Acoustic (sub-surface)</td><td>by extent</td><td>Structural</td></tr>
+            <tr><td><b>Roughness</b></td><td>LiDAR (IRI)</td><td>continuous</td><td>Ride quality</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="factcol" style="margin-top:18px">
+        <div class="factcard"><div class="fbig" style="color:var(--amber)">PCI <span style="font-size:14px;color:var(--muted)">0–100</span></div><div class="fl"><b style="color:var(--ink)">Pavement Condition Index</b> — ASTM D6433. Weighted deduct-value model across all distress types &amp; severities. <span style="color:var(--green)">85–100 Good</span> · <span style="color:var(--amber)">55–70 Fair</span> · <span style="color:var(--red)">&lt;40 Poor</span>.</div></div>
+        <div class="factcard"><div class="fbig" style="color:var(--cyan)">IRI <span style="font-size:14px;color:var(--muted)">m/km</span></div><div class="fl"><b style="color:var(--ink)">International Roughness Index</b> — ASTM E1926. Quarter-car ride-quality model from the longitudinal profile.</div></div>
+        <div class="factcard"><div class="fbig" style="color:var(--teal)">RUT <span style="font-size:14px;color:var(--muted)">mm</span> · MPD</div><div class="fl"><b style="color:var(--ink)">Rut depth &amp; macro-texture</b> — transverse deformation &amp; skid-relevant surface texture (mean profile depth).</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 8 — PREDICTIVE MODELS ============ -->
+  <section class="slide" data-anim="models">
+    <div class="eyebrow"><span class="pulse"></span> Predictive AI · Deterioration forecasting</div>
+    <h2>Four model families, one ensemble forecast</h2>
+    <p class="sub">The platform runs complementary prediction methods, compares them, and continuously improves accuracy — forecasting future pavement performance before it reaches a critical condition.</p>
+    <div class="models">
+      <div class="model"><h3>📈 Time-series models <span class="tag" style="background:rgba(34,211,238,.12);color:var(--cyan)">trend</span></h3><p class="mdesc">Project condition forward from the historical deterioration trajectory of each segment.</p><div class="spark"><canvas class="sparkc" data-kind="ts" height="90"></canvas></div></div>
+      <div class="model"><h3>🌫️ Grey prediction models <span class="tag" style="background:rgba(45,212,191,.12);color:var(--teal)">sparse data</span></h3><p class="mdesc">Accurate forecasts even with limited history — ideal for newly instrumented networks.</p><div class="spark"><canvas class="sparkc" data-kind="grey" height="90"></canvas></div></div>
+      <div class="model"><h3>🧠 Neural network models <span class="tag" style="background:rgba(139,92,246,.12);color:var(--violet)">non-linear</span></h3><p class="mdesc">Capture complex interactions between loads, materials, climate &amp; distress modes.</p><div class="spark"><canvas class="sparkc" data-kind="nn" height="90"></canvas></div></div>
+      <div class="model"><h3>⚗️ Hybrid physics + expert <span class="tag" style="background:rgba(245,181,61,.12);color:var(--amber)">ensemble</span></h3><p class="mdesc">Blend mechanistic models, statistical methods &amp; expert knowledge into one robust forecast.</p><div class="spark"><canvas class="sparkc" data-kind="hybrid" height="90"></canvas></div></div>
+    </div>
+    <div class="legend"><span><i style="background:var(--green)"></i>Predicted healthy life</span><span><i style="background:var(--amber)"></i>Preventive window</span><span><i style="background:var(--red)"></i>Failure threshold (PCI)</span><span><i style="background:var(--dim)"></i>Observed history</span></div>
+  </section>
+
+  <!-- ============ NEW — PAVEMENT LIFECYCLE & TREATMENT TIMING ============ -->
+  <section class="slide" data-anim="lifecycle">
+    <div class="eyebrow"><span class="pulse"></span> The economics of timing · Deterioration curve</div>
+    <h2>Why timing is everything: <span class="grad-text">$1 now vs $6–10 later</span></h2>
+    <p class="sub">Pavement condition decays slowly, then collapses. Predicting the curve lets us treat in the cheap preventive window — before the steep drop into costly rehabilitation and reconstruction.</p>
+    <div class="split r">
+      <div class="factcol">
+        <div class="factcard" style="border-color:rgba(52,211,153,.3)"><div class="fbig" style="color:var(--green)">$1</div><div class="fl"><b style="color:var(--ink)">Preventive</b> · crack seal, fog seal, micro-surfacing in the <b style="color:var(--green)">75–90 PCI</b> window.</div></div>
+        <div class="factcard" style="border-color:rgba(245,181,61,.3)"><div class="fbig" style="color:var(--amber)">$4–5</div><div class="fl"><b style="color:var(--ink)">Rehabilitation</b> · mill &amp; overlay once condition slips to <b style="color:var(--amber)">55–70 PCI</b>.</div></div>
+        <div class="factcard" style="border-color:rgba(248,113,113,.3)"><div class="fbig" style="color:var(--red)">$6–10</div><div class="fl"><b style="color:var(--ink)">Reconstruction</b> · full-depth rebuild after the curve collapses below <b style="color:var(--red)">40 PCI</b>.</div></div>
+        <div class="factcard"><div class="fl" style="margin-top:0"><b style="color:var(--cyan)">RoadTwin advantage:</b> predictive curves pinpoint the preventive window per-segment, keeping the network high &amp; spend low.</div></div>
+      </div>
+      <div class="vizbox">
+        <div class="vizhead"><span>DETERIORATION CURVE — DO-NOTHING vs PREVENTIVE STRATEGY</span><span class="viz-live"><span class="d"></span>FORECAST</span></div>
+        <canvas id="lifeCanvas" style="flex:1;width:100%"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 9 — DECISION SYSTEM ============ -->
+  <section class="slide" data-anim="decide">
+    <div class="eyebrow"><span class="pulse"></span> Maintenance Decision-Making System</div>
+    <h2>Scientifically justified plans, <span class="grad-text">optimised to your budget</span></h2>
+    <p class="sub">The decision engine turns forecasts into the best achievable maintenance outcome with available funding — six coordinated functions working together.</p>
+    <div class="assetgrid" style="grid-template-columns:repeat(3,1fr)">
+      <div class="card"><div class="ico">🧩</div><h3>Dynamic section division</h3><p>Auto-divides the network into logical maintenance units by traffic, axle load, soil, climate &amp; condition.</p></div>
+      <div class="card"><div class="ico">📉</div><h3>Long-term performance prediction</h3><p>Forecasts future condition from structure, materials, layer thickness, subgrade &amp; environment.</p></div>
+      <div class="card"><div class="ico">🛣️</div><h3>Pavement treatment decisions</h3><p>ML + a maintenance database generate the optimal treatment recommendation per unit.</p></div>
+      <div class="card"><div class="ico">🌉</div><h3>Structure maintenance</h3><p>Matches actions to bridges &amp; structures by condition, materials &amp; construction method.</p></div>
+      <div class="card"><div class="ico">💰</div><h3>Optimal fund allocation</h3><p>Prioritises projects by urgency &amp; expected benefit so limited budgets do the most good.</p></div>
+      <div class="card"><div class="ico">🔁</div><h3>Effectiveness evaluation</h3><p>Tracks post-treatment performance &amp; feeds results back to sharpen future decisions.</p></div>
+    </div>
+    <div class="statstrip">
+      <div class="st"><div class="sv"><b>MILP</b></div><div class="sl">Constrained budget optimiser</div></div>
+      <div class="st"><div class="sv"><b>5–10 yr</b></div><div class="sl">Multi-year program horizon</div></div>
+      <div class="st"><div class="sv"><b>+18%</b></div><div class="sl">Network PCI per $ vs worst-first</div></div>
+      <div class="st"><div class="sv"><b>6</b></div><div class="sl">Treatment classes matched</div></div>
+      <div class="st"><div class="sv"><b>What-if</b></div><div class="sl">Scenario &amp; sensitivity analysis</div></div>
+    </div>
+  </section>
+
+  <!-- ============ NEW — TREATMENT DECISION MATRIX ============ -->
+  <section class="slide" data-anim="matrix">
+    <div class="eyebrow"><span class="pulse"></span> Decision engine · Treatment matching</div>
+    <h2>The right treatment for <span class="grad-text">the right condition</span></h2>
+    <p class="sub">Machine learning maps each segment's condition, dominant distress and forecast trajectory to the optimal treatment from the maintenance catalogue — balancing cost, expected life-extension and risk.</p>
+    <div class="matrix">
+      <div class="mrow mh"><div class="mcell">Condition band</div><div class="mcell">Dominant signal</div><div class="mcell">Recommended treatment</div><div class="mcell">Cost · life gain</div></div>
+      <div class="mrow"><div class="mcell"><span class="sev sev-l">PCI 85–100</span><br><b>Excellent</b></div><div class="mcell">Minor surface oxidation</div><div class="mcell"><b>Do-nothing / monitor</b><small>routine sensing only</small></div><div class="mcell"><b style="color:var(--green)">$</b> · baseline</div></div>
+      <div class="mrow"><div class="mcell"><span class="sev sev-l">PCI 70–85</span><br><b>Good</b></div><div class="mcell">Early cracks, ravelling</div><div class="mcell"><b>Crack seal · fog seal</b><small>preventive</small></div><div class="mcell"><b style="color:var(--green)">$</b> · +3–6 yr</div></div>
+      <div class="mrow"><div class="mcell"><span class="sev sev-m">PCI 55–70</span><br><b>Fair</b></div><div class="mcell">Surface distress, rutting</div><div class="mcell"><b>Micro-surfacing · thin overlay</b><small>preventive / minor rehab</small></div><div class="mcell"><b style="color:var(--amber)">$$</b> · +7–10 yr</div></div>
+      <div class="mrow"><div class="mcell"><span class="sev sev-m">PCI 40–55</span><br><b>Poor</b></div><div class="mcell">Structural cracking</div><div class="mcell"><b>Mill &amp; overlay</b><small>major rehabilitation</small></div><div class="mcell"><b style="color:var(--amber)">$$$</b> · +12–15 yr</div></div>
+      <div class="mrow"><div class="mcell"><span class="sev sev-h">PCI &lt; 40</span><br><b>Failed</b></div><div class="mcell">Sub-grade failure, voids</div><div class="mcell"><b>Full-depth reconstruction</b><small>capital project</small></div><div class="mcell"><b style="color:var(--red)">$$$$</b> · reset</div></div>
+    </div>
+  </section>
+
+  <!-- ============ NEW — BUDGET OPTIMIZATION ============ -->
+  <section class="slide" data-anim="budget">
+    <div class="eyebrow"><span class="pulse"></span> Capital planning · Multi-year optimisation</div>
+    <h2>Make every budget dollar <span class="grad-text">go further</span></h2>
+    <p class="sub">A constrained optimiser projects network condition over a 10-year horizon under each funding scenario — so planners can defend budgets with data and avoid the silent debt of deferred maintenance.</p>
+    <div class="split">
+      <div class="vizbox">
+        <div class="vizhead"><span>NETWORK PCI PROJECTION — 10-YEAR SCENARIO ANALYSIS</span><span class="viz-live"><span class="d"></span>OPTIMISING</span></div>
+        <canvas id="budgetCanvas" style="flex:1;width:100%"></canvas>
+      </div>
+      <div class="factcol">
+        <div class="factcard" style="border-color:rgba(52,211,153,.3)"><div class="fbig" style="color:var(--green)">Optimised</div><div class="fl">Predictive, preventive-first program — network PCI <b style="color:var(--green)">rises &amp; holds</b> at the same or lower annual spend.</div></div>
+        <div class="factcard" style="border-color:rgba(245,181,61,.3)"><div class="fbig" style="color:var(--amber)">Status-quo</div><div class="fl">Current worst-first spending — PCI <b style="color:var(--amber)">drifts down</b> as the backlog grows.</div></div>
+        <div class="factcard" style="border-color:rgba(248,113,113,.3)"><div class="fbig" style="color:var(--red)">Do-nothing</div><div class="fl">Reactive only — condition <b style="color:var(--red)">collapses</b>, reconstruction debt compounds.</div></div>
+        <div class="factcard"><div class="fl" style="margin-top:0"><b style="color:var(--cyan)">Outputs:</b> ranked project list, year-by-year program, and the marginal PCI gained per dollar for each scenario.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 10 — ASSET CATALOG ============ -->
+  <section class="slide" data-anim="assets">
+    <div class="eyebrow"><span class="pulse"></span> Roadside Asset Catalogue · Live health</div>
+    <h2>Every asset, tracked, scored &amp; predicted</h2>
+    <p class="sub">Beyond pavement, the same as-is + history + predictive-AI loop manages the full roadside inventory. Tap any asset.</p>
+    <div class="assetgrid">
+      <div class="asset"><div class="aico">🚸</div><h4>Traffic sign boards</h4><p>Retro-reflectivity, tilt, legibility &amp; obstruction monitored by vision AI.</p><div class="stat"><span class="health h-ok">● Healthy 94%</span><span class="kbd">12,480 units</span></div></div>
+      <div class="asset"><div class="aico">📺</div><h4>Dynamic message signs</h4><p>Pixel/LED outages, brightness, comms uptime &amp; message-render faults.</p><div class="stat"><span class="health h-warn">▲ 3 faults</span><span class="kbd">214 units</span></div></div>
+      <div class="asset"><div class="aico">🚦</div><h4>Lane control signals</h4><p>Aspect health, lamp failure &amp; over-lane gantry condition.</p><div class="stat"><span class="health h-ok">● Healthy 97%</span><span class="kbd">386 units</span></div></div>
+      <div class="asset"><div class="aico">💡</div><h4>Street lighting</h4><p>Outage detection, illuminance, energy draw &amp; pole-lean alerts.</p><div class="stat"><span class="health h-warn">▲ 41 out</span><span class="kbd">28,900 units</span></div></div>
+      <div class="asset"><div class="aico">🛟</div><h4>Guardrails &amp; barriers</h4><p>Impact damage, corrosion, alignment &amp; missing sections.</p><div class="stat"><span class="health h-crit">✕ 6 critical</span><span class="kbd">920 km</span></div></div>
+      <div class="asset"><div class="aico">🛑</div><h4>Road markings</h4><p>Wear, retro-reflectivity &amp; lane-line continuity from LiDAR + vision.</p><div class="stat"><span class="health h-warn">▲ 18% faded</span><span class="kbd">3,100 km</span></div></div>
+      <div class="asset"><div class="aico">🕳️</div><h4>Manholes &amp; drainage</h4><p>Cover settlement, level offset &amp; blockage indicators.</p><div class="stat"><span class="health h-ok">● Healthy 91%</span><span class="kbd">7,650 units</span></div></div>
+      <div class="asset"><div class="aico">🌉</div><h4>Bridges &amp; structures</h4><p>Geometry change, joint &amp; deck condition for structure decisions.</p><div class="stat"><span class="health h-ok">● Healthy 96%</span><span class="kbd">142 structures</span></div></div>
+    </div>
+  </section>
+
+  <!-- ============ NEW — DIGITAL TWIN ARCHITECTURE ============ -->
+  <section class="slide" data-anim="twin">
+    <div class="eyebrow"><span class="pulse"></span> Platform · Digital-twin data architecture</div>
+    <h2>A living twin that <span class="grad-text">plugs into your stack</span></h2>
+    <p class="sub">Sensor data becomes a continuously-updated digital twin on a common linear-referencing system — open formats out, two-way integration with the systems your teams already run.</p>
+    <div class="archcols">
+      <div class="archcol">
+        <div class="ahdr" style="background:rgba(34,211,238,.12);color:var(--cyan)">① INGEST &amp; FUSE</div>
+        <div class="anode"><b>Edge processing</b><span>On-vehicle AI — distress &amp; asset detection at capture</span></div>
+        <div class="anode"><b>Linear referencing (LRS)</b><span>All streams aligned to route + chainage + GPS</span></div>
+        <div class="anode"><b>Data lake</b><span>LAS point clouds · imagery · acoustic spectra · GeoJSON</span></div>
+        <div class="anode"><b>Quality &amp; calibration</b><span>ROMDAS / GPR ground-truth, outlier rejection</span></div>
+      </div>
+      <div class="archcol">
+        <div class="ahdr" style="background:rgba(139,92,246,.12);color:var(--violet)">② TWIN &amp; INTELLIGENCE</div>
+        <div class="anode"><b>3D geometric twin</b><span>As-built model · textured surface · asset inventory</span></div>
+        <div class="anode"><b>Condition indices</b><span>PCI · IRI · rut · per-segment, time-versioned</span></div>
+        <div class="anode"><b>Predictive models</b><span>Deterioration forecasts &amp; remaining-life estimates</span></div>
+        <div class="anode"><b>Decision &amp; optimiser</b><span>Treatment matching · multi-year budget program</span></div>
+      </div>
+      <div class="archcol">
+        <div class="ahdr" style="background:rgba(245,181,61,.12);color:var(--amber)">③ DELIVER &amp; INTEGRATE</div>
+        <div class="anode"><b>GIS</b><span>Esri / QGIS layers · streetmap visualisation</span></div>
+        <div class="anode"><b>EAM / ERP</b><span>Work orders to Maximo, SAP PM, Cityworks</span></div>
+        <div class="anode"><b>BIM &amp; CDE</b><span>IFC export for structures &amp; corridor models</span></div>
+        <div class="anode"><b>Open API &amp; dashboards</b><span>REST/GeoJSON · web dashboards · mobile field app</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ NEW — DEPLOYMENT ROADMAP ============ -->
+  <section class="slide" data-anim="roadmap">
+    <div class="eyebrow"><span class="pulse"></span> Delivery · Phased deployment</div>
+    <h2>From pilot to <span class="grad-text">network-wide intelligence</span></h2>
+    <p class="sub">A low-risk, staged rollout — value from the first corridor, scaling to a self-improving network twin without disrupting operations.</p>
+    <div class="timeline">
+      <div class="phase"><div class="pline"></div><div class="pdot"></div><div class="pno">Phase 1</div><h3>Baseline &amp; pilot</h3><div class="pdur">Weeks 0–8</div>
+        <ul><li>Mount sensors on pilot fleet (45-min install)</li><li>Scan priority corridor · build first twin</li><li>Calibrate against ROMDAS / GPR</li><li>Establish PCI / IRI baseline</li></ul></div>
+      <div class="phase"><div class="pline"></div><div class="pdot"></div><div class="pno">Phase 2</div><h3>Correlate &amp; train</h3><div class="pdur">Months 2–4</div>
+        <ul><li>Ingest historical condition &amp; traffic data</li><li>Train &amp; validate predictive models</li><li>Stand up GIS &amp; dashboard integration</li><li>Onboard road-compound scientists</li></ul></div>
+      <div class="phase"><div class="pline"></div><div class="pdot"></div><div class="pno">Phase 3</div><h3>Decide &amp; act</h3><div class="pdur">Months 4–8</div>
+        <ul><li>Generate forecasts &amp; treatment plans</li><li>Run multi-year budget optimisation</li><li>Push work orders to EAM / ERP</li><li>Extend to roadside-asset management</li></ul></div>
+      <div class="phase"><div class="pdot"></div><div class="pno">Phase 4</div><h3>Scale &amp; learn</h3><div class="pdur">Months 8+</div>
+        <ul><li>Roll out across the full network</li><li>Continuous capture on every fleet trip</li><li>Track effectiveness · close the loop</li><li>Models self-improve each cycle</li></ul></div>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 11 — BENEFITS ============ -->
+  <section class="slide" data-anim="benefits">
+    <div class="eyebrow"><span class="pulse"></span> Outcomes · Why it pays</div>
+    <h2>Lower cost. Longer life. <span class="grad-text">Fewer surprises.</span></h2>
+    <p class="sub">Predictive maintenance carries higher up-front investment but delivers significant long-term savings and improved asset performance.</p>
+    <div class="kpis">
+      <div class="kpi"><div class="big" data-count="80" data-suffix="%">0%</div><div class="lbl">Maintenance cost reduction (PaveSense data-driven planning)</div></div>
+      <div class="kpi"><div class="big" data-count="50" data-suffix="%">0%</div><div class="lbl">Lower survey operating cost vs. conventional scanning</div></div>
+      <div class="kpi"><div class="big" data-count="40" data-suffix="%">0%</div><div class="lbl">Reduced Mean-Time-To-Repair (MTTR)</div></div>
+      <div class="kpi"><div class="big" data-count="3" data-suffix="×">0×</div><div class="lbl">Extended asset service life through timely preventive action</div></div>
+    </div>
+    <div class="benefitlist">
+      <div class="bi"><span class="ck">✓</span> Fewer asset failures &amp; emergency repairs</div>
+      <div class="bi"><span class="ck">✓</span> More accurate, always-fresh condition data</div>
+      <div class="bi"><span class="ck">✓</span> Better maintenance timing &amp; cost efficiency</div>
+      <div class="bi"><span class="ck">✓</span> Verified repair effectiveness &amp; closed-loop learning</div>
+      <div class="bi"><span class="ck">✓</span> Higher productivity &amp; return on investment</div>
+      <div class="bi"><span class="ck">✓</span> Safer roads &amp; lower carbon footprint</div>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 12 — CLOSING ============ -->
+  <section class="slide" data-anim="close">
+    <canvas class="hero-wrap" id="closeCanvas"></canvas>
+    <div class="closing">
+      <div id="closeLogo" style="margin-bottom:26px"></div>
+      <h1>One platform.<br><span class="grad-text">Every metre of road, understood.</span></h1>
+      <p class="sub" style="text-align:center">Surface, sub-surface and roadside assets — sensed live, correlated with history and science, forecast by predictive AI, and acted on with budget-optimised decisions.</p>
+      <div class="archring">
+        <div class="chip">📡 XenoTrack · 6D LiDAR</div>
+        <div class="chip">🔊 PaveSense · Acoustic</div>
+        <div class="chip">👁️ EchoTwin · Vision AI</div>
+        <div class="chip">🧠 Predictive Models</div>
+        <div class="chip">🎯 Decision Engine</div>
+      </div>
+      <div class="hero-cred" id="closeCred" style="justify-content:center;margin-top:34px"></div>
+    </div>
+  </section>
+
+</div>
+
+<!-- nav -->
+<div class="nav">
+  <button class="arrow" id="prev">‹</button>
+  <div class="dots" id="dots"></div>
+  <button class="arrow" id="next">›</button>
+</div>
+<div class="hint kbd"><b>←</b> <b>→</b> navigate · <b>F</b> fullscreen</div>
+<div class="slideno"><span id="cur">1</span> / <span id="tot">12</span></div>
+
+<script>
+/* ====================== DECK ENGINE ====================== */
+const slides=[...document.querySelectorAll('.slide')];
+const dotsWrap=document.getElementById('dots');
+let idx=0;
+document.getElementById('tot').textContent=slides.length;
+slides.forEach((_,i)=>{const d=document.createElement('button');d.className='dot'+(i===0?' active':'');d.onclick=()=>go(i);dotsWrap.appendChild(d);});
+const dots=[...dotsWrap.children];
+function go(n){
+  if(n<0||n>=slides.length)return;
+  slides[idx].classList.remove('active');slides[idx].classList.add('prev');
+  dots[idx].classList.remove('active');
+  idx=n;
+  slides[idx].classList.remove('prev');slides[idx].classList.add('active');
+  dots[idx].classList.add('active');
+  document.getElementById('progress').style.width=((idx+1)/slides.length*100)+'%';
+  document.getElementById('cur').textContent=idx+1;
+  triggerAnim(slides[idx].dataset.anim);
+}
+document.getElementById('next').onclick=()=>go(idx+1);
+document.getElementById('prev').onclick=()=>go(idx-1);
+window.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key===' ')go(idx+1);
+  else if(e.key==='ArrowLeft')go(idx-1);
+  else if(e.key.toLowerCase()==='f'){if(!document.fullscreenElement)document.documentElement.requestFullscreen();else document.exitFullscreen();}
+});
+document.getElementById('progress').style.width=(1/slides.length*100)+'%';
+
+/* fit canvas helper — sizes from PARENT (canvas is a replaced element, so
+   inset:0 / flex don't stretch it; we pin explicit CSS px to avoid feedback) */
+function fit(c){
+  const dpr=Math.min(window.devicePixelRatio||1,2);
+  const p=c.parentElement;
+  let w=p.clientWidth, h=p.clientHeight;
+  if(!c.classList.contains('hero-wrap')){
+    const head=p.querySelector('.vizhead');
+    if(head) h-=head.getBoundingClientRect().height;
+  }
+  w=Math.max(1,w); h=Math.max(1,h);
+  c.style.width=w+'px'; c.style.height=h+'px';
+  c.width=Math.round(w*dpr); c.height=Math.round(h*dpr);
+  const ctx=c.getContext('2d');ctx.setTransform(dpr,0,0,dpr,0,0);
+  return{ctx,w,h};
+}
+
+/* ====================== HERO SCAN ANIMATION ====================== */
+function heroAnim(canvasId){
+  const c=document.getElementById(canvasId);if(!c)return;
+  let raf,t=0;
+  function loop(){
+    const {ctx,w,h}=fit(c);
+    t+=0.011;
+    ctx.clearRect(0,0,w,h);
+    // perspective road grid
+    const hz=h*0.42; // horizon
+    const cx=w*0.5;
+    ctx.save();
+    // moving road lines (perspective)
+    for(let i=0;i<26;i++){
+      let z=((i/26)+ (t*0.12)%(1/26))% 1;
+      let y=hz+ (h-hz)*z*z;
+      let spread=(y-hz)/(h-hz);
+      let a=0.05+spread*0.18;
+      ctx.strokeStyle='rgba(34,211,238,'+a+')';
+      ctx.lineWidth=1;
+      ctx.beginPath();ctx.moveTo(cx-(w*0.7)*spread,y);ctx.lineTo(cx+(w*0.7)*spread,y);ctx.stroke();
+    }
+    // vertical perspective rails
+    for(let i=-6;i<=6;i++){
+      ctx.strokeStyle='rgba(59,130,246,0.10)';
+      ctx.beginPath();ctx.moveTo(cx+i*14,hz);ctx.lineTo(cx+i*(w*0.12),h);ctx.stroke();
+    }
+    // scanning beam sweeping forward
+    let sp=(Math.sin(t*0.9)*0.5+0.5);
+    let sy=hz+(h-hz)*sp*sp;
+    let sspread=(sy-hz)/(h-hz);
+    let g=ctx.createLinearGradient(0,sy-20,0,sy+20);
+    g.addColorStop(0,'rgba(34,211,238,0)');g.addColorStop(.5,'rgba(34,211,238,'+(0.5*sspread+0.15)+')');g.addColorStop(1,'rgba(34,211,238,0)');
+    ctx.fillStyle=g;ctx.fillRect(cx-(w*0.7)*sspread,sy-14,(w*1.4)*sspread,28);
+    // points cloud near scan line
+    for(let i=0;i<80;i++){
+      let px=cx+(Math.sin(i*12.9+t)*(w*0.66)*sspread);
+      let py=sy+Math.sin(i*3.1+t*2)*8;
+      ctx.fillStyle='rgba(45,212,191,'+(0.3+0.4*Math.random())+')';
+      ctx.fillRect(px,py,2,2);
+    }
+    // floating data nodes
+    raf=requestAnimationFrame(loop);
+  }
+  loop();
+  return ()=>cancelAnimationFrame(raf);
+}
+
+/* ====================== XENOTRACK SCAN ====================== */
+function xenoAnim(){
+  const c=document.getElementById('xenoCanvas');if(!c)return;
+  let raf,t=0;
+  // pre-seed distress features
+  const distress=[
+    {x:0.30,y:0.34,type:'CRACK',col:'#f87171',w:90,h:14},
+    {x:0.62,y:0.55,type:'POTHOLE',col:'#fb923c',w:34,h:34},
+    {x:0.45,y:0.74,type:'PATCH',col:'#f5b53d',w:60,h:40},
+    {x:0.20,y:0.62,type:'RAVELLING',col:'#a78bfa',w:46,h:30},
+  ];
+  let pts=[];
+  function loop(){
+    const {ctx,w,h}=fit(c);t+=0.011;
+    ctx.clearRect(0,0,w,h);
+    // road base
+    ctx.fillStyle='#11161f';ctx.fillRect(0,0,w,h);
+    // lane markings
+    ctx.strokeStyle='rgba(255,255,255,0.10)';ctx.lineWidth=2;
+    ctx.setLineDash([18,16]);ctx.beginPath();ctx.moveTo(w*0.5,0);ctx.lineTo(w*0.5,h);ctx.stroke();ctx.setLineDash([]);
+    ctx.strokeStyle='rgba(255,255,255,0.13)';ctx.lineWidth=3;
+    ctx.beginPath();ctx.moveTo(w*0.08,0);ctx.lineTo(w*0.08,h);ctx.moveTo(w*0.92,0);ctx.lineTo(w*0.92,h);ctx.stroke();
+    // texture grid
+    ctx.strokeStyle='rgba(34,211,238,0.05)';ctx.lineWidth=1;
+    for(let gx=0;gx<w;gx+=26){ctx.beginPath();ctx.moveTo(gx,0);ctx.lineTo(gx,h);ctx.stroke();}
+    for(let gy=0;gy<h;gy+=26){ctx.beginPath();ctx.moveTo(0,gy);ctx.lineTo(w,gy);ctx.stroke();}
+    // scan line moving down
+    let scan=((t*0.33)%1);
+    let sy=scan*h;
+    // emit point cloud at scan
+    if(Math.random()<0.9){for(let i=0;i<10;i++){pts.push({x:w*0.08+Math.random()*w*0.84,y:sy,life:1,hot:Math.random()<0.12});}}
+    pts=pts.filter(p=>p.life>0);
+    pts.forEach(p=>{p.life-=0.012;ctx.fillStyle=p.hot?'rgba(248,113,113,'+p.life+')':'rgba(45,212,191,'+(p.life*0.8)+')';ctx.fillRect(p.x,p.y,2.4,2.4);});
+    // scan beam
+    let bg=ctx.createLinearGradient(0,sy-26,0,sy+26);
+    bg.addColorStop(0,'rgba(34,211,238,0)');bg.addColorStop(.5,'rgba(34,211,238,.55)');bg.addColorStop(1,'rgba(34,211,238,0)');
+    ctx.fillStyle=bg;ctx.fillRect(0,sy-26,w,52);
+    ctx.fillStyle='#7fe9ff';ctx.fillRect(0,sy-1,w,2);
+    // distress detection: reveal box once scan passes
+    ctx.font='10px ui-monospace,monospace';ctx.textBaseline='bottom';
+    distress.forEach(d=>{
+      const dx=w*d.x, dy=h*d.y;
+      const revealed = sy> dy;
+      if(revealed){
+        const pulse=0.55+0.45*Math.sin(t*4);
+        ctx.strokeStyle=d.col;ctx.lineWidth=2;ctx.globalAlpha=0.8;
+        ctx.strokeRect(dx-d.w/2,dy-d.h/2,d.w,d.h);
+        // corner ticks
+        ctx.globalAlpha=pulse;
+        ctx.fillStyle=d.col;
+        ctx.fillRect(dx-d.w/2-2,dy-d.h/2-2,8,2);ctx.fillRect(dx-d.w/2-2,dy-d.h/2-2,2,8);
+        ctx.fillRect(dx+d.w/2-6,dy+d.h/2,8,2);ctx.fillRect(dx+d.w/2,dy+d.h/2-6,2,8);
+        ctx.globalAlpha=1;
+        // label
+        ctx.fillStyle=d.col;ctx.fillRect(dx-d.w/2,dy-d.h/2-15,ctx.measureText(d.type).width+10,13);
+        ctx.fillStyle='#0a0f1c';ctx.fillText(d.type,dx-d.w/2+5,dy-d.h/2-3);
+      }
+    });
+    ctx.globalAlpha=1;
+    raf=requestAnimationFrame(loop);
+  }
+  loop();
+  // animate gauges
+  animateGauges();
+  return ()=>cancelAnimationFrame(raf);
+}
+function animateGauges(){
+  const targets={iri:[2.4,'g-iri','b-iri',60],rut:[8,'g-rut','b-rut',40],pci:[72,'g-pci','b-pci',72],slope:[2.1,'g-slope','b-slope',42]};
+  Object.entries(targets).forEach(([k,[val,gid,bid,pct]],i)=>{
+    let cur=0;const dec=(k==='iri'||k==='slope');
+    const step=()=>{cur+=val/65;if(cur>=val)cur=val;
+      const el=document.getElementById(gid);if(el)el.textContent=dec?cur.toFixed(1):Math.round(cur);
+      const b=document.getElementById(bid);if(b)b.style.width=(pct*cur/val)+'%';
+      if(cur<val)requestAnimationFrame(step);};
+    setTimeout(step,i*120);
+  });
+}
+
+/* ====================== PAVESENSE ====================== */
+function paveAnim(){
+  const c=document.getElementById('paveCanvas');if(!c)return;
+  let raf,t=0;
+  const layers=[
+    {name:'SURFACE COURSE',col:'#22d3ee',h:0.16},
+    {name:'BINDER',col:'#2dd4bf',h:0.20},
+    {name:'BASE',col:'#3b82f6',h:0.26},
+    {name:'SUB-GRADE',col:'#8b5cf6',h:0.38},
+  ];
+  function loop(){
+    const {ctx,w,h}=fit(c);t+=0.011;
+    ctx.clearRect(0,0,w,h);
+    const top=h*0.06;
+    // road surface line + vehicle marker
+    let carX=((t*0.18)%1)*w;
+    // layers
+    let y=top;
+    layers.forEach((L,li)=>{
+      const lh=(h-top)*L.h;
+      const g=ctx.createLinearGradient(0,y,0,y+lh);
+      g.addColorStop(0,L.col+'33');g.addColorStop(1,L.col+'11');
+      ctx.fillStyle=g;ctx.fillRect(0,y,w,lh);
+      ctx.strokeStyle=L.col+'55';ctx.lineWidth=1;ctx.strokeRect(0,y,w,lh);
+      ctx.fillStyle=L.col;ctx.font='10px ui-monospace,monospace';ctx.textBaseline='middle';
+      ctx.globalAlpha=0.85;ctx.fillText(L.name,10,y+12);ctx.globalAlpha=1;
+      y+=lh;
+    });
+    // acoustic waves emitted from car going down through layers
+    for(let r=0;r<5;r++){
+      let phase=(t*1.4 - r*0.5);
+      let rad=((phase%2.4))* (h*0.42);
+      if(rad<0)continue;
+      let alpha=Math.max(0,0.5-rad/(h*0.6));
+      ctx.strokeStyle='rgba(125,233,255,'+alpha+')';ctx.lineWidth=1.5;
+      ctx.beginPath();ctx.arc(carX,top,rad,0.15,Math.PI-0.15);ctx.stroke();
+    }
+    // vehicle
+    ctx.fillStyle='#eaf2ff';ctx.fillRect(carX-16,top-13,32,11);
+    ctx.fillStyle='#22d3ee';ctx.fillRect(carX-16,top-13,32,3);
+    ctx.fillStyle='#0a0f1c';ctx.beginPath();ctx.arc(carX-9,top-2,3,0,7);ctx.arc(carX+9,top-2,3,0,7);ctx.fill();
+    // a defect (delamination) between binder & base
+    const dy=top+(h-top)*(0.16+0.20)*1.0;
+    const dx=w*0.66;
+    const pulse=0.5+0.5*Math.sin(t*5);
+    ctx.strokeStyle='rgba(248,113,113,'+(0.6+0.4*pulse)+')';ctx.lineWidth=2;ctx.setLineDash([6,4]);
+    ctx.beginPath();ctx.ellipse(dx,dy,52,9,0,0,7);ctx.stroke();ctx.setLineDash([]);
+    ctx.fillStyle='#f87171';ctx.font='10px ui-monospace,monospace';
+    ctx.fillRect(dx-52,dy-26,128,13);ctx.fillStyle='#0a0f1c';ctx.fillText('⚠ DELAMINATION',dx-46,dy-19);
+    // live waveform strip at bottom
+    const wy=h-1, amp=18;
+    ctx.strokeStyle='rgba(45,212,191,0.8)';ctx.lineWidth=1.5;ctx.beginPath();
+    for(let x=0;x<w;x++){
+      let v=Math.sin(x*0.05+t*5)*amp*0.4 + Math.sin(x*0.13+t*8)*amp*0.3 + (Math.abs(x-dx)<60?Math.sin(x*0.5+t*20)*amp*0.5:0);
+      let yy=h-22+v;
+      x===0?ctx.moveTo(x,yy):ctx.lineTo(x,yy);
+    }
+    ctx.stroke();
+    raf=requestAnimationFrame(loop);
+  }
+  loop();
+  return ()=>cancelAnimationFrame(raf);
+}
+
+/* ====================== ECHOTWIN STREETSCAPE ====================== */
+const echoAssets=[
+  {x:90,y:150,type:'STREET LAMP',ico:'lamp',status:'crit',note:'OUTAGE'},
+  {x:200,y:120,type:'TRAFFIC SIGN',ico:'sign',status:'ok',note:'OK'},
+  {x:330,y:95,type:'DMS GANTRY',ico:'dms',status:'warn',note:'2 PIXELS'},
+  {x:470,y:120,type:'LANE CONTROL',ico:'lane',status:'ok',note:'OK'},
+  {x:560,y:150,type:'GUARDRAIL',ico:'rail',status:'warn',note:'IMPACT'},
+];
+function echoAnim(){
+  const svg=document.getElementById('echoSvg');if(!svg)return;
+  svg.innerHTML='';
+  const NS='http://www.w3.org/2000/svg';
+  const col={ok:'#34d399',warn:'#f5b53d',crit:'#f87171'};
+  // background road perspective
+  function el(tag,attrs){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);return e;}
+  // sky/ground
+  svg.appendChild(el('rect',{x:0,y:0,width:640,height:300,fill:'#0a1322'}));
+  svg.appendChild(el('rect',{x:0,y:300,width:640,height:160,fill:'#11161f'}));
+  // road
+  const road=el('polygon',{points:'250,300 390,300 560,460 80,460',fill:'#161d2b'});svg.appendChild(road);
+  // center dashes
+  for(let i=0;i<6;i++){const yy=305+i*26;const wq=2+i*1.6;svg.appendChild(el('rect',{x:320-wq/2,y:yy,width:wq,height:12,fill:'rgba(245,181,61,.5)'}));}
+  // horizon glow
+  svg.appendChild(el('line',{x1:0,y1:300,x2:640,y2:300,stroke:'rgba(34,211,238,.25)','stroke-width':1}));
+
+  // draw each asset (simple icon) + detection box
+  echoAssets.forEach((a,i)=>{
+    const g=el('g',{opacity:0});g.style.transition='opacity .5s';
+    // pole/icon
+    if(a.ico==='lamp'){
+      g.appendChild(el('line',{x1:a.x,y1:a.y,x2:a.x,y2:a.y+90,stroke:'#5a708f','stroke-width':3}));
+      g.appendChild(el('line',{x1:a.x,y1:a.y,x2:a.x+22,y2:a.y-6,stroke:'#5a708f','stroke-width':3}));
+      g.appendChild(el('ellipse',{cx:a.x+24,cy:a.y-4,rx:7,ry:4,fill:a.status==='crit'?'#3a3030':'#f5e08a'}));
+    }else if(a.ico==='sign'){
+      g.appendChild(el('line',{x1:a.x,y1:a.y+10,x2:a.x,y2:a.y+80,stroke:'#5a708f','stroke-width':3}));
+      g.appendChild(el('rect',{x:a.x-15,y:a.y-16,width:30,height:30,rx:4,fill:'#1c3a5e',stroke:'#3b82f6','stroke-width':2,transform:`rotate(45 ${a.x} ${a.y-1})`}));
+      g.appendChild(el('rect',{x:a.x-8,y:a.y-3,width:16,height:5,fill:'#eaf2ff'}));
+    }else if(a.ico==='dms'){
+      g.appendChild(el('line',{x1:a.x-40,y1:a.y,x2:a.x-40,y2:a.y+95,stroke:'#5a708f','stroke-width':4}));
+      g.appendChild(el('line',{x1:a.x+40,y1:a.y,x2:a.x+40,y2:a.y+95,stroke:'#5a708f','stroke-width':4}));
+      g.appendChild(el('rect',{x:a.x-42,y:a.y-26,width:84,height:26,rx:3,fill:'#0a0f1c',stroke:'#5a708f','stroke-width':2}));
+      const tx=el('text',{x:a.x,y:a.y-9,fill:'#f5b53d','font-size':9,'text-anchor':'middle','font-family':'monospace'});tx.textContent='◄ SLOW';g.appendChild(tx);
+    }else if(a.ico==='lane'){
+      g.appendChild(el('line',{x1:a.x,y1:a.y,x2:a.x,y2:a.y+90,stroke:'#5a708f','stroke-width':3}));
+      g.appendChild(el('rect',{x:a.x-12,y:a.y-22,width:24,height:24,rx:4,fill:'#0a0f1c',stroke:'#5a708f','stroke-width':2}));
+      const arr=el('text',{x:a.x,y:a.y-4,fill:'#34d399','font-size':16,'text-anchor':'middle'});arr.textContent='↓';g.appendChild(arr);
+    }else if(a.ico==='rail'){
+      for(let k=0;k<4;k++){g.appendChild(el('line',{x1:a.x+k*16,y1:a.y+30,x2:a.x+k*16,y2:a.y+58,stroke:'#5a708f','stroke-width':2}));}
+      g.appendChild(el('rect',{x:a.x-4,y:a.y+30,width:64,height:8,rx:3,fill:'#8aa0c2'}));
+    }
+    svg.appendChild(g);
+    setTimeout(()=>{g.setAttribute('opacity',1);},300+i*160);
+
+    // detection box appears after icon
+    setTimeout(()=>{
+      const bw=78,bh=72;
+      const box=el('g',{opacity:0});box.style.transition='opacity .4s';
+      const bx=a.x-bw/2, by=a.y-30;
+      const c2=col[a.status];
+      // animated bracket corners
+      const len=14;
+      [[bx,by,1,1],[bx+bw,by,-1,1],[bx,by+bh,1,-1],[bx+bw,by+bh,-1,-1]].forEach(([cxp,cyp,sx,sy])=>{
+        box.appendChild(el('line',{x1:cxp,y1:cyp,x2:cxp+sx*len,y2:cyp,stroke:c2,'stroke-width':2}));
+        box.appendChild(el('line',{x1:cxp,y1:cyp,x2:cxp,y2:cyp+sy*len,stroke:c2,'stroke-width':2}));
+      });
+      box.appendChild(el('rect',{x:bx,y:by,width:bw,height:bh,fill:'none',stroke:c2,'stroke-width':0.6,'stroke-dasharray':'3 3',opacity:.5}));
+      // label
+      box.appendChild(el('rect',{x:bx,y:by-15,width:bw,height:14,rx:2,fill:c2}));
+      const lt=el('text',{x:bx+4,y:by-4,fill:'#0a0f1c','font-size':8,'font-family':'monospace','font-weight':700});lt.textContent=a.type;box.appendChild(lt);
+      // status tag
+      box.appendChild(el('rect',{x:bx+bw-2,y:by+bh-12,width:0,height:0}));
+      const st=el('text',{x:bx+bw,y:by+bh+11,fill:c2,'font-size':8,'font-family':'monospace','text-anchor':'end'});st.textContent='● '+a.note;box.appendChild(st);
+      svg.appendChild(box);
+      requestAnimationFrame(()=>box.setAttribute('opacity',1));
+    },700+i*160);
+  });
+
+  // sweeping scan bar
+  const scan=el('rect',{x:0,y:0,width:640,height:46,fill:'url(#scanG)',opacity:.0});
+  const defs=el('defs');const lg=el('linearGradient',{id:'scanG',x1:0,y1:0,x2:0,y2:1});
+  lg.appendChild(el('stop',{offset:'0%','stop-color':'#22d3ee','stop-opacity':0}));
+  lg.appendChild(el('stop',{offset:'50%','stop-color':'#22d3ee','stop-opacity':.4}));
+  lg.appendChild(el('stop',{offset:'100%','stop-color':'#22d3ee','stop-opacity':0}));
+  defs.appendChild(lg);svg.appendChild(defs);svg.appendChild(scan);
+  let raf,t=0;
+  function loop(){t+=0.008;const yy=((t)%1)*460;scan.setAttribute('y',yy-23);scan.setAttribute('opacity',0.7);raf=requestAnimationFrame(loop);}
+  loop();
+
+  // detection log
+  startEchoLog();
+  return ()=>cancelAnimationFrame(raf);
+}
+let echoLogTimer;
+function startEchoLog(){
+  const box=document.getElementById('echoLog');if(!box)return;box.innerHTML='';
+  const entries=[
+    ['info','▸ Vision engine online · streaming fleet feed'],
+    ['ok','✓ STREET LAMP #4821 detected · geo-tagged'],
+    ['crit','✕ STREET LAMP #4821 · OUTAGE → work order'],
+    ['ok','✓ TRAFFIC SIGN R-12 · retro-reflectivity 89%'],
+    ['warn','▲ DMS GANTRY G-07 · 2 dead pixels flagged'],
+    ['ok','✓ LANE CONTROL L-22 · all aspects healthy'],
+    ['warn','▲ GUARDRAIL B-318 · impact deformation'],
+    ['info','↻ Change detection vs last pass · 3 deltas'],
+    ['ok','✓ Digital twin updated · 5 assets synced'],
+  ];
+  let i=0;
+  function add(){
+    if(i>=entries.length){i=0;box.innerHTML='';}
+    const [cls,txt]=entries[i];
+    const div=document.createElement('div');div.className='ln';
+    const ts=new Date(Date.now()).toLocaleTimeString('en-US',{hour12:false});
+    div.innerHTML='<span class="t">'+ts+'</span> <span class="'+cls+'">'+txt+'</span>';
+    box.appendChild(div);
+    if(box.children.length>8)box.removeChild(box.firstChild);
+    i++;
+    echoLogTimer=setTimeout(add,1200);
+  }
+  add();
+}
+
+/* ====================== CORRELATION ENGINE ====================== */
+function corrAnim(){
+  const c=document.getElementById('corrCanvas');if(!c)return;
+  let raf,t=0;
+  const sources=[
+    {label:'Live as-is',col:'#22d3ee',y:0.18},
+    {label:'History',col:'#3b82f6',y:0.40},
+    {label:'Traffic/loads',col:'#f5b53d',y:0.62},
+    {label:'Materials science',col:'#2dd4bf',y:0.84},
+  ];
+  let packets=[];
+  function loop(){
+    const {ctx,w,h}=fit(c);t+=0.011;
+    ctx.clearRect(0,0,w,h);
+    const hubX=w*0.66, hubY=h*0.5;
+    // connections
+    sources.forEach((s,i)=>{
+      const sx=w*0.04, sy=h*s.y;
+      ctx.strokeStyle=s.col+'44';ctx.lineWidth=1.5;
+      ctx.beginPath();ctx.moveTo(sx+70,sy);ctx.bezierCurveTo(w*0.4,sy,w*0.45,hubY,hubX-26,hubY);ctx.stroke();
+      // source node
+      ctx.fillStyle='#101a2e';ctx.strokeStyle=s.col;ctx.lineWidth=1.5;
+      ctx.beginPath();ctx.roundRect(sx,sy-16,140,32,8);ctx.fill();ctx.stroke();
+      ctx.fillStyle=s.col;ctx.beginPath();ctx.arc(sx+16,sy,5,0,7);ctx.fill();
+      ctx.fillStyle='#eaf2ff';ctx.font='12px Inter,sans-serif';ctx.textBaseline='middle';ctx.fillText(s.label,sx+30,sy);
+      // spawn packets
+      if(Math.random()<0.04)packets.push({i,p:0,col:s.col,sy});
+    });
+    // packets travel to hub
+    packets=packets.filter(p=>p.p<1);
+    packets.forEach(p=>{
+      p.p+=0.018;const s=sources[p.i];const sx=w*0.04+70, sy=h*s.y;
+      // bezier point
+      const tt=p.p;const mx=w*0.4,my=sy,ex=hubX-26,ey=hubY;
+      const x=(1-tt)*(1-tt)*sx+2*(1-tt)*tt*mx+tt*tt*ex;
+      const y=(1-tt)*(1-tt)*sy+2*(1-tt)*tt*my+tt*tt*ey;
+      ctx.fillStyle=p.col;ctx.beginPath();ctx.arc(x,y,3,0,7);ctx.fill();
+      ctx.globalAlpha=.4;ctx.beginPath();ctx.arc(x,y,6,0,7);ctx.fill();ctx.globalAlpha=1;
+    });
+    // hub (AI core)
+    const pr=0.5+0.5*Math.sin(t*3);
+    ctx.save();ctx.translate(hubX,hubY);
+    for(let r=3;r>=0;r--){ctx.strokeStyle='rgba(139,92,246,'+(0.15+r*0.12)+')';ctx.lineWidth=1.5;ctx.beginPath();ctx.arc(0,0,18+r*8+pr*4,0,7);ctx.stroke();}
+    const g=ctx.createRadialGradient(0,0,2,0,0,26);g.addColorStop(0,'#c4b5fd');g.addColorStop(1,'#8b5cf6');
+    ctx.fillStyle=g;ctx.beginPath();ctx.arc(0,0,18,0,7);ctx.fill();
+    ctx.fillStyle='#0a0f1c';ctx.font='bold 11px Inter';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText('AI',0,0);
+    ctx.restore();
+    // output: deterioration curve to the right
+    const ox=hubX+34, oy=hubY-70, ow=w-ox-20, oh=140;
+    ctx.strokeStyle='rgba(255,255,255,0.08)';ctx.strokeRect(ox,oy,ow,oh);
+    ctx.fillStyle='var';ctx.font='10px ui-monospace';ctx.fillStyle='#8aa0c2';ctx.textAlign='left';
+    ctx.fillText('PREDICTED CONDITION',ox+6,oy+12);
+    // curve animating
+    ctx.strokeStyle='#34d399';ctx.lineWidth=2;ctx.beginPath();
+    const prog=Math.min(1,(t*0.15)%1.6);
+    for(let xi=0;xi<=ow*prog;xi+=3){
+      const fx=xi/ow;
+      const fy=oh*(0.15+0.7*Math.pow(fx,1.7));
+      const yy=oy+fy;
+      xi===0?ctx.moveTo(ox+xi,yy):ctx.lineTo(ox+xi,yy);
+      // color shift past preventive window
+    }
+    ctx.stroke();
+    // threshold line
+    ctx.strokeStyle='rgba(248,113,113,.6)';ctx.setLineDash([5,4]);ctx.beginPath();ctx.moveTo(ox,oy+oh*0.78);ctx.lineTo(ox+ow,oy+oh*0.78);ctx.stroke();ctx.setLineDash([]);
+    ctx.fillStyle='#f87171';ctx.fillText('failure',ox+ow-44,oy+oh*0.78-4);
+    raf=requestAnimationFrame(loop);
+  }
+  loop();
+  return ()=>cancelAnimationFrame(raf);
+}
+
+/* ====================== MODEL SPARKLINES ====================== */
+function sparkAnim(){
+  document.querySelectorAll('.sparkc').forEach(c=>{
+    const kind=c.dataset.kind;
+    const dpr=window.devicePixelRatio||1;const r=c.getBoundingClientRect();
+    c.width=r.width*dpr;c.height=90*dpr;const ctx=c.getContext('2d');ctx.setTransform(dpr,0,0,dpr,0,0);
+    const w=r.width,h=90;
+    let prog=0;
+    function draw(){
+      ctx.clearRect(0,0,w,h);
+      // history (observed) part
+      const split=w*0.45;
+      // failure threshold
+      ctx.strokeStyle='rgba(248,113,113,.5)';ctx.setLineDash([4,4]);ctx.beginPath();ctx.moveTo(0,h*0.82);ctx.lineTo(w,h*0.82);ctx.stroke();ctx.setLineDash([]);
+      // preventive window band
+      ctx.fillStyle='rgba(245,181,61,.10)';ctx.fillRect(0,h*0.5,w,h*0.32);
+      // observed history points
+      ctx.strokeStyle='#5a708f';ctx.lineWidth=2;ctx.beginPath();
+      for(let x=0;x<=split;x+=4){const fy=h*(0.12+0.4*(x/w));x===0?ctx.moveTo(x,fy):ctx.lineTo(x,fy);}
+      ctx.stroke();
+      // observed dots
+      ctx.fillStyle='#8aa0c2';for(let x=0;x<=split;x+=split/4){const fy=h*(0.12+0.4*(x/w));ctx.beginPath();ctx.arc(x,fy,2.2,0,7);ctx.fill();}
+      // predicted curve depending on kind
+      const end=split+(w-split)*prog;
+      ctx.lineWidth=2.4;
+      ctx.beginPath();
+      for(let x=split;x<=end;x+=3){
+        const fx=x/w;let fy;
+        if(kind==='ts')fy=0.12+0.62*fx;
+        else if(kind==='grey')fy=0.12+0.55*Math.pow(fx,1.3);
+        else if(kind==='nn')fy=0.12+0.6*fx+0.05*Math.sin(fx*22);
+        else fy=0.12+0.58*Math.pow(fx,1.5);
+        const yy=h*fy;
+        // gradient color by zone
+        x===split?ctx.moveTo(x,yy):ctx.lineTo(x,yy);
+      }
+      const col=kind==='ts'?'#22d3ee':kind==='grey'?'#2dd4bf':kind==='nn'?'#8b5cf6':'#f5b53d';
+      ctx.strokeStyle=col;ctx.stroke();
+      // leading dot
+      if(prog<1){const fx=end/w;let fy=kind==='ts'?0.12+0.62*fx:kind==='grey'?0.12+0.55*Math.pow(fx,1.3):kind==='nn'?0.12+0.6*fx+0.05*Math.sin(fx*22):0.12+0.58*Math.pow(fx,1.5);ctx.fillStyle=col;ctx.beginPath();ctx.arc(end,h*fy,3.5,0,7);ctx.fill();ctx.globalAlpha=.3;ctx.beginPath();ctx.arc(end,h*fy,7,0,7);ctx.fill();ctx.globalAlpha=1;}
+      prog+=0.008;if(prog>1.15)prog=0;
+      c._raf=requestAnimationFrame(draw);
+    }
+    draw();
+  });
+}
+function stopSparks(){document.querySelectorAll('.sparkc').forEach(c=>cancelAnimationFrame(c._raf));}
+
+/* ====================== KPI COUNTERS ====================== */
+function countKPIs(){
+  document.querySelectorAll('[data-count]').forEach(el=>{
+    const target=+el.dataset.count, suf=el.dataset.suffix||'';let cur=0;
+    const step=()=>{cur+=target/70;if(cur>=target)cur=target;el.textContent=(target%1===0?Math.round(cur):cur.toFixed(1))+suf;if(cur<target)requestAnimationFrame(step);};
+    el.textContent='0'+suf;step();
+  });
+}
+
+/* ====================== PAVEMENT LIFECYCLE CURVE ====================== */
+function lifecycleAnim(){
+  const c=document.getElementById('lifeCanvas');if(!c)return;
+  let raf,start=performance.now(),prog=0;
+  const doNothing=fx=>Math.max(0.12,0.95-0.9*Math.pow(fx,2.4));
+  const preventive=fx=>{const seg=0.25;const local=(fx%seg)/seg;return Math.min(0.97,0.92-0.13*local-0.05*fx);};
+  function loop(){
+    prog=Math.min(1,(performance.now()-start)/2200);
+    const {ctx,w,h}=fit(c);
+    const padL=44,padR=18,padT=16,padB=30;const plotW=w-padL-padR,plotH=h-padT-padB;
+    const X=x=>padL+plotW*x, Y=v=>padT+plotH*(1-v);
+    ctx.clearRect(0,0,w,h);
+    // condition zone bands
+    [[0.85,1,'rgba(52,211,153,0.10)'],[0.55,0.85,'rgba(245,181,61,0.07)'],[0,0.40,'rgba(248,113,113,0.08)']].forEach(([a,b,col])=>{ctx.fillStyle=col;ctx.fillRect(X(0),Y(b),plotW,Y(a)-Y(b));});
+    // grid + axis labels
+    ctx.strokeStyle='rgba(255,255,255,0.06)';ctx.lineWidth=1;ctx.fillStyle='#5a708f';ctx.font='10px ui-monospace,monospace';
+    ctx.textBaseline='middle';ctx.textAlign='right';
+    for(let v=0;v<=100;v+=20){const yy=Y(v/100);ctx.beginPath();ctx.moveTo(X(0),yy);ctx.lineTo(X(1),yy);ctx.stroke();ctx.fillText(v,X(0)-6,yy);}
+    ctx.textAlign='center';ctx.textBaseline='top';
+    for(let yr=0;yr<=20;yr+=5){ctx.fillText(yr+'y',X(yr/20),h-padB+6);}
+    ctx.save();ctx.translate(11,padT+plotH/2);ctx.rotate(-Math.PI/2);ctx.fillStyle='#8aa0c2';ctx.textBaseline='middle';ctx.fillText('PCI',0,0);ctx.restore();
+    // failure threshold
+    ctx.strokeStyle='rgba(248,113,113,0.5)';ctx.setLineDash([5,4]);ctx.beginPath();ctx.moveTo(X(0),Y(0.40));ctx.lineTo(X(1),Y(0.40));ctx.stroke();ctx.setLineDash([]);
+    ctx.textAlign='left';ctx.fillStyle='#f87171';ctx.fillText('failure threshold',X(0)+6,Y(0.40)-9);
+    // curves
+    const drawCurve=(fn,col,wd)=>{ctx.strokeStyle=col;ctx.lineWidth=wd;ctx.beginPath();const n=Math.floor(120*Math.min(prog,1));for(let i=0;i<=n;i++){const fx=i/120;i===0?ctx.moveTo(X(fx),Y(fn(fx))):ctx.lineTo(X(fx),Y(fn(fx)));}ctx.stroke();};
+    drawCurve(doNothing,'#f87171',2.6);
+    drawCurve(preventive,'#34d399',2.6);
+    // treatment markers on preventive curve
+    if(prog>0.5){[0.25,0.5,0.75].forEach(fx=>{if(fx<prog){ctx.fillStyle='#34d399';ctx.beginPath();ctx.arc(X(fx),Y(preventive(fx)),3.5,0,7);ctx.fill();ctx.strokeStyle='rgba(52,211,153,.4)';ctx.lineWidth=1;ctx.beginPath();ctx.arc(X(fx),Y(preventive(fx)),6,0,7);ctx.stroke();}});}
+    // end labels
+    if(prog>=1){
+      ctx.font='bold 11px Inter,sans-serif';ctx.textAlign='right';
+      ctx.fillStyle='#34d399';ctx.fillText('Preventive (RoadTwin)',X(1)-4,Y(preventive(1))-12);
+      ctx.fillStyle='#f87171';ctx.fillText('Do-nothing',X(1)-4,Y(doNothing(1))-2);
+    }
+    raf=requestAnimationFrame(loop);
+  }
+  raf=requestAnimationFrame(loop);return ()=>cancelAnimationFrame(raf);
+}
+
+/* ====================== BUDGET SCENARIO PROJECTION ====================== */
+function budgetAnim(){
+  const c=document.getElementById('budgetCanvas');if(!c)return;
+  let raf,start=performance.now(),prog=0;
+  const PMIN=35,PMAX=88;
+  const lines=[
+    {fn:fx=>0.68+0.16*Math.min(1,fx*1.3),col:'#34d399',label:'Optimised'},
+    {fn:fx=>0.68-0.12*fx,col:'#f5b53d',label:'Status-quo'},
+    {fn:fx=>0.68-0.28*Math.pow(fx,1.25),col:'#f87171',label:'Do-nothing'},
+  ];
+  function loop(){
+    prog=Math.min(1,(performance.now()-start)/2200);
+    const {ctx,w,h}=fit(c);
+    const padL=44,padR=92,padT=16,padB=30;const plotW=w-padL-padR,plotH=h-padT-padB;
+    const X=x=>padL+plotW*x, Y=v=>{const pci=v*100;return padT+plotH*(1-(pci-PMIN)/(PMAX-PMIN));};
+    ctx.clearRect(0,0,w,h);
+    ctx.strokeStyle='rgba(255,255,255,0.06)';ctx.lineWidth=1;ctx.fillStyle='#5a708f';ctx.font='10px ui-monospace,monospace';
+    ctx.textBaseline='middle';ctx.textAlign='right';
+    for(let pci=40;pci<=80;pci+=10){const yy=Y(pci/100);ctx.beginPath();ctx.moveTo(X(0),yy);ctx.lineTo(X(1),yy);ctx.stroke();ctx.fillText(pci,X(0)-6,yy);}
+    ctx.textAlign='center';ctx.textBaseline='top';
+    for(let yr=0;yr<=10;yr+=2){ctx.fillText('Y'+yr,X(yr/10),h-padB+6);}
+    ctx.save();ctx.translate(11,padT+plotH/2);ctx.rotate(-Math.PI/2);ctx.fillStyle='#8aa0c2';ctx.textBaseline='middle';ctx.fillText('Network PCI',0,0);ctx.restore();
+    // start marker
+    ctx.fillStyle='#8aa0c2';ctx.textAlign='left';ctx.textBaseline='middle';
+    lines.forEach(L=>{
+      ctx.strokeStyle=L.col;ctx.lineWidth=2.6;ctx.beginPath();
+      const n=Math.floor(120*Math.min(prog,1));
+      for(let i=0;i<=n;i++){const fx=i/120;i===0?ctx.moveTo(X(fx),Y(L.fn(fx))):ctx.lineTo(X(fx),Y(L.fn(fx)));}
+      ctx.stroke();
+      const ex=Math.min(prog,1);
+      // moving dot + end label
+      ctx.fillStyle=L.col;ctx.beginPath();ctx.arc(X(ex),Y(L.fn(ex)),3.5,0,7);ctx.fill();
+      if(prog>=1){ctx.font='bold 11px Inter,sans-serif';ctx.fillText(L.label,X(1)+8,Y(L.fn(1)));}
+    });
+    // common start node
+    ctx.fillStyle='#eaf2ff';ctx.beginPath();ctx.arc(X(0),Y(0.68),4,0,7);ctx.fill();
+    raf=requestAnimationFrame(loop);
+  }
+  raf=requestAnimationFrame(loop);return ()=>cancelAnimationFrame(raf);
+}
+
+/* ====================== ANIM ROUTER ====================== */
+let stoppers={};
+function triggerAnim(name){
+  // stop everything first
+  Object.values(stoppers).forEach(s=>{try{s&&s()}catch(e){}});
+  stoppers={};
+  if(echoLogTimer)clearTimeout(echoLogTimer);
+  stopSparks();
+  if(name==='hero')stoppers.hero=heroAnim('heroCanvas');
+  if(name==='xeno')stoppers.xeno=xenoAnim();
+  if(name==='pave')stoppers.pave=paveAnim();
+  if(name==='echo')stoppers.echo=echoAnim();
+  if(name==='corr')stoppers.corr=corrAnim();
+  if(name==='lifecycle')stoppers.life=lifecycleAnim();
+  if(name==='budget')stoppers.budget=budgetAnim();
+  if(name==='models')sparkAnim();
+  if(name==='benefits')countKPIs();
+  if(name==='close')stoppers.close=heroAnim('closeCanvas');
+}
+/* ====================== BRAND LOGOS ====================== */
+// RoadTwin AI mark — a perspective road converging into an AI scan-node, twin-mirrored
+function rtMark(size,id){
+  return `<svg class="rt-mark" width="${size}" height="${size}" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="rg${id}" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#22d3ee"/><stop offset=".55" stop-color="#3b82f6"/><stop offset="1" stop-color="#8b5cf6"/>
+      </linearGradient>
+      <radialGradient id="rn${id}" cx=".5" cy=".5" r=".5">
+        <stop offset="0" stop-color="#cffafe"/><stop offset="1" stop-color="#22d3ee"/>
+      </radialGradient>
+    </defs>
+    <rect x="2" y="2" width="52" height="52" rx="16" fill="#0b1322" stroke="url(#rg${id})" stroke-width="2"/>
+    <path d="M16 47 L25 17 L31 17 L40 47 Z" fill="url(#rg${id})" opacity=".16"/>
+    <line x1="16" y1="47" x2="25" y2="17" stroke="url(#rg${id})" stroke-width="2.6" stroke-linecap="round"/>
+    <line x1="40" y1="47" x2="31" y2="17" stroke="url(#rg${id})" stroke-width="2.6" stroke-linecap="round"/>
+    <line x1="28" y1="45" x2="28" y2="20" stroke="#eaf2ff" stroke-width="2.2" stroke-dasharray="2.6 4" stroke-linecap="round"/>
+    <line x1="11" y1="34" x2="45" y2="34" stroke="#22d3ee" stroke-width="1" opacity=".45" stroke-dasharray="2 3"/>
+    <circle cx="28" cy="15" r="6.5" fill="none" stroke="#22d3ee" stroke-width="1" opacity=".5"/>
+    <circle cx="28" cy="15" r="4" fill="url(#rn${id})"/>
+  </svg>`;
+}
+function rtLockup(opt){ // {mark,word,sub,id}
+  return `<div class="rt-lock">${rtMark(opt.mark,opt.id)}
+    <div class="rt-txt">
+      <div class="rt-word" style="font-size:${opt.word}px"><span class="rd">Road</span><span class="tw">Twin</span><span class="ai">AI</span></div>
+      ${opt.sub?`<div class="rt-sub">${opt.sub}</div>`:''}
+    </div></div>`;
+}
+// Traffic Tech logo — embedded raster (ttg.png), ratio 472x84
+const TTG_SRC="data:image/png;base64,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";
+function ttLogo(w){return `<img src="${TTG_SRC}" width="${w}" height="${Math.round(w*84/472)}" alt="Traffic Tech" style="display:block"/>`;}
+function ttFramed(w){return `<span class="tt-frame">${ttLogo(w)}</span>`;}
+
+// inject
+document.getElementById('logoTL').innerHTML=rtMark(38,'tl'); // compact mark only — keeps the eyebrow clear
+document.getElementById('logoTR').innerHTML=ttFramed(160);
+document.getElementById('heroLogo').innerHTML=rtLockup({mark:60,word:38,sub:'Predictive Road &amp; Asset Intelligence Platform',id:'hero'});
+document.getElementById('heroCred').innerHTML=`<span class="tt-by">A platform by</span>${ttFramed(210)}`;
+document.getElementById('closeLogo').innerHTML=`<div style="display:flex;justify-content:center">${rtLockup({mark:64,word:42,sub:'',id:'close'})}</div>`;
+document.getElementById('closeCred').innerHTML=`<span class="tt-by">Powered by</span>${ttFramed(220)}`;
+
+// initial
+triggerAnim('hero');
+</script>
+</body>
+</html>
