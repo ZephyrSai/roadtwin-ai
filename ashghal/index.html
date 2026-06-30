@@ -420,6 +420,64 @@ h2{font-size:34px;line-height:1.1;font-weight:750;letter-spacing:-.01em;margin-b
 .rchip.res{background:rgba(52,211,153,.12);border-color:rgba(52,211,153,.3);color:var(--green)}
 .rchip.res b{color:var(--green)}
 
+/* ---- liveliness: in-card visuals ---- */
+.cardviz{flex:1;display:flex;align-items:center;justify-content:center;gap:20px;min-height:0;padding:10px 0}
+/* equalizer (heat) */
+.eq{display:flex;align-items:flex-end;gap:7px;height:104px}
+.eq i{width:15px;border-radius:5px 5px 0 0;height:30%;animation:eqp 1.7s ease-in-out infinite}
+@keyframes eqp{0%,100%{height:26%}50%{height:94%}}
+.eq i:nth-child(2){animation-delay:.18s}.eq i:nth-child(3){animation-delay:.36s}.eq i:nth-child(4){animation-delay:.54s}.eq i:nth-child(5){animation-delay:.72s}
+.eq.warm i{background:linear-gradient(180deg,#f87171,#f5b53d)}
+.heaticon{font-size:44px;animation:pulse2 1.9s infinite}
+/* trucks + load */
+.loadviz{width:100%;display:flex;flex-direction:column;gap:16px;align-items:center}
+.road2{width:90%;height:42px;position:relative;background:linear-gradient(180deg,#11161f,#0a0f1c);border-radius:8px;overflow:hidden;border:1px solid var(--line)}
+.road2::after{content:'';position:absolute;top:50%;left:0;right:0;height:2px;transform:translateY(-50%);background:repeating-linear-gradient(90deg,rgba(245,181,61,.5) 0 14px,transparent 14px 30px)}
+.truck{position:absolute;top:6px;font-size:22px;animation:drive 4.2s linear infinite}
+.truck.t2{top:8px;font-size:17px;animation-duration:6s;animation-delay:-2.4s}
+@keyframes drive{from{left:-14%}to{left:102%}}
+.loadbar{width:90%;height:13px;border-radius:7px;background:#11161f;border:1px solid var(--line);overflow:hidden;position:relative}
+.loadbar i{position:absolute;left:0;top:0;height:100%;background:linear-gradient(90deg,#22d3ee,#f5b53d);animation:loadgrow 3.4s ease-in-out infinite alternate}
+@keyframes loadgrow{from{width:28%}to{width:94%}}
+.loadlbl{font-size:11px;color:var(--dim);letter-spacing:.05em}
+/* cost bars */
+.costviz{display:flex;align-items:flex-end;gap:30px;height:128px}
+.cbar{display:flex;flex-direction:column;align-items:center;gap:7px;height:100%;justify-content:flex-end}
+.cbar .cb{width:48px;border-radius:7px 7px 0 0}
+.cb-green{height:20%;background:linear-gradient(180deg,#34d399,#2dd4bf)}
+.cb-red{height:100%;background:linear-gradient(180deg,#f87171,#fb923c);animation:glowpulse 1.9s infinite}
+@keyframes glowpulse{0%,100%{box-shadow:0 0 0 0 rgba(248,113,113,0)}50%{box-shadow:0 0 24px 2px rgba(248,113,113,.45)}}
+.cbar b{font-size:19px;font-weight:850;line-height:1}
+.cbar span{font-size:11.5px;color:var(--muted);font-weight:600}
+
+/* stage / phase watermark icons */
+.stagewm{position:absolute;font-size:74px;opacity:.06;left:50%;bottom:20px;transform:translateX(-50%);pointer-events:none;animation:pulse2 3s infinite}
+.phasewm{position:absolute;font-size:60px;opacity:.07;left:24px;top:54%;pointer-events:none;animation:pulse2 3.2s infinite}
+
+/* viz panel inside a tablewrap (fills empty space below a table) */
+.tableviz{flex:1;display:flex;align-items:center;justify-content:center;padding:18px 22px;min-height:0;border-top:1px solid var(--line);background:rgba(10,18,32,.45)}
+.tableviz .flowband{background:none;border:none;padding:0}
+
+/* milestone strip */
+.msstrip{display:flex;align-items:flex-start;justify-content:space-between;width:100%;max-width:920px;padding:14px 10px 0;position:relative}
+.msstrip::before{content:'';position:absolute;left:8%;right:8%;top:27px;height:2px;background:linear-gradient(90deg,var(--cyan),rgba(34,211,238,.2))}
+.msnode{display:flex;flex-direction:column;align-items:center;gap:9px;position:relative;z-index:2;flex:1}
+.msnode .msd{width:26px;height:26px;background:var(--amber);transform:rotate(45deg);border:3px solid var(--bg);box-shadow:0 0 0 3px rgba(245,181,61,.2)}
+.msnode .msl{font-size:11px;color:var(--muted);text-align:center;line-height:1.35}
+.msnode .msl b{display:block;color:var(--ink);font-size:12.5px;margin-bottom:1px}
+
+/* outcome tiles (benefits/success bottom) */
+.fillband{flex:1;display:flex;align-items:center;justify-content:center;gap:16px;margin-top:18px;flex-wrap:wrap}
+.otile{display:flex;flex-direction:column;align-items:center;gap:8px;background:linear-gradient(180deg,var(--panel),var(--bg2));border:1px solid var(--line);border-radius:14px;padding:18px 24px;min-width:150px}
+.otile .oi{font-size:30px}
+.otile .ot{font-size:13px;font-weight:700;color:var(--ink);text-align:center}
+.otile .os{font-size:11px;color:var(--dim);text-align:center}
+/* go/no-go gate */
+.gate{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap}
+.gnode{display:flex;align-items:center;gap:9px;padding:12px 18px;border-radius:12px;background:var(--panel);border:1px solid var(--line);font-size:14px;font-weight:600}
+.gnode .gi{font-size:20px}
+.gnode.go{border-color:rgba(52,211,153,.5);background:rgba(52,211,153,.08);color:var(--green)}
+
 @media (max-width:1200px){
   .slide{padding:32px 36px 70px}
   h1{font-size:42px}.kpi .big{font-size:38px}
@@ -497,9 +555,15 @@ h2{font-size:34px;line-height:1.1;font-weight:750;letter-spacing:-.01em;margin-b
       <div class="st"><div class="sv"><b>50 °C+</b></div><div class="sl">Summer surface temperatures</div></div>
     </div>
     <div class="tgrid" style="grid-template-columns:repeat(3,1fr)">
-      <div class="tcard"><h3>🌡️ Climate-driven decay</h3><p style="font-size:13px;color:var(--muted);line-height:1.5">Extreme heat &amp; thermal cycling accelerate rutting, bleeding and binder ageing — deterioration that surface-only, periodic surveys miss until it is costly.</p><div class="omeasure" style="color:var(--amber)">⚠ Accelerated rutting &amp; binder ageing</div></div>
-      <div class="tcard"><h3>🚛 Heavy &amp; growing loads</h3><p style="font-size:13px;color:var(--muted);line-height:1.5">Freight, construction &amp; rapid urban expansion drive cumulative axle loading (ESAL) that varies sharply corridor-to-corridor and is hard to attribute to condition.</p><div class="omeasure" style="color:var(--amber)">⚠ Fatigue cracking from cumulative ESAL</div></div>
-      <div class="tcard"><h3>🔧 Reactive spend</h3><p style="font-size:13px;color:var(--muted);line-height:1.5">Without a predictive view, maintenance chases failures and emergencies — missing the cheap preventive window and the chance to plan budgets with confidence.</p><div class="omeasure" style="color:var(--amber)">⚠ Up to 6–10× costlier than prevention</div></div>
+      <div class="tcard"><h3>🌡️ Climate-driven decay</h3><p style="font-size:13px;color:var(--muted);line-height:1.5">Extreme heat &amp; thermal cycling accelerate rutting, bleeding and binder ageing — deterioration that surface-only, periodic surveys miss until it is costly.</p>
+        <div class="cardviz"><span class="heaticon">🌡️</span><div class="eq warm"><i></i><i></i><i></i><i></i><i></i></div></div>
+        <div class="omeasure" style="color:var(--amber)">⚠ Accelerated rutting &amp; binder ageing</div></div>
+      <div class="tcard"><h3>🚛 Heavy &amp; growing loads</h3><p style="font-size:13px;color:var(--muted);line-height:1.5">Freight, construction &amp; rapid urban expansion drive cumulative axle loading (ESAL) that varies sharply corridor-to-corridor and is hard to attribute to condition.</p>
+        <div class="cardviz"><div class="loadviz"><div class="road2"><span class="truck">🚛</span><span class="truck t2">🚚</span></div><div class="loadlbl">cumulative axle load (ESAL)</div><div class="loadbar"><i></i></div></div></div>
+        <div class="omeasure" style="color:var(--amber)">⚠ Fatigue cracking from cumulative ESAL</div></div>
+      <div class="tcard"><h3>🔧 Reactive spend</h3><p style="font-size:13px;color:var(--muted);line-height:1.5">Without a predictive view, maintenance chases failures and emergencies — missing the cheap preventive window and the chance to plan budgets with confidence.</p>
+        <div class="cardviz"><div class="costviz"><div class="cbar"><div class="cb cb-green"></div><b style="color:var(--green)">$1</b><span>Prevent</span></div><div class="cbar"><div class="cb cb-red"></div><b style="color:var(--red)">$6–10</b><span>React</span></div></div></div>
+        <div class="omeasure" style="color:var(--amber)">⚠ Up to 6–10× costlier than prevention</div></div>
     </div>
     <div class="note"><b>The opportunity:</b> turn the data Ashghal already holds — plus live sensing — into a predictive, budget-aware view of the whole network.</div>
   </section>
@@ -598,18 +662,19 @@ h2{font-size:34px;line-height:1.1;font-weight:750;letter-spacing:-.01em;margin-b
     <div class="pipe">
       <div class="stage"><div class="ico">📡</div><div class="num">01 · SENSE</div><h3>Capture as-is</h3><p>Live condition of pavement &amp; assets.</p>
         <div class="items"><div class="it">XenoTrack 6D LiDAR</div><div class="it">PaveSense acoustics</div><div class="it">EchoTwin vision AI</div></div>
-        <div class="flowarrow">➜</div></div>
+        <div class="stagewm">📡</div><div class="flowarrow">➜</div></div>
       <div class="stage"><div class="ico">🔗</div><div class="num">02 · CORRELATE</div><h3>Fuse &amp; contextualise</h3><p>Align live state with the past &amp; the science.</p>
         <div class="items"><div class="it">Historical condition</div><div class="it">Traffic &amp; axle loads</div><div class="it">Materials-science inputs</div></div>
-        <div class="flowarrow">➜</div></div>
+        <div class="stagewm">🔗</div><div class="flowarrow">➜</div></div>
       <div class="stage"><div class="ico">🧠</div><div class="num">03 · PREDICT</div><h3>Forecast deterioration</h3><p>Model the future of every segment.</p>
         <div class="items"><div class="it">Time-series &amp; grey models</div><div class="it">Neural networks</div><div class="it">Hybrid physics + ML</div></div>
-        <div class="flowarrow">➜</div></div>
+        <div class="stagewm">🧠</div><div class="flowarrow">➜</div></div>
       <div class="stage"><div class="ico">🎯</div><div class="num">04 · DECIDE</div><h3>Optimise the plan</h3><p>Best treatment within budget.</p>
         <div class="items"><div class="it">Dynamic section division</div><div class="it">Treatment matching</div><div class="it">Fund allocation</div></div>
-        <div class="flowarrow">➜</div></div>
+        <div class="stagewm">🎯</div><div class="flowarrow">➜</div></div>
       <div class="stage"><div class="ico">🛠️</div><div class="num">05 · ACT &amp; LEARN</div><h3>Execute &amp; verify</h3><p>Close the loop, improve the models.</p>
-        <div class="items"><div class="it">Work orders &amp; crews</div><div class="it">Effectiveness tracking</div><div class="it">Model feedback</div></div></div>
+        <div class="items"><div class="it">Work orders &amp; crews</div><div class="it">Effectiveness tracking</div><div class="it">Model feedback</div></div>
+        <div class="stagewm">🛠️</div></div>
     </div>
     <div class="legend"><span><i style="background:var(--cyan)"></i>Sensing layer</span><span><i style="background:var(--violet)"></i>AI brain</span><span><i style="background:var(--amber)"></i>Decision &amp; ops</span><span><i style="background:var(--green)"></i>Continuous feedback loop</span></div>
     <div class="statstrip" style="margin-top:14px">
@@ -701,6 +766,7 @@ h2{font-size:34px;line-height:1.1;font-weight:750;letter-spacing:-.01em;margin-b
           <tr><td><b>Reference data</b><br><span style="color:var(--amber);font-size:11px">ROMDAS · GPR</span></td><td>Calibration deflection, layer thickness, structural number</td><td>Ground-truth for model calibration</td><td>Periodic / on-demand</td><td><span class="mono">Structural profiles</span></td></tr>
         </tbody>
       </table>
+      <div class="tableviz"><div class="flowband"><div class="fnode"><span class="fi">📡</span><b>XenoTrack</b></div><div class="fnode"><span class="fi">🔊</span><b>PaveSense</b></div><div class="fnode"><span class="fi">👁️</span><b>EchoTwin</b></div><span class="farrow">➜</span><div class="fnode hl"><span class="fi">🧬</span><div><b>Fused data layer</b><small>one georeferenced, time-synced record</small></div></div></div></div>
     </div>
     <div class="legend"><span><i style="background:var(--cyan)"></i>Surface geometry</span><span><i style="background:var(--teal)"></i>Sub-surface integrity</span><span><i style="background:var(--violet)"></i>Roadside assets</span><span><i style="background:var(--amber)"></i>Structural ground-truth</span><span style="color:var(--dim)">All streams time-synced &amp; fused on a common linear-referencing system (LRS)</span></div>
   </section>
@@ -740,6 +806,7 @@ h2{font-size:34px;line-height:1.1;font-weight:750;letter-spacing:-.01em;margin-b
           <tr><td><b>Maintenance history</b></td><td>Past treatments, overlays &amp; repairs per segment</td><td>Resets &amp; bends the curve — must be accounted for</td><td><span class="mono">Maintenance / CMMS</span></td></tr>
         </tbody>
       </table>
+      <div class="tableviz"><div class="flowband"><div class="fnode"><span class="fi">🗃️</span><b>Historical inputs</b></div><span class="farrow">➜</span><div class="fnode hl"><span class="fi">⚗️</span><div><b>Formulas + ML</b><small>mechanistic-empirical + gradient boosting</small></div></div><span class="farrow">➜</span><div class="fnode"><span class="fi">📉</span><b>Estimated PCI</b></div></div></div>
     </div>
     <div class="note"><b>Method:</b> mechanistic-empirical deterioration logic (the scientists' formulas) combined with machine-learning regressors (e.g. gradient-boosted trees) trained on these features.</div>
   </section>
@@ -1144,6 +1211,7 @@ h2{font-size:34px;line-height:1.1;font-weight:750;letter-spacing:-.01em;margin-b
           <tr><td><b>Asset register &amp; ITS feeds</b></td><td>Roadside asset inventory, telemetry / CMMS access</td><td>Asset model</td><td><span class="sev sev-m">High</span></td></tr>
         </tbody>
       </table>
+      <div class="tableviz"><div class="flowband"><div class="fnode"><span class="fi">🏛️</span><b>Ashghal sources</b></div><span class="farrow">➜</span><div class="fnode hl"><span class="fi">🧹</span><div><b>Intake &amp; QA</b><small>integrate · clean · linear-reference</small></div></div><span class="farrow">➜</span><div class="fnode"><span class="fi">🧠</span><b>Model-ready twin</b></div></div></div>
     </div>
   </section>
 
@@ -1186,16 +1254,16 @@ h2{font-size:34px;line-height:1.1;font-weight:750;letter-spacing:-.01em;margin-b
     <div class="timeline">
       <div class="phase"><div class="pline"></div><div class="pdot"></div><div class="pno">Phase 1</div><h3>Baseline &amp; pilot</h3><div class="pdur">Weeks 1–3</div>
         <ul><li>Mount sensors on pilot fleet (45-min install)</li><li>Scan priority corridor · build first twin</li><li>Calibrate against ROMDAS / GPR</li><li>Establish PCI / IRI baseline</li></ul>
-        <div class="pdeliver">◆ Deliverable: inception report &amp; condition baseline</div></div>
+        <div class="phasewm">🛰️</div><div class="pdeliver">◆ Deliverable: inception report &amp; condition baseline</div></div>
       <div class="phase"><div class="pline"></div><div class="pdot"></div><div class="pno">Phase 2</div><h3>Correlate &amp; train</h3><div class="pdur">Weeks 3–7</div>
         <ul><li>Ingest historical condition &amp; traffic data</li><li>Train &amp; validate predictive models</li><li>Apply correction factor &amp; calibrate</li><li>Onboard road-compound scientists</li></ul>
-        <div class="pdeliver">◆ Deliverable: calibrated models &amp; dashboard</div></div>
+        <div class="phasewm">🧠</div><div class="pdeliver">◆ Deliverable: calibrated models &amp; dashboard</div></div>
       <div class="phase"><div class="pline"></div><div class="pdot"></div><div class="pno">Phase 3</div><h3>Decide &amp; act</h3><div class="pdur">Weeks 7–14</div>
         <ul><li>Generate forecasts &amp; treatment plans</li><li>Run multi-year budget optimisation</li><li>Push work orders to EAM / ERP</li><li>Extend to roadside-asset management</li></ul>
-        <div class="pdeliver">◆ Deliverable: forecasts, costs &amp; work orders</div></div>
+        <div class="phasewm">🎯</div><div class="pdeliver">◆ Deliverable: forecasts, costs &amp; work orders</div></div>
       <div class="phase"><div class="pdot"></div><div class="pno">Phase 4</div><h3>Scale &amp; learn</h3><div class="pdur">Weeks 13–16</div>
         <ul><li>Validate results against KPIs</li><li>Continuous capture on every fleet trip</li><li>Track effectiveness · close the loop</li><li>Plan network-wide rollout</li></ul>
-        <div class="pdeliver">◆ Deliverable: rollout plan &amp; business case</div></div>
+        <div class="phasewm">📈</div><div class="pdeliver">◆ Deliverable: rollout plan &amp; business case</div></div>
     </div>
   </section>
 
@@ -1235,6 +1303,7 @@ h2{font-size:34px;line-height:1.1;font-weight:750;letter-spacing:-.01em;margin-b
           <tr><td><b>5 · Handover</b></td><td>M5 · POC complete</td><td>Final report · validation &amp; KPI results · scale-up roadmap &amp; business case</td><td><span class="mono">Wk 16</span></td></tr>
         </tbody>
       </table>
+      <div class="tableviz"><div class="msstrip"><div class="msnode"><div class="msd"></div><div class="msl"><b>M1</b>Wk 3<br>Data ready</div></div><div class="msnode"><div class="msd"></div><div class="msl"><b>M2</b>Wk 7<br>Baseline</div></div><div class="msnode"><div class="msd"></div><div class="msl"><b>M3</b>Wk 11<br>Models validated</div></div><div class="msnode"><div class="msd"></div><div class="msl"><b>M4</b>Wk 14<br>Dashboard live</div></div><div class="msnode"><div class="msd"></div><div class="msl"><b>M5</b>Wk 16<br>Handover</div></div></div></div>
     </div>
   </section>
 
@@ -1255,6 +1324,7 @@ h2{font-size:34px;line-height:1.1;font-weight:750;letter-spacing:-.01em;margin-b
       <div class="bi"><span class="ck">✓</span> Restoration cost &amp; intervention timing produced per segment</div>
       <div class="bi"><span class="ck">✓</span> Scenario simulation (expansion / traffic) demonstrated end-to-end</div>
     </div>
+    <div class="fillband"><div class="gate"><div class="gnode"><span class="gi">🧪</span>POC delivered</div><span class="farrow">➜</span><div class="gnode"><span class="gi">📊</span>KPIs met &amp; validated</div><span class="farrow">➜</span><div class="gnode go"><span class="gi">✅</span>GO for network rollout</div></div></div>
   </section>
 
   <!-- ============ RISKS ============ -->
@@ -1290,6 +1360,7 @@ h2{font-size:34px;line-height:1.1;font-weight:750;letter-spacing:-.01em;margin-b
       <div class="bi"><span class="ck">✓</span> Higher productivity &amp; return on investment</div>
       <div class="bi"><span class="ck">✓</span> Safer roads &amp; lower carbon footprint</div>
     </div>
+    <div class="fillband"><div class="otile"><span class="oi">🛡️</span><span class="ot">Safer roads</span><span class="os">fewer failures</span></div><div class="otile"><span class="oi">💰</span><span class="ot">Lower lifecycle cost</span><span class="os">prevention-first</span></div><div class="otile"><span class="oi">🛣️</span><span class="ot">Longer asset life</span><span class="os">timely treatment</span></div><div class="otile"><span class="oi">📈</span><span class="ot">Higher ROI</span><span class="os">budget-optimised</span></div><div class="otile"><span class="oi">🌍</span><span class="ot">Lower carbon</span><span class="os">less rework</span></div></div>
   </section>
 
   <!-- ============ NEXT STEPS ============ -->
