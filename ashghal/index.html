@@ -382,6 +382,44 @@ h2{font-size:34px;line-height:1.1;font-weight:750;letter-spacing:-.01em;margin-b
 .cmp .sv .b{color:var(--green)}
 .cmp .sv .ar{color:var(--cyan);margin:0 5px}
 
+/* ---- mid-deck slide enrichments ---- */
+/* regime shift bars */
+.regime{display:flex;flex-direction:column;gap:14px}
+.regrow{display:flex;align-items:center;gap:16px}
+.regrow .rlbl{width:160px;font-size:13.5px;font-weight:650;flex:none}
+.regrow .rlbl small{display:block;color:var(--dim);font-size:11px;font-weight:400;margin-top:1px}
+.regbar{flex:1;height:32px;border-radius:8px;overflow:hidden;display:flex;background:#0a1322;border:1px solid var(--line)}
+.regseg{height:100%;width:0;transition:width 1s cubic-bezier(.4,0,.2,1);display:flex;align-items:center;justify-content:center;font-size:11.5px;font-weight:800;color:#06121f;white-space:nowrap}
+.reglegend{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.reglegend span{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--muted)}
+.reglegend i{width:11px;height:11px;border-radius:3px;display:inline-block}
+
+/* RACI matrix */
+.raci{display:grid;grid-template-columns:1.7fr 1fr 1.3fr 1fr;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:linear-gradient(180deg,var(--panel),var(--bg2))}
+.raci .rc{padding:12px 16px;font-size:12.5px;border-bottom:1px solid rgba(30,48,80,.4);border-right:1px solid rgba(30,48,80,.4);display:flex;align-items:center;justify-content:center}
+.raci .rc:nth-child(4n){border-right:none}
+.raci .rc.h{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--dim);font-weight:700;background:rgba(16,26,46,.6)}
+.raci .rc.task{color:var(--ink);font-weight:600;justify-content:flex-start}
+.rbadge{width:24px;height:24px;border-radius:6px;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:850}
+.rb-r{background:rgba(34,211,238,.18);color:var(--cyan)}
+.rb-a{background:rgba(52,211,153,.18);color:var(--green)}
+.rb-c{background:rgba(245,181,61,.18);color:var(--amber)}
+.rb-i{background:rgba(138,160,194,.15);color:var(--muted)}
+.racikey{display:flex;gap:20px;margin-top:12px;flex-wrap:wrap}
+.racikey span{font-size:12px;color:var(--muted)}
+.racikey b{font-weight:850;margin-right:5px}
+
+/* phase deliverable footer */
+.pdeliver{margin-top:auto;padding-top:14px;font-size:11.5px;color:var(--amber);font-weight:600;line-height:1.35;border-top:1px solid rgba(245,181,61,.2)}
+
+/* risk meta chips */
+.risk{display:flex;flex-direction:column}
+.rmeta{display:flex;gap:8px;margin-top:auto;padding-top:13px;flex-wrap:wrap}
+.rchip{font-size:10.5px;font-weight:700;padding:4px 10px;border-radius:6px;background:rgba(16,26,46,.7);border:1px solid var(--line);color:var(--dim)}
+.rchip b{color:var(--ink);font-weight:800;margin-left:3px}
+.rchip.res{background:rgba(52,211,153,.12);border-color:rgba(52,211,153,.3);color:var(--green)}
+.rchip.res b{color:var(--green)}
+
 @media (max-width:1200px){
   .slide{padding:32px 36px 70px}
   h1{font-size:42px}.kpi .big{font-size:38px}
@@ -905,12 +943,15 @@ h2{font-size:34px;line-height:1.1;font-weight:750;letter-spacing:-.01em;margin-b
     <div class="eyebrow"><span class="pulse"></span> Road Intelligence Model · What-if simulation</div>
     <h2>Plan for the Qatar <span class="grad-text">that is coming</span></h2>
     <p class="sub">The model is open to new inputs, so Ashghal can stress-test the network against the future — not just the past. Adjust the drivers, and every segment's forecast and cost re-computes.</p>
-    <div class="tgrid" style="grid-template-columns:repeat(3,1fr)">
-      <div class="tcard"><h3>🏙️ City expansion</h3><p style="font-size:13px;color:var(--muted);line-height:1.5;margin-bottom:10px">Introduce planned developments &amp; new catchments to re-route demand and re-load corridors.</p><div class="kv" style="font-size:12px;color:var(--muted);padding:5px 0">New developments<b style="color:var(--ink)">+ traffic draw</b></div><div class="kv" style="font-size:12px;color:var(--muted);padding:5px 0">Network changes<b style="color:var(--ink)">+ re-routing</b></div></div>
-      <div class="tcard"><h3>🚦 Traffic growth</h3><p style="font-size:13px;color:var(--muted);line-height:1.5;margin-bottom:10px">Scale AADT / AADTT &amp; heavy-vehicle mix to model rising cumulative axle loading (ESAL).</p><div class="kv" style="font-size:12px;color:var(--muted);padding:5px 0">Volume growth %<b style="color:var(--ink)">→ faster decay</b></div><div class="kv" style="font-size:12px;color:var(--muted);padding:5px 0">Freight share<b style="color:var(--ink)">→ fatigue</b></div></div>
-      <div class="tcard"><h3>🧪 Usage simulations</h3><p style="font-size:13px;color:var(--muted);line-height:1.5;margin-bottom:10px">Run diversions, events &amp; closures to gauge how road usage shifts &amp; where wear concentrates.</p><div class="kv" style="font-size:12px;color:var(--muted);padding:5px 0">Diversion scenarios<b style="color:var(--ink)">→ load shift</b></div><div class="kv" style="font-size:12px;color:var(--muted);padding:5px 0">Climate trend<b style="color:var(--ink)">→ ageing</b></div></div>
+    <div class="tgrid" style="grid-template-columns:repeat(3,1fr);flex:0 0 auto">
+      <div class="tcard"><h3>🏙️ City expansion</h3><p style="font-size:12.5px;color:var(--muted);line-height:1.5;margin-bottom:8px">Introduce planned developments &amp; new catchments to re-route demand and re-load corridors.</p><div class="kv" style="font-size:12px;color:var(--muted);padding:4px 0">New developments<b style="color:var(--ink)">+ traffic draw</b></div></div>
+      <div class="tcard"><h3>🚦 Traffic growth</h3><p style="font-size:12.5px;color:var(--muted);line-height:1.5;margin-bottom:8px">Scale AADT / AADTT &amp; heavy-vehicle mix to model rising cumulative axle loading (ESAL).</p><div class="kv" style="font-size:12px;color:var(--muted);padding:4px 0">Volume / freight ↑<b style="color:var(--ink)">→ faster decay</b></div></div>
+      <div class="tcard"><h3>🧪 Usage simulations</h3><p style="font-size:12.5px;color:var(--muted);line-height:1.5;margin-bottom:8px">Run diversions, events &amp; closures to gauge how road usage shifts &amp; where wear concentrates.</p><div class="kv" style="font-size:12px;color:var(--muted);padding:4px 0">Diversions / climate<b style="color:var(--ink)">→ load shift</b></div></div>
     </div>
-    <div class="note"><b>Outcome:</b> a living planning tool — restoration cost &amp; timing update automatically as Ashghal's assumptions about the future change.</div>
+    <div class="vizbox" style="flex:1;margin-top:16px">
+      <div class="vizhead"><span>FORECAST RE-COMPUTES WITH EACH SCENARIO — SEGMENT PCI</span><span class="viz-live"><span class="d"></span>SIMULATING</span></div>
+      <canvas id="scenarioCanvas" style="flex:1;width:100%"></canvas>
+    </div>
   </section>
 
   <!-- ============ ASSET MODEL — CONCEPT ============ -->
@@ -918,7 +959,7 @@ h2{font-size:34px;line-height:1.1;font-weight:750;letter-spacing:-.01em;margin-b
     <div class="eyebrow"><span class="pulse"></span> Asset Intelligence Model · Concept</div>
     <h2>Field condition × maintenance history = <span class="grad-text">foresight</span></h2>
     <p class="sub">The asset model pairs what EchoTwin sees in the field with what the maintenance record reveals over time — letting AI recognise the patterns that precede failure across the roadside estate.</p>
-    <div class="twomodel">
+    <div class="twomodel" style="flex:0 0 auto;min-height:auto">
       <div class="mdl" style="background:linear-gradient(180deg,rgba(34,211,238,.06),var(--bg2))">
         <div class="mh"><span class="mi">👁️</span><h3>What we see — EchoTwin</h3></div>
         <div class="mt">The live, as-is field condition of every asset, geolocated and tracked over time.</div>
@@ -934,7 +975,18 @@ h2{font-size:34px;line-height:1.1;font-weight:750;letter-spacing:-.01em;margin-b
         <div class="row"><span class="ri" style="color:var(--amber)">R</span><div><b>Reactive</b> — emergency response to failures</div></div>
       </div>
     </div>
-    <div class="note"><b>The AI</b> mines both streams to recognise failure patterns, flag assets operating outside their normal envelope, and estimate remaining useful life.</div>
+    <div style="flex:1;display:flex;align-items:center;justify-content:center">
+      <div class="flowband">
+        <div class="fstack">
+          <div class="fnode"><span class="fi">👁️</span><div><b>EchoTwin</b><small>field condition</small></div></div>
+          <div class="fnode"><span class="fi">🗂️</span><div><b>PM / CM / RM</b><small>maintenance history</small></div></div>
+        </div>
+        <span class="farrow">➜</span>
+        <div class="fnode hl"><span class="fi">🧠</span><div><b>AI pattern recognition</b><small>failure signatures · operating envelope</small></div></div>
+        <span class="farrow">➜</span>
+        <div class="fnode"><span class="fi">🔮</span><div><b>Foresight</b><small>predicted faults · remaining life</small></div></div>
+      </div>
+    </div>
   </section>
 
   <!-- ============ ASSET MODEL — ACTIVE ASSETS ============ -->
@@ -960,25 +1012,32 @@ h2{font-size:34px;line-height:1.1;font-weight:750;letter-spacing:-.01em;margin-b
     <div class="eyebrow"><span class="pulse"></span> Asset Intelligence Model · Passive assets &amp; regime</div>
     <h2>Patterns across the whole estate — and a <span class="grad-text">smarter regime</span></h2>
     <p class="sub">Passive assets degrade silently; the maintenance record holds the evidence. The model turns both into a regime that shifts spend from reactive firefighting to planned prevention.</p>
-    <div class="tgrid" style="grid-template-columns:1.2fr 1fr 1fr">
+    <div class="tgrid" style="grid-template-columns:1.1fr 1fr 1fr;flex:0 0 auto">
       <div class="tcard"><h3>🪧 Passive assets</h3>
         <div class="kv"><span>Signs &amp; gantries</span><b>Reflectivity · tilt</b></div>
         <div class="kv"><span>Guardrails &amp; barriers</span><b>Impact · corrosion</b></div>
         <div class="kv"><span>Road markings</span><b>Wear · continuity</b></div>
-        <div class="kv"><span>Manholes &amp; drainage</span><b>Settlement · blockage</b></div>
-        <p style="font-size:12px;color:var(--dim);margin-top:10px;line-height:1.4">Condition from EchoTwin vision, degradation-modelled over time.</p></div>
+        <div class="kv"><span>Manholes &amp; drainage</span><b>Settlement · blockage</b></div></div>
       <div class="tcard"><h3>📊 Pattern recognition</h3>
         <div class="kv"><span>Failure clustering</span><b>by type / location</b></div>
         <div class="kv"><span>Common root causes</span><b>identified</b></div>
         <div class="kv"><span>Remaining useful life</span><b>estimated</b></div>
-        <div class="kv"><span>Mean time between failures</span><b>tracked</b></div>
-        <p style="font-size:12px;color:var(--dim);margin-top:10px;line-height:1.4">Learned from PM / CM / RM history across the estate.</p></div>
+        <div class="kv"><span>Mean time between failures</span><b>tracked</b></div></div>
       <div class="tcard" style="border-color:rgba(52,211,153,.3)"><h3>🔁 Regime shift</h3>
         <div class="kv"><span style="color:var(--red)">Reactive</span><b style="color:var(--green)">↓ reduce</b></div>
         <div class="kv"><span style="color:var(--amber)">Corrective</span><b>optimise</b></div>
         <div class="kv"><span style="color:var(--green)">Preventive</span><b style="color:var(--green)">↑ increase</b></div>
-        <div class="kv"><span>Inspection routing</span><b>risk-based</b></div>
-        <p style="font-size:12px;color:var(--dim);margin-top:10px;line-height:1.4">Right action, right asset, right time — fewer failures, lower cost.</p></div>
+        <div class="kv"><span>Inspection routing</span><b>risk-based</b></div></div>
+    </div>
+    <div class="vizbox" style="flex:1;margin-top:16px">
+      <div class="vizhead"><span>MAINTENANCE REGIME — SHIFTING REACTIVE → PREVENTIVE</span><span class="viz-live"><span class="d"></span>MODELLED</span></div>
+      <div style="padding:22px 24px;display:flex;flex-direction:column;gap:18px;justify-content:center;flex:1">
+        <div class="regime">
+          <div class="regrow"><div class="rlbl">Today<small>reactive-led, costly</small></div><div class="regbar"><div class="regseg" style="background:#f87171" data-w="45%">45%</div><div class="regseg" style="background:#f5b53d" data-w="35%">35%</div><div class="regseg" style="background:#34d399" data-w="20%">20%</div></div></div>
+          <div class="regrow"><div class="rlbl" style="color:var(--green)">With RoadTwin<small>prevention-led, planned</small></div><div class="regbar"><div class="regseg" style="background:#f87171" data-w="15%">15%</div><div class="regseg" style="background:#f5b53d" data-w="25%">25%</div><div class="regseg" style="background:#34d399" data-w="60%">60%</div></div></div>
+        </div>
+        <div class="reglegend"><span><i style="background:#f87171"></i>Reactive</span><span><i style="background:#f5b53d"></i>Corrective</span><span><i style="background:#34d399"></i>Preventive</span><span style="color:var(--dim);margin-left:auto">→ fewer failures · lower whole-life cost</span></div>
+      </div>
     </div>
   </section>
 
@@ -1093,21 +1152,29 @@ h2{font-size:34px;line-height:1.1;font-weight:750;letter-spacing:-.01em;margin-b
     <div class="eyebrow"><span class="pulse"></span> Methodology · Governance &amp; ways of working</div>
     <h2>Clear roles, <span class="grad-text">tight feedback loops</span></h2>
     <p class="sub">A lean joint team with defined responsibilities and a regular cadence keeps the POC on track and keeps Ashghal's experts in the loop at every step.</p>
-    <div class="tgrid" style="grid-template-columns:repeat(2,1fr)">
-      <div class="tcard"><h3>👥 Joint team &amp; responsibilities</h3>
+    <div class="tgrid" style="grid-template-columns:repeat(2,1fr);flex:0 0 auto">
+      <div class="tcard"><h3>👥 Joint team</h3>
         <div class="kv"><span>Programme &amp; delivery</span><b>RoadTwin / Traffic Tech</b></div>
         <div class="kv"><span>Survey, modelling &amp; platform</span><b>RoadTwin / Traffic Tech</b></div>
         <div class="kv"><span>Data, access &amp; field permits</span><b>Ashghal</b></div>
-        <div class="kv"><span>Engineering review &amp; sign-off</span><b>Ashghal + scientists</b></div>
-        <div class="kv"><span>Steering &amp; acceptance</span><b>Joint</b></div></div>
+        <div class="kv"><span>Engineering review &amp; sign-off</span><b>Ashghal + scientists</b></div></div>
       <div class="tcard"><h3>🔄 Cadence &amp; assurance</h3>
         <div class="kv"><span>Kick-off &amp; mobilisation</span><b>Week 1</b></div>
         <div class="kv"><span>Weekly progress sync</span><b>Every week</b></div>
         <div class="kv"><span>Model calibration reviews</span><b>Phases 2–3</b></div>
-        <div class="kv"><span>Milestone demos</span><b>End of each phase</b></div>
-        <div class="kv"><span>Data security &amp; governance</span><b>Per Ashghal policy</b></div></div>
+        <div class="kv"><span>Milestone demos &amp; sign-off</span><b>End of each phase</b></div></div>
     </div>
-    <div class="note"><b>Principle:</b> Ashghal's road-compound scientists shape the model logic and validate every calibration — the AI augments their judgement, it does not replace it.</div>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;margin-top:16px">
+      <div style="font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--dim);font-weight:700;margin-bottom:10px">Responsibility matrix (RACI)</div>
+      <div class="raci">
+        <div class="rc h" style="justify-content:flex-start">Activity</div><div class="rc h">Ashghal</div><div class="rc h">RoadTwin / Traffic Tech</div><div class="rc h">Joint</div>
+        <div class="rc task">Data, access &amp; permits</div><div class="rc"><span class="rbadge rb-a">A</span></div><div class="rc"><span class="rbadge rb-c">C</span></div><div class="rc"><span class="rbadge rb-i">I</span></div>
+        <div class="rc task">Survey, modelling &amp; platform</div><div class="rc"><span class="rbadge rb-c">C</span></div><div class="rc"><span class="rbadge rb-r">R</span></div><div class="rc"><span class="rbadge rb-i">I</span></div>
+        <div class="rc task">Engineering review &amp; calibration</div><div class="rc"><span class="rbadge rb-r">R</span></div><div class="rc"><span class="rbadge rb-c">C</span></div><div class="rc"><span class="rbadge rb-a">A</span></div>
+        <div class="rc task">Acceptance &amp; go / no-go</div><div class="rc"><span class="rbadge rb-a">A</span></div><div class="rc"><span class="rbadge rb-c">C</span></div><div class="rc"><span class="rbadge rb-r">R</span></div>
+      </div>
+      <div class="racikey"><span><b style="color:var(--cyan)">R</b>Responsible</span><span><b style="color:var(--green)">A</b>Accountable</span><span><b style="color:var(--amber)">C</b>Consulted</span><span><b style="color:var(--muted)">I</b>Informed</span></div>
+    </div>
   </section>
 
 
@@ -1115,16 +1182,20 @@ h2{font-size:34px;line-height:1.1;font-weight:750;letter-spacing:-.01em;margin-b
   <section class="slide" data-anim="roadmap">
     <div class="eyebrow"><span class="pulse"></span> Methodology · Phased approach &amp; key activities</div>
     <h2>How we will deliver it — <span class="grad-text">four phases</span></h2>
-    <p class="sub">A low-risk, staged rollout — value from the first corridor, scaling to a self-improving network twin without disrupting operations.</p>
+    <p class="sub">A low-risk, staged approach — value from the first corridor, scaling to a self-improving network twin without disrupting operations.</p>
     <div class="timeline">
       <div class="phase"><div class="pline"></div><div class="pdot"></div><div class="pno">Phase 1</div><h3>Baseline &amp; pilot</h3><div class="pdur">Weeks 1–3</div>
-        <ul><li>Mount sensors on pilot fleet (45-min install)</li><li>Scan priority corridor · build first twin</li><li>Calibrate against ROMDAS / GPR</li><li>Establish PCI / IRI baseline</li></ul></div>
+        <ul><li>Mount sensors on pilot fleet (45-min install)</li><li>Scan priority corridor · build first twin</li><li>Calibrate against ROMDAS / GPR</li><li>Establish PCI / IRI baseline</li></ul>
+        <div class="pdeliver">◆ Deliverable: inception report &amp; condition baseline</div></div>
       <div class="phase"><div class="pline"></div><div class="pdot"></div><div class="pno">Phase 2</div><h3>Correlate &amp; train</h3><div class="pdur">Weeks 3–7</div>
-        <ul><li>Ingest historical condition &amp; traffic data</li><li>Train &amp; validate predictive models</li><li>Stand up GIS &amp; dashboard integration</li><li>Onboard road-compound scientists</li></ul></div>
+        <ul><li>Ingest historical condition &amp; traffic data</li><li>Train &amp; validate predictive models</li><li>Apply correction factor &amp; calibrate</li><li>Onboard road-compound scientists</li></ul>
+        <div class="pdeliver">◆ Deliverable: calibrated models &amp; dashboard</div></div>
       <div class="phase"><div class="pline"></div><div class="pdot"></div><div class="pno">Phase 3</div><h3>Decide &amp; act</h3><div class="pdur">Weeks 7–14</div>
-        <ul><li>Generate forecasts &amp; treatment plans</li><li>Run multi-year budget optimisation</li><li>Push work orders to EAM / ERP</li><li>Extend to roadside-asset management</li></ul></div>
+        <ul><li>Generate forecasts &amp; treatment plans</li><li>Run multi-year budget optimisation</li><li>Push work orders to EAM / ERP</li><li>Extend to roadside-asset management</li></ul>
+        <div class="pdeliver">◆ Deliverable: forecasts, costs &amp; work orders</div></div>
       <div class="phase"><div class="pdot"></div><div class="pno">Phase 4</div><h3>Scale &amp; learn</h3><div class="pdur">Weeks 13–16</div>
-        <ul><li>Roll out across the full network</li><li>Continuous capture on every fleet trip</li><li>Track effectiveness · close the loop</li><li>Models self-improve each cycle</li></ul></div>
+        <ul><li>Validate results against KPIs</li><li>Continuous capture on every fleet trip</li><li>Track effectiveness · close the loop</li><li>Plan network-wide rollout</li></ul>
+        <div class="pdeliver">◆ Deliverable: rollout plan &amp; business case</div></div>
     </div>
   </section>
 
@@ -1190,12 +1261,12 @@ h2{font-size:34px;line-height:1.1;font-weight:750;letter-spacing:-.01em;margin-b
   <section class="slide" data-anim="risks">
     <div class="eyebrow"><span class="pulse"></span> Delivery · Risks &amp; mitigations</div>
     <h2>Known risks, <span class="grad-text">planned answers</span></h2>
-    <p class="sub">A POC is the right place to surface risk early. Each is met with a concrete mitigation built into the methodology.</p>
+    <p class="sub">A POC is the right place to surface risk early. Each is met with a concrete mitigation built into the methodology — leaving low residual risk.</p>
     <div class="risks">
-      <div class="risk"><h4>📂 Sparse or fragmented history</h4><p>Historical construction, traffic or maintenance data may be incomplete for some segments.</p><div class="rmit"><b>Mitigation:</b> the correction factor &amp; live XenoTrack scanning anchor the model even with thin history; grey models handle sparse data.</div></div>
-      <div class="risk"><h4>🔌 Data access &amp; integration</h4><p>Access to ITS, CMMS &amp; weather feeds can take time to arrange.</p><div class="rmit"><b>Mitigation:</b> early data-intake plan (M1), flexible connectors, and graceful fallback to file-based exports.</div></div>
-      <div class="risk"><h4>🛣️ Field &amp; survey logistics</h4><p>Lane access, permits &amp; traffic management for scanning the corridor.</p><div class="rmit"><b>Mitigation:</b> roof-mounted survey at traffic speed — no closures; scheduling coordinated with Ashghal operations.</div></div>
-      <div class="risk"><h4>📏 Model acceptance</h4><p>Forecasts must earn engineers' trust to be actionable.</p><div class="rmit"><b>Mitigation:</b> transparent, formula-grounded models reviewed &amp; signed off by Ashghal's road-compound scientists at each calibration.</div></div>
+      <div class="risk"><h4>📂 Sparse or fragmented history</h4><p>Historical construction, traffic or maintenance data may be incomplete for some segments.</p><div class="rmit"><b>Mitigation:</b> the correction factor &amp; live XenoTrack scanning anchor the model even with thin history; grey models handle sparse data.</div><div class="rmeta"><span class="rchip">Likelihood<b>Med</b></span><span class="rchip">Impact<b>Med</b></span><span class="rchip res">Residual<b>Low</b></span></div></div>
+      <div class="risk"><h4>🔌 Data access &amp; integration</h4><p>Access to ITS, CMMS &amp; weather feeds can take time to arrange.</p><div class="rmit"><b>Mitigation:</b> early data-intake plan (M1), flexible connectors, and graceful fallback to file-based exports.</div><div class="rmeta"><span class="rchip">Likelihood<b>Med</b></span><span class="rchip">Impact<b>Med</b></span><span class="rchip res">Residual<b>Low</b></span></div></div>
+      <div class="risk"><h4>🛣️ Field &amp; survey logistics</h4><p>Lane access, permits &amp; traffic management for scanning the corridor.</p><div class="rmit"><b>Mitigation:</b> roof-mounted survey at traffic speed — no closures; scheduling coordinated with Ashghal operations.</div><div class="rmeta"><span class="rchip">Likelihood<b>Low</b></span><span class="rchip">Impact<b>Low</b></span><span class="rchip res">Residual<b>Low</b></span></div></div>
+      <div class="risk"><h4>📏 Model acceptance</h4><p>Forecasts must earn engineers' trust to be actionable.</p><div class="rmit"><b>Mitigation:</b> transparent, formula-grounded models reviewed &amp; signed off by Ashghal's road-compound scientists at each calibration.</div><div class="rmeta"><span class="rchip">Likelihood<b>Med</b></span><span class="rchip">Impact<b>High</b></span><span class="rchip res">Residual<b>Low</b></span></div></div>
     </div>
   </section>
 
@@ -2078,6 +2149,50 @@ function ganttAnim(){
 /* ====================== DASHBOARD ====================== */
 function dashAnim(){ buildDashMap(); countKPIs(); return ()=>{}; }
 
+/* ====================== SCENARIO FORECAST ====================== */
+function scenarioAnim(){
+  const c=document.getElementById('scenarioCanvas');if(!c)return;
+  let raf,start=performance.now();
+  const lines=[
+    {fn:fx=>0.82-0.30*Math.pow(fx,1.3),col:'#34d399',label:'Baseline'},
+    {fn:fx=>0.82-0.46*Math.pow(fx,1.3),col:'#f5b53d',label:'+ traffic growth'},
+    {fn:fx=>0.82-0.60*Math.pow(fx,1.25),col:'#fb923c',label:'+ city expansion'},
+  ];
+  function loop(){
+    const prog=Math.min(1,(performance.now()-start)/2400);
+    const {ctx,w,h}=fit(c);const padL=42,padR=120,padT=16,padB=28,pw=w-padL-padR,ph=h-padT-padB;
+    const X=x=>padL+pw*x, Y=v=>padT+ph*(1-v);
+    ctx.clearRect(0,0,w,h);
+    ctx.strokeStyle='rgba(255,255,255,0.06)';ctx.fillStyle='#5a708f';ctx.font='10px ui-monospace,monospace';ctx.textBaseline='middle';ctx.textAlign='right';
+    for(let v=0;v<=100;v+=25){const yy=Y(v/100);ctx.beginPath();ctx.moveTo(X(0),yy);ctx.lineTo(X(1),yy);ctx.stroke();ctx.fillText(v,X(0)-6,yy);}
+    ctx.textAlign='center';ctx.textBaseline='top';
+    for(let yr=0;yr<=10;yr+=2){ctx.fillText('Y'+yr,X(yr/10),h-padB+6);}
+    ctx.save();ctx.translate(11,padT+ph/2);ctx.rotate(-Math.PI/2);ctx.fillStyle='#8aa0c2';ctx.textBaseline='middle';ctx.textAlign='center';ctx.fillText('PCI',0,0);ctx.restore();
+    // failure threshold
+    ctx.strokeStyle='rgba(248,113,113,.5)';ctx.setLineDash([5,4]);ctx.beginPath();ctx.moveTo(X(0),Y(0.40));ctx.lineTo(X(1),Y(0.40));ctx.stroke();ctx.setLineDash([]);
+    ctx.fillStyle='#f87171';ctx.textAlign='left';ctx.textBaseline='middle';ctx.fillText('failure',X(0)+4,Y(0.40)-9);
+    // today line
+    ctx.strokeStyle='rgba(34,211,238,.5)';ctx.beginPath();ctx.moveTo(X(0.02),padT);ctx.lineTo(X(0.02),Y(0));ctx.stroke();
+    const n=Math.floor(120*prog);
+    lines.forEach(L=>{
+      ctx.strokeStyle=L.col;ctx.lineWidth=2.6;ctx.beginPath();
+      for(let i=0;i<=n;i++){const fx=i/120;i===0?ctx.moveTo(X(fx),Y(L.fn(fx))):ctx.lineTo(X(fx),Y(L.fn(fx)));}
+      ctx.stroke();
+      const ex=Math.min(prog,1);ctx.fillStyle=L.col;ctx.beginPath();ctx.arc(X(ex),Y(L.fn(ex)),3.5,0,7);ctx.fill();
+      if(prog>=1){ctx.font='bold 11px Inter,sans-serif';ctx.textAlign='left';ctx.fillText(L.label,X(1)+8,Y(L.fn(1)));}
+    });
+    raf=requestAnimationFrame(loop);
+  }
+  loop();return ()=>cancelAnimationFrame(raf);
+}
+
+/* ====================== REGIME SHIFT BARS ====================== */
+function regimeAnim(){
+  const segs=document.querySelectorAll('.slide[data-anim="pmcmrm"] .regseg');
+  segs.forEach(s=>{s.style.width='0';void s.offsetWidth;s.style.width=s.dataset.w;});
+  return ()=>{};
+}
+
 /* ====================== ANIM ROUTER ====================== */
 let stoppers={};
 function triggerAnim(name){
@@ -2100,6 +2215,8 @@ function triggerAnim(name){
   if(name==='assetactive')stoppers.aa=assetAnomalyAnim();
   if(name==='gantt')stoppers.gantt=ganttAnim();
   if(name==='dash')stoppers.dash=dashAnim();
+  if(name==='scenarios')stoppers.sc=scenarioAnim();
+  if(name==='pmcmrm')stoppers.reg=regimeAnim();
   if(name==='models')sparkAnim();
   if(name==='benefits')countKPIs();
   if(name==='close')stoppers.close=heroAnim('closeCanvas');
