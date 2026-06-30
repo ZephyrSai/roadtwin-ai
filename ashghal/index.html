@@ -356,6 +356,32 @@ h2{font-size:34px;line-height:1.1;font-weight:750;letter-spacing:-.01em;margin-b
 .note b{color:var(--muted)}
 
 
+/* ---- opening-slide enrichments ---- */
+.agout{margin-top:auto;padding-top:12px;border-top:1px solid var(--line);font-size:11.5px;color:var(--cyan);font-weight:600}
+.engflow{display:flex;align-items:flex-start;justify-content:space-between;flex:1;margin-top:6px}
+.efstep{display:flex;flex-direction:column;align-items:center;text-align:center;flex:1;position:relative;padding:18px 8px 0}
+.efstep .efn{width:46px;height:46px;border-radius:50%;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:12px;position:relative;z-index:2}
+.efstep.cur .efn{background:var(--grad);border:none;color:#06121f;box-shadow:0 6px 18px rgba(34,211,238,.3)}
+.efstep h5{font-size:13.5px;font-weight:730;margin-bottom:4px}
+.efstep p{font-size:11.5px;color:var(--dim);line-height:1.4;max-width:165px}
+.efline{position:absolute;top:41px;left:50%;width:100%;height:2px;background:linear-gradient(90deg,var(--cyan),rgba(34,211,238,.2));z-index:1;opacity:.5}
+.efstep:last-child .efline{display:none}
+.obj{display:flex;flex-direction:column}
+.obj .obody{display:flex;gap:15px;align-items:flex-start}
+.omeasure{margin-top:auto;padding-top:12px;font-size:11.5px;color:var(--teal);display:flex;align-items:flex-start;gap:7px;font-weight:600;line-height:1.35}
+.flowband{display:flex;align-items:center;justify-content:center;gap:13px;padding:16px 20px;border:1px solid var(--line);border-radius:14px;background:rgba(16,26,46,.45);flex-wrap:wrap}
+.fnode{display:flex;align-items:center;gap:9px;padding:11px 16px;border-radius:11px;background:var(--panel);border:1px solid var(--line);font-size:13.5px}
+.fnode.hl{border-color:rgba(34,211,238,.5);background:rgba(34,211,238,.07)}
+.fnode b{color:var(--ink);font-weight:700}
+.fnode small{color:var(--dim);font-size:10.5px;display:block}
+.fnode .fi{font-size:19px}
+.fstack{display:flex;flex-direction:column;gap:8px}
+.farrow{color:var(--cyan);font-size:22px;animation:flow 1.8s infinite}
+.cmp .sv{font-size:15px}
+.cmp .sv .a{color:var(--dim);text-decoration:line-through;text-decoration-color:rgba(248,113,113,.5)}
+.cmp .sv .b{color:var(--green)}
+.cmp .sv .ar{color:var(--cyan);margin:0 5px}
+
 @media (max-width:1200px){
   .slide{padding:32px 36px 70px}
   h1{font-size:42px}.kpi .big{font-size:38px}
@@ -400,13 +426,23 @@ h2{font-size:34px;line-height:1.1;font-weight:750;letter-spacing:-.01em;margin-b
     <div class="eyebrow"><span class="pulse"></span> Engagement · What we will cover</div>
     <h2>A two-stage conversation with <span class="grad-text">Ashghal</span></h2>
     <p class="sub">First we present the concept and its objectives. Then — the focus of this document — how we will deliver it, what you will receive, and on what timeline.</p>
-    <div class="agenda">
+    <div class="agenda" style="flex:0 0 auto">
       <div class="ag"><div class="agn">PART 01</div><div class="agi">💡</div><h3>The idea &amp; objectives</h3><p>The proposed solution explained in detail, and the outcomes it targets for Ashghal.</p>
-        <ul><li>The challenge &amp; the vision</li><li>Two AI models, one platform</li><li>POC objectives &amp; scope</li></ul></div>
+        <ul><li>The challenge &amp; the vision</li><li>Two AI models, one platform</li><li>POC objectives &amp; scope</li></ul>
+        <div class="agout">▸ Output: an agreed concept &amp; objectives</div></div>
       <div class="ag"><div class="agn">PART 02</div><div class="agi">⚙️</div><h3>Methodology &amp; key activities</h3><p>How the road and asset intelligence is actually built, validated and delivered.</p>
-        <ul><li>Sensing &amp; data foundation</li><li>Road &amp; asset model build</li><li>Single pane of glass</li></ul></div>
+        <ul><li>Sensing &amp; data foundation</li><li>Road &amp; asset model build</li><li>Single pane of glass</li></ul>
+        <div class="agout">▸ Output: a clear, reviewable plan</div></div>
       <div class="ag"><div class="agn">PART 03</div><div class="agi">📅</div><h3>Timeline &amp; deliverables</h3><p>A 16-week plan with clear milestones, deliverables and success criteria.</p>
-        <ul><li>Phased programme</li><li>Milestones &amp; deliverables</li><li>KPIs &amp; next steps</li></ul></div>
+        <ul><li>Phased programme</li><li>Milestones &amp; deliverables</li><li>KPIs &amp; next steps</li></ul>
+        <div class="agout">▸ Output: schedule, KPIs &amp; business case</div></div>
+    </div>
+    <div class="engflow">
+      <div class="efstep"><div class="efline"></div><div class="efn">🤝</div><h5>Client engagement</h5><p>Align on goals &amp; scope with Ashghal</p></div>
+      <div class="efstep cur"><div class="efline"></div><div class="efn">💡</div><h5>Present the idea</h5><p>The concept &amp; objectives — today</p></div>
+      <div class="efstep cur"><div class="efline"></div><div class="efn">📐</div><h5>Methodology &amp; plan</h5><p>How we deliver &amp; what you get</p></div>
+      <div class="efstep"><div class="efline"></div><div class="efn">🛰️</div><h5>Run the POC</h5><p>16-week pilot on the corridor</p></div>
+      <div class="efstep"><div class="efn">📈</div><h5>Evaluate &amp; scale</h5><p>Validated results → network rollout</p></div>
     </div>
   </section>
 
@@ -423,10 +459,11 @@ h2{font-size:34px;line-height:1.1;font-weight:750;letter-spacing:-.01em;margin-b
       <div class="st"><div class="sv"><b>50 °C+</b></div><div class="sl">Summer surface temperatures</div></div>
     </div>
     <div class="tgrid" style="grid-template-columns:repeat(3,1fr)">
-      <div class="tcard"><h3>🌡️ Climate-driven decay</h3><p style="font-size:13px;color:var(--muted);line-height:1.5">Extreme heat &amp; thermal cycling accelerate rutting, bleeding and binder ageing — deterioration that surface-only, periodic surveys miss until it is costly.</p></div>
-      <div class="tcard"><h3>🚛 Heavy &amp; growing loads</h3><p style="font-size:13px;color:var(--muted);line-height:1.5">Freight, construction &amp; rapid urban expansion drive cumulative axle loading (ESAL) that varies sharply corridor-to-corridor and is hard to attribute to condition.</p></div>
-      <div class="tcard"><h3>🔧 Reactive spend</h3><p style="font-size:13px;color:var(--muted);line-height:1.5">Without a predictive view, maintenance chases failures and emergencies — missing the cheap preventive window and the chance to plan budgets with confidence.</p></div>
+      <div class="tcard"><h3>🌡️ Climate-driven decay</h3><p style="font-size:13px;color:var(--muted);line-height:1.5">Extreme heat &amp; thermal cycling accelerate rutting, bleeding and binder ageing — deterioration that surface-only, periodic surveys miss until it is costly.</p><div class="omeasure" style="color:var(--amber)">⚠ Accelerated rutting &amp; binder ageing</div></div>
+      <div class="tcard"><h3>🚛 Heavy &amp; growing loads</h3><p style="font-size:13px;color:var(--muted);line-height:1.5">Freight, construction &amp; rapid urban expansion drive cumulative axle loading (ESAL) that varies sharply corridor-to-corridor and is hard to attribute to condition.</p><div class="omeasure" style="color:var(--amber)">⚠ Fatigue cracking from cumulative ESAL</div></div>
+      <div class="tcard"><h3>🔧 Reactive spend</h3><p style="font-size:13px;color:var(--muted);line-height:1.5">Without a predictive view, maintenance chases failures and emergencies — missing the cheap preventive window and the chance to plan budgets with confidence.</p><div class="omeasure" style="color:var(--amber)">⚠ Up to 6–10× costlier than prevention</div></div>
     </div>
+    <div class="note"><b>The opportunity:</b> turn the data Ashghal already holds — plus live sensing — into a predictive, budget-aware view of the whole network.</div>
   </section>
 
   <!-- ============ OBJECTIVES ============ -->
@@ -435,12 +472,12 @@ h2{font-size:34px;line-height:1.1;font-weight:750;letter-spacing:-.01em;margin-b
     <h2>What this proof of concept sets out to <span class="grad-text">prove</span></h2>
     <p class="sub">Concrete, measurable objectives that de-risk a wider rollout and give Ashghal an evidence base for predictive, budget-aware infrastructure management.</p>
     <div class="objgrid">
-      <div class="obj"><div class="on">1</div><div><h4>Establish a validated condition baseline</h4><p>A segment-level PCI baseline for the pilot corridor, built from millimetre-precise XenoTrack scanning as ground truth.</p></div></div>
-      <div class="obj"><div class="on">2</div><div><h4>Reconstruct condition from history</h4><p>A road-deterioration model driven by Ashghal's historical construction, traffic, climate &amp; loading data, calibrated to match the present.</p></div></div>
-      <div class="obj"><div class="on">3</div><div><h4>Predict the future, with confidence</h4><p>Once the model matches actuals, forecast each segment's PCI trajectory and the year intervention will be required.</p></div></div>
-      <div class="obj"><div class="on">4</div><div><h4>Quantify cost &amp; timing</h4><p>Translate forecasts into restoration cost estimates and optimal intervention timing — preventive vs. rehabilitation vs. reconstruction.</p></div></div>
-      <div class="obj"><div class="on">5</div><div><h4>Stand up asset predictive maintenance</h4><p>Combine EchoTwin field condition with PM/CM/RM records to recognise failure patterns across active &amp; passive assets.</p></div></div>
-      <div class="obj"><div class="on">6</div><div><h4>Deliver a single pane of glass</h4><p>A unified, map-based view that turns millions of data-points into clear insight, prediction &amp; decision support for Ashghal teams.</p></div></div>
+      <div class="obj"><div class="obody"><div class="on">1</div><div><h4>Establish a validated condition baseline</h4><p>A segment-level PCI baseline for the pilot corridor, built from millimetre-precise XenoTrack scanning as ground truth.</p></div></div><div class="omeasure">◎ Measure — PCI baseline across 100% of corridor segments</div></div>
+      <div class="obj"><div class="obody"><div class="on">2</div><div><h4>Reconstruct condition from history</h4><p>A road-deterioration model driven by Ashghal's historical construction, traffic, climate &amp; loading data, calibrated to match the present.</p></div></div><div class="omeasure">◎ Measure — calibrated model agrees with actuals</div></div>
+      <div class="obj"><div class="obody"><div class="on">3</div><div><h4>Predict the future, with confidence</h4><p>Once the model matches actuals, forecast each segment's PCI trajectory and the year intervention will be required.</p></div></div><div class="omeasure">◎ Measure — 10-year per-segment forecast delivered</div></div>
+      <div class="obj"><div class="obody"><div class="on">4</div><div><h4>Quantify cost &amp; timing</h4><p>Translate forecasts into restoration cost estimates and optimal intervention timing — preventive vs. rehabilitation vs. reconstruction.</p></div></div><div class="omeasure">◎ Measure — cost &amp; intervention year per segment</div></div>
+      <div class="obj"><div class="obody"><div class="on">5</div><div><h4>Stand up asset predictive maintenance</h4><p>Combine EchoTwin field condition with PM/CM/RM records to recognise failure patterns across active &amp; passive assets.</p></div></div><div class="omeasure">◎ Measure — failure-pattern model on real records</div></div>
+      <div class="obj"><div class="obody"><div class="on">6</div><div><h4>Deliver a single pane of glass</h4><p>A unified, map-based view that turns millions of data-points into clear insight, prediction &amp; decision support for Ashghal teams.</p></div></div><div class="omeasure">◎ Measure — dashboard accepted by Ashghal users</div></div>
     </div>
   </section>
 
@@ -449,13 +486,14 @@ h2{font-size:34px;line-height:1.1;font-weight:750;letter-spacing:-.01em;margin-b
     <div class="eyebrow"><span class="pulse"></span> The concept · Two AI models, one platform</div>
     <h2>One platform, <span class="grad-text">two intelligence engines</span></h2>
     <p class="sub">At the heart of RoadTwin sit two complementary AI models — one for the road itself, one for the assets along it — feeding a single decision platform.</p>
-    <div class="twomodel">
+    <div class="twomodel" style="flex:0 0 auto;min-height:auto">
       <div class="mdl road">
         <div class="mh"><span class="mi">🛣️</span><h3>Road Intelligence Model</h3></div>
         <div class="mt">Estimates &amp; predicts pavement condition (PCI) per segment by fusing materials science with historical &amp; live data.</div>
         <div class="row"><span class="ri">A</span><div><b>Scientist's-formula model</b> — mechanistic-empirical deterioration logic from road-compound experts.</div></div>
         <div class="row"><span class="ri">B</span><div><b>Historical-data model</b> — ML over construction, layers, climate &amp; traffic loading.</div></div>
         <div class="row"><span class="ri">C</span><div><b>Correction factor</b> — calibrates estimates to present reality, then forecasts the future.</div></div>
+        <div class="row"><span class="ri">D</span><div><b>Scenario simulation</b> — city expansion, traffic growth &amp; usage what-ifs.</div></div>
         <div class="row"><span class="ri">✓</span><div><b>Ground truth</b> — validated against XenoTrack PCI per segment.</div></div>
       </div>
       <div class="mdl asset">
@@ -464,10 +502,22 @@ h2{font-size:34px;line-height:1.1;font-weight:750;letter-spacing:-.01em;margin-b
         <div class="row"><span class="ri">A</span><div><b>Field condition</b> — EchoTwin vision AI captures the live as-is state of every asset.</div></div>
         <div class="row"><span class="ri">B</span><div><b>Maintenance history</b> — PM / CM / RM records mined for failure patterns.</div></div>
         <div class="row"><span class="ri">C</span><div><b>Operating signatures</b> — anomaly detection on active (electrical) &amp; passive assets.</div></div>
+        <div class="row"><span class="ri">D</span><div><b>Regime shift</b> — move spend from reactive firefighting to planned prevention.</div></div>
         <div class="row"><span class="ri">✓</span><div><b>Output</b> — predicted faults, remaining life &amp; optimised maintenance regime.</div></div>
       </div>
     </div>
-    <div class="note"><b>Shared platform:</b> common linear-referencing, digital twin, prediction &amp; decision layer — surfaced through one map-based dashboard.</div>
+    <div style="flex:1;display:flex;align-items:center;justify-content:center">
+      <div class="flowband">
+        <div class="fstack">
+          <div class="fnode"><span class="fi">🛣️</span><div><b>Road model</b><small>PCI · forecast · cost</small></div></div>
+          <div class="fnode"><span class="fi">🛰️</span><div><b>Asset model</b><small>faults · remaining life</small></div></div>
+        </div>
+        <span class="farrow">➜</span>
+        <div class="fnode hl"><span class="fi">🧠</span><div><b>RoadTwin platform</b><small>linear-referencing · digital twin · decisions</small></div></div>
+        <span class="farrow">➜</span>
+        <div class="fnode"><span class="fi">🖥️</span><div><b>Single pane of glass</b><small>insight for Ashghal teams</small></div></div>
+      </div>
+    </div>
   </section>
 
 
@@ -494,6 +544,12 @@ h2{font-size:34px;line-height:1.1;font-weight:750;letter-spacing:-.01em;margin-b
         </div>
       </div>
     </div>
+    <div class="statstrip cmp" style="margin-top:18px">
+      <div class="st"><div class="sv"><span class="a">1–3 yr</span><span class="ar">→</span><span class="b">continuous</span></div><div class="sl">Survey cadence</div></div>
+      <div class="st"><div class="sv"><span class="a">surface only</span><span class="ar">→</span><span class="b">+ sub-surface + assets</span></div><div class="sl">Visibility</div></div>
+      <div class="st"><div class="sv"><span class="a">worst-first</span><span class="ar">→</span><span class="b">ROI-ranked</span></div><div class="sl">Spending</div></div>
+      <div class="st"><div class="sv"><span class="a">years old</span><span class="ar">→</span><span class="b">every pass</span></div><div class="sl">Data freshness</div></div>
+    </div>
   </section>
 
   <!-- ============ SLIDE 3 — ARCHITECTURE / PIPELINE ============ -->
@@ -518,6 +574,12 @@ h2{font-size:34px;line-height:1.1;font-weight:750;letter-spacing:-.01em;margin-b
         <div class="items"><div class="it">Work orders &amp; crews</div><div class="it">Effectiveness tracking</div><div class="it">Model feedback</div></div></div>
     </div>
     <div class="legend"><span><i style="background:var(--cyan)"></i>Sensing layer</span><span><i style="background:var(--violet)"></i>AI brain</span><span><i style="background:var(--amber)"></i>Decision &amp; ops</span><span><i style="background:var(--green)"></i>Continuous feedback loop</span></div>
+    <div class="statstrip" style="margin-top:14px">
+      <div class="st"><div class="sv"><b>LRS</b></div><div class="sl">Common linear-referencing</div></div>
+      <div class="st"><div class="sv"><b>Digital twin</b></div><div class="sl">Geometry · condition · assets</div></div>
+      <div class="st"><div class="sv"><b>Open API</b></div><div class="sl">GIS · CMMS · ITS integration</div></div>
+      <div class="st"><div class="sv"><b>Closed loop</b></div><div class="sl">Self-improving each cycle</div></div>
+    </div>
   </section>
 
   <!-- ============ SLIDE 4 — XENOTRACK ============ -->
