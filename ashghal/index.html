@@ -478,6 +478,41 @@ h2{font-size:34px;line-height:1.1;font-weight:750;letter-spacing:-.01em;margin-b
 .gnode .gi{font-size:20px}
 .gnode.go{border-color:rgba(52,211,153,.5);background:rgba(52,211,153,.08);color:var(--green)}
 
+/* ===== REVISION: readability · co-brand · street-light POC ===== */
+.eyebrow{font-size:14px;letter-spacing:.14em;color:#41ddf2;font-weight:700}
+h2{font-size:40px}
+.sub{font-size:19px;max-width:940px}
+.feature h4{font-size:16.5px}.feature p{font-size:14px}
+.mdl .mh h3{font-size:23px}.mdl .row{font-size:14px}.mdl .mt{font-size:14px}
+.tcard h3{font-size:18px}
+/* co-brand corner */
+.logo-tr{top:14px}
+.cobrand{display:flex;align-items:center;gap:10px}
+.cobrand .cbdiv{width:1px;height:34px;background:var(--line)}
+.cobrand .cbcap{font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);text-align:center;line-height:1.2;margin-bottom:3px}
+.cobrand .cbcol{display:flex;flex-direction:column;align-items:center}
+/* bigger agenda journey */
+.engflow.big{margin-top:10px;align-items:center}
+.engflow.big .efstep{padding-top:26px}
+.engflow.big .efn{width:76px;height:76px;font-size:34px;margin-bottom:18px}
+.engflow.big .efstep.cur .efn{box-shadow:0 8px 28px rgba(34,211,238,.45)}
+.engflow.big h5{font-size:19px;margin-bottom:6px}
+.engflow.big p{font-size:14px;max-width:210px}
+.engflow.big .efline{top:61px;height:3px}
+/* objectives emphasis */
+.obj .on{font-size:32px;min-width:42px}
+.obj h4{font-size:19px;margin-bottom:4px}
+.obj p{font-size:14px}
+.omeasure{font-size:13.5px;color:#4de3c6;font-weight:750;padding-top:14px;border-top:1px solid rgba(45,212,191,.18)}
+/* POC / later badges */
+.badrow{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:14px}
+.pocbadge{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:750;color:#06121f;background:var(--grad);padding:7px 16px;border-radius:22px}
+.laterbadge{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:600;color:var(--muted);background:var(--panel);border:1px solid var(--line);padding:6px 14px;border-radius:22px}
+/* asset catalogue POC highlight */
+.asset.poc{border-color:var(--cyan);box-shadow:0 0 0 1px rgba(34,211,238,.35), 0 12px 30px rgba(0,0,0,.4)}
+.asset.poc::after{content:'POC';position:absolute;top:12px;right:12px;font-size:10px;font-weight:800;color:#06121f;background:var(--cyan);padding:2px 8px;border-radius:12px}
+.asset.later{opacity:.62}
+
 @media (max-width:1200px){
   .slide{padding:32px 36px 70px}
   h1{font-size:42px}.kpi .big{font-size:38px}
@@ -496,49 +531,25 @@ h2{font-size:34px;line-height:1.1;font-weight:750;letter-spacing:-.01em;margin-b
   <section class="slide active" data-anim="hero">
     <canvas class="hero-wrap" id="heroCanvas"></canvas>
     <div class="hero-content">
-      <div id="heroLogo" style="margin-bottom:22px"></div>
+      <div id="heroLogo" style="margin-bottom:24px"></div>
       <div class="eyebrow"><span class="pulse"></span> Proof of Concept · Prepared for Ashghal</div>
       <h1>The Self-Aware Road.<br><span class="grad-text">Predictive pavement &amp; asset intelligence.</span></h1>
-      <p class="sub" style="margin-top:18px">A proof of concept for Ashghal: capture the live <b>as-is</b> condition of every road and roadside asset, fuse it with history, materials science and two purpose-built AI models — and tell engineers <b>what to fix, where, and when</b>, before failure.</p>
+      <p class="sub" style="margin-top:22px;font-size:21px">Sense every road and asset. Learn from history. Predict what to fix, where and when — before failure.</p>
       <div class="hero-cred" id="heroCred"></div>
-      <div class="hero-badges">
-        <div class="hbadge"><div class="lbl">Pavement Surface</div><div class="val" style="color:var(--cyan)">XenoTrack · 6D LiDAR</div></div>
-        <div class="hbadge"><div class="lbl">Sub-surface Health</div><div class="val" style="color:var(--teal)">PaveSense · Acoustic</div></div>
-        <div class="hbadge"><div class="lbl">Roadside Assets</div><div class="val" style="color:var(--violet)">EchoTwin · Vision AI</div></div>
-        <div class="hbadge"><div class="lbl">Brain</div><div class="val" style="color:var(--amber)">Predictive &amp; Decision AI</div></div>
-      </div>
-      <div class="statstrip">
-        <div class="st"><div class="sv"><b>2,480 km</b></div><div class="sl">Network under management</div></div>
-        <div class="st"><div class="sv"><b>1.2 B</b></div><div class="sl">Data-points captured / year</div></div>
-        <div class="st"><div class="sv"><b>38</b></div><div class="sl">Asset classes tracked</div></div>
-        <div class="st"><div class="sv"><b>&lt;3 cm</b></div><div class="sl">RTK geo-accuracy</div></div>
-        <div class="st"><div class="sv"><b>0.45 mm</b></div><div class="sl">LiDAR vertical resolution</div></div>
-      </div>
     </div>
   </section>
 
   <!-- ============ AGENDA ============ -->
   <section class="slide" data-anim="agenda">
-    <div class="eyebrow"><span class="pulse"></span> Engagement · What we will cover</div>
-    <h2>A two-stage conversation with <span class="grad-text">Ashghal</span></h2>
-    <p class="sub">First we present the concept and its objectives. Then — the focus of this document — how we will deliver it, what you will receive, and on what timeline.</p>
-    <div class="agenda" style="flex:0 0 auto">
-      <div class="ag"><div class="agn">PART 01</div><div class="agi">💡</div><h3>The idea &amp; objectives</h3><p>The proposed solution explained in detail, and the outcomes it targets for Ashghal.</p>
-        <ul><li>The challenge &amp; the vision</li><li>Two AI models, one platform</li><li>POC objectives &amp; scope</li></ul>
-        <div class="agout">▸ Output: an agreed concept &amp; objectives</div></div>
-      <div class="ag"><div class="agn">PART 02</div><div class="agi">⚙️</div><h3>Methodology &amp; key activities</h3><p>How the road and asset intelligence is actually built, validated and delivered.</p>
-        <ul><li>Sensing &amp; data foundation</li><li>Road &amp; asset model build</li><li>Single pane of glass</li></ul>
-        <div class="agout">▸ Output: a clear, reviewable plan</div></div>
-      <div class="ag"><div class="agn">PART 03</div><div class="agi">📅</div><h3>Timeline &amp; deliverables</h3><p>A 16-week plan with clear milestones, deliverables and success criteria.</p>
-        <ul><li>Phased programme</li><li>Milestones &amp; deliverables</li><li>KPIs &amp; next steps</li></ul>
-        <div class="agout">▸ Output: schedule, KPIs &amp; business case</div></div>
-    </div>
-    <div class="engflow">
-      <div class="efstep"><div class="efline"></div><div class="efn">🤝</div><h5>Client engagement</h5><p>Align on goals &amp; scope with Ashghal</p></div>
-      <div class="efstep cur"><div class="efline"></div><div class="efn">💡</div><h5>Present the idea</h5><p>The concept &amp; objectives — today</p></div>
-      <div class="efstep cur"><div class="efline"></div><div class="efn">📐</div><h5>Methodology &amp; plan</h5><p>How we deliver &amp; what you get</p></div>
-      <div class="efstep"><div class="efline"></div><div class="efn">🛰️</div><h5>Run the POC</h5><p>16-week pilot on the corridor</p></div>
-      <div class="efstep"><div class="efn">📈</div><h5>Evaluate &amp; scale</h5><p>Validated results → network rollout</p></div>
+    <div class="eyebrow"><span class="pulse"></span> Client engagement</div>
+    <h2>Agenda</h2>
+    <p class="sub">The idea &amp; objectives  ·  how we deliver  ·  timeline &amp; deliverables.</p>
+    <div class="engflow big" style="flex:1">
+      <div class="efstep"><div class="efline"></div><div class="efn">🤝</div><h5>Engage</h5><p>Align on goals &amp; scope</p></div>
+      <div class="efstep cur"><div class="efline"></div><div class="efn">💡</div><h5>Present the idea</h5><p>Concept &amp; objectives</p></div>
+      <div class="efstep cur"><div class="efline"></div><div class="efn">📐</div><h5>Show the plan</h5><p>How we deliver &amp; what you get</p></div>
+      <div class="efstep"><div class="efline"></div><div class="efn">🛰️</div><h5>Run the pilot</h5><p>On the demo corridor</p></div>
+      <div class="efstep"><div class="efn">📈</div><h5>Scale</h5><p>Validated results → rollout</p></div>
     </div>
   </section>
 
@@ -570,54 +581,52 @@ h2{font-size:34px;line-height:1.1;font-weight:750;letter-spacing:-.01em;margin-b
 
   <!-- ============ OBJECTIVES ============ -->
   <section class="slide" data-anim="objectives">
-    <div class="eyebrow"><span class="pulse"></span> The idea · Objectives of the POC</div>
-    <h2>What this proof of concept sets out to <span class="grad-text">prove</span></h2>
-    <p class="sub">Concrete, measurable objectives that de-risk a wider rollout and give Ashghal an evidence base for predictive, budget-aware infrastructure management.</p>
+    <div class="eyebrow"><span class="pulse"></span> The idea · POC objectives</div>
+    <h2>What the pilot will <span class="grad-text">prove</span></h2>
+    <p class="sub">Six clear outcomes that de-risk a wider rollout.</p>
     <div class="objgrid">
-      <div class="obj"><div class="obody"><div class="on">1</div><div><h4>Establish a validated condition baseline</h4><p>A segment-level PCI baseline for the pilot corridor, built from millimetre-precise XenoTrack scanning as ground truth.</p></div></div><div class="omeasure">◎ Measure — PCI baseline across 100% of corridor segments</div></div>
-      <div class="obj"><div class="obody"><div class="on">2</div><div><h4>Reconstruct condition from history</h4><p>A road-deterioration model driven by Ashghal's historical construction, traffic, climate &amp; loading data, calibrated to match the present.</p></div></div><div class="omeasure">◎ Measure — calibrated model agrees with actuals</div></div>
-      <div class="obj"><div class="obody"><div class="on">3</div><div><h4>Predict the future, with confidence</h4><p>Once the model matches actuals, forecast each segment's PCI trajectory and the year intervention will be required.</p></div></div><div class="omeasure">◎ Measure — 10-year per-segment forecast delivered</div></div>
-      <div class="obj"><div class="obody"><div class="on">4</div><div><h4>Quantify cost &amp; timing</h4><p>Translate forecasts into restoration cost estimates and optimal intervention timing — preventive vs. rehabilitation vs. reconstruction.</p></div></div><div class="omeasure">◎ Measure — cost &amp; intervention year per segment</div></div>
-      <div class="obj"><div class="obody"><div class="on">5</div><div><h4>Stand up asset predictive maintenance</h4><p>Combine EchoTwin field condition with PM/CM/RM records to recognise failure patterns across active &amp; passive assets.</p></div></div><div class="omeasure">◎ Measure — failure-pattern model on real records</div></div>
-      <div class="obj"><div class="obody"><div class="on">6</div><div><h4>Deliver a single pane of glass</h4><p>A unified, map-based view that turns millions of data-points into clear insight, prediction &amp; decision support for Ashghal teams.</p></div></div><div class="omeasure">◎ Measure — dashboard accepted by Ashghal users</div></div>
+      <div class="obj"><div class="obody"><div class="on">1</div><div><h4>A true baseline</h4><p>Measure real pavement condition on the demo corridor.</p></div></div><div class="omeasure">◎ PCI on 100% of segments — by XenoTrack</div></div>
+      <div class="obj"><div class="obody"><div class="on">2</div><div><h4>Learn from history</h4><p>Rebuild condition from Ashghal’s own records.</p></div></div><div class="omeasure">◎ Model calibrated to today</div></div>
+      <div class="obj"><div class="obody"><div class="on">3</div><div><h4>Predict the future</h4><p>Forecast each segment and when to act.</p></div></div><div class="omeasure">◎ ~90% accuracy vs actuals</div></div>
+      <div class="obj"><div class="obody"><div class="on">4</div><div><h4>Cost &amp; timing</h4><p>What restoration costs, and the year it is needed.</p></div></div><div class="omeasure">◎ Per segment</div></div>
+      <div class="obj"><div class="obody"><div class="on">5</div><div><h4>Asset intelligence</h4><p>Detect &amp; score street lights on the demo street.</p></div></div><div class="omeasure">◎ Live field condition — by EchoTwin</div></div>
+      <div class="obj"><div class="obody"><div class="on">6</div><div><h4>One screen</h4><p>All insight on a single map view.</p></div></div><div class="omeasure">◎ Accepted by Ashghal users</div></div>
     </div>
   </section>
 
   <!-- ============ TWO-MODEL ARCHITECTURE ============ -->
   <section class="slide" data-anim="twomodel">
     <div class="eyebrow"><span class="pulse"></span> The concept · Two AI models, one platform</div>
-    <h2>One platform, <span class="grad-text">two intelligence engines</span></h2>
-    <p class="sub">At the heart of RoadTwin sit two complementary AI models — one for the road itself, one for the assets along it — feeding a single decision platform.</p>
+    <h2>One platform, <span class="grad-text">two AI engines</span></h2>
+    <p class="sub">One model reads the road. One reads the assets. Both feed a single screen.</p>
     <div class="twomodel" style="flex:0 0 auto;min-height:auto">
       <div class="mdl road">
-        <div class="mh"><span class="mi">🛣️</span><h3>Road Intelligence Model</h3></div>
-        <div class="mt">Estimates &amp; predicts pavement condition (PCI) per segment by fusing materials science with historical &amp; live data.</div>
-        <div class="row"><span class="ri">A</span><div><b>Scientist's-formula model</b> — mechanistic-empirical deterioration logic from road-compound experts.</div></div>
-        <div class="row"><span class="ri">B</span><div><b>Historical-data model</b> — ML over construction, layers, climate &amp; traffic loading.</div></div>
-        <div class="row"><span class="ri">C</span><div><b>Correction factor</b> — calibrates estimates to present reality, then forecasts the future.</div></div>
-        <div class="row"><span class="ri">D</span><div><b>Scenario simulation</b> — city expansion, traffic growth &amp; usage what-ifs.</div></div>
-        <div class="row"><span class="ri">✓</span><div><b>Ground truth</b> — validated against XenoTrack PCI per segment.</div></div>
+        <div class="mh"><span class="mi">🛣️</span><h3>Road model</h3></div>
+        <div class="mt">Estimates &amp; predicts pavement condition (PCI), segment by segment.</div>
+        <div class="row"><span class="ri">A</span><div><b>Scientists’ formulas</b> — proven deterioration logic.</div></div>
+        <div class="row"><span class="ri">B</span><div><b>History + machine learning</b> — build, layers, traffic, climate.</div></div>
+        <div class="row"><span class="ri">C</span><div><b>Correction factor</b> — match today, then forecast.</div></div>
+        <div class="row"><span class="ri">✓</span><div><b>Ground truth</b> — XenoTrack PCI per segment.</div></div>
       </div>
       <div class="mdl asset">
-        <div class="mh"><span class="mi">🛰️</span><h3>Asset Intelligence Model</h3></div>
-        <div class="mt">Scores condition &amp; predicts faults across roadside assets by fusing field vision with maintenance history.</div>
-        <div class="row"><span class="ri">A</span><div><b>Field condition</b> — EchoTwin vision AI captures the live as-is state of every asset.</div></div>
-        <div class="row"><span class="ri">B</span><div><b>Maintenance history</b> — PM / CM / RM records mined for failure patterns.</div></div>
-        <div class="row"><span class="ri">C</span><div><b>Operating signatures</b> — anomaly detection on active (electrical) &amp; passive assets.</div></div>
-        <div class="row"><span class="ri">D</span><div><b>Regime shift</b> — move spend from reactive firefighting to planned prevention.</div></div>
-        <div class="row"><span class="ri">✓</span><div><b>Output</b> — predicted faults, remaining life &amp; optimised maintenance regime.</div></div>
+        <div class="mh"><span class="mi">💡</span><h3>Asset model</h3></div>
+        <div class="mt">Scores condition &amp; flags faults across roadside assets.</div>
+        <div class="row"><span class="ri">A</span><div><b>Field condition</b> — EchoTwin sees every asset.</div></div>
+        <div class="row"><span class="ri">B</span><div><b>Maintenance history</b> — patterns before failure.</div></div>
+        <div class="row"><span class="ri">C</span><div><b>Pilot focus</b> — street lights on the demo street.</div></div>
+        <div class="row"><span class="ri">✓</span><div><b>Output</b> — condition &amp; early fault signals.</div></div>
       </div>
     </div>
     <div style="flex:1;display:flex;align-items:center;justify-content:center">
       <div class="flowband">
         <div class="fstack">
           <div class="fnode"><span class="fi">🛣️</span><div><b>Road model</b><small>PCI · forecast · cost</small></div></div>
-          <div class="fnode"><span class="fi">🛰️</span><div><b>Asset model</b><small>faults · remaining life</small></div></div>
+          <div class="fnode"><span class="fi">💡</span><div><b>Asset model</b><small>street-light condition</small></div></div>
         </div>
         <span class="farrow">➜</span>
-        <div class="fnode hl"><span class="fi">🧠</span><div><b>RoadTwin platform</b><small>linear-referencing · digital twin · decisions</small></div></div>
+        <div class="fnode hl"><span class="fi">🧠</span><div><b>RoadTwin platform</b><small>the POC end product</small></div></div>
         <span class="farrow">➜</span>
-        <div class="fnode"><span class="fi">🖥️</span><div><b>Single pane of glass</b><small>insight for Ashghal teams</small></div></div>
+        <div class="fnode"><span class="fi">🖥️</span><div><b>Single pane of glass</b><small>PCI + ~90% forecast + street lights</small></div></div>
       </div>
     </div>
   </section>
@@ -640,7 +649,7 @@ h2{font-size:34px;line-height:1.1;font-weight:750;letter-spacing:-.01em;margin-b
       <div class="vizbox" style="border-color:rgba(34,211,238,.35)">
         <div class="vizhead"><span style="color:var(--cyan)">✓ ROADTWIN AI — Predictive Platform</span><span class="viz-live"><span class="d"></span>LIVE</span></div>
         <div style="padding:24px 26px;display:flex;flex-direction:column;gap:16px">
-          <div class="feature"><div class="fic">📡</div><div><h4>Continuous, automated sensing</h4><p>Fleet-mounted LiDAR, acoustic &amp; vision capture every pass — surface, sub-surface &amp; assets.</p></div></div>
+          <div class="feature"><div class="fic">📡</div><div><h4>Continuous, automated sensing</h4><p>Fleet-mounted LiDAR &amp; vision capture every pass — road surface &amp; assets.</p></div></div>
           <div class="feature"><div class="fic">🧠</div><div><h4>AI correlation &amp; forecasting</h4><p>Live state × history × materials science × predictive models = deterioration curve per segment.</p></div></div>
           <div class="feature"><div class="fic">🎯</div><div><h4>Optimised, budget-aware plans</h4><p>The right treatment, at the right time, prioritised by ROI within funding limits.</p></div></div>
         </div>
@@ -661,7 +670,7 @@ h2{font-size:34px;line-height:1.1;font-weight:750;letter-spacing:-.01em;margin-b
     <p class="sub">Three complementary sensing layers feed one correlation &amp; decision brain — a continuous, self-improving loop.</p>
     <div class="pipe">
       <div class="stage"><div class="ico">📡</div><div class="num">01 · SENSE</div><h3>Capture as-is</h3><p>Live condition of pavement &amp; assets.</p>
-        <div class="items"><div class="it">XenoTrack 6D LiDAR</div><div class="it">PaveSense acoustics</div><div class="it">EchoTwin vision AI</div></div>
+        <div class="items"><div class="it">XenoTrack 6D LiDAR</div><div class="it">HD camera imagery</div><div class="it">EchoTwin vision AI</div></div>
         <div class="stagewm">📡</div><div class="flowarrow">➜</div></div>
       <div class="stage"><div class="ico">🔗</div><div class="num">02 · CORRELATE</div><h3>Fuse &amp; contextualise</h3><p>Align live state with the past &amp; the science.</p>
         <div class="items"><div class="it">Historical condition</div><div class="it">Traffic &amp; axle loads</div><div class="it">Materials-science inputs</div></div>
@@ -700,7 +709,7 @@ h2{font-size:34px;line-height:1.1;font-weight:750;letter-spacing:-.01em;margin-b
         </div>
         <div class="feature"><div class="fic">🛰️</div><div><h4>True solid-state LiDAR</h4><p>No moving parts · up to 7.5 m width · &lt;0.45 mm vertical accuracy · 5×5 mm point grid at highway speed.</p></div></div>
         <div class="feature"><div class="fic">🤖</div><div><h4>Edge-AI distress detection</h4><p>Cracks, potholes, patches, ravelling &amp; manholes classified live — high consistency &amp; repeatability.</p></div></div>
-        <div class="feature"><div class="fic">🌐</div><div><h4>As-built 3D digital twin</h4><p>LAS point cloud + CRG geometry + imagery, RTK-georeferenced, ready for GIS &amp; longitudinal monitoring.</p></div></div>
+        <div class="feature"><div class="fic">🌐</div><div><h4>Georeferenced results, not raw points</h4><p>PCI, distress &amp; imagery per segment, aligned to your GIS. We surface decisions — not millions of points.</p></div></div>
       </div>
       <div class="vizbox">
         <div class="vizhead"><span>XENOTRACK · LiDAR SURFACE SCAN — Segment A14 / Lane 2</span><span class="viz-live"><span class="d"></span>SCANNING</span></div>
@@ -709,25 +718,6 @@ h2{font-size:34px;line-height:1.1;font-weight:750;letter-spacing:-.01em;margin-b
     </div>
   </section>
 
-  <!-- ============ SLIDE 5 — PAVESENSE ============ -->
-  <section class="slide" data-anim="pave">
-    <div class="eyebrow"><span class="pulse"></span> Road Health · Sub-surface · PaveSense</div>
-    <h2>Acoustic &amp; vibration sensing — <span class="grad-text">hearing the road from the inside out</span></h2>
-    <p class="sub">Sensors on routine fleet vehicles read the rolling sound &amp; vibration signature of the pavement. Different wavelengths probe different depths — revealing not just the surface, but the binder, base and sub-grade beneath it.</p>
-    <div class="split">
-      <div class="vizbox">
-        <div class="vizhead"><span>PAVESENSE · ACOUSTIC DEPTH PROFILE</span><span class="viz-live"><span class="d"></span>LISTENING</span></div>
-        <canvas id="paveCanvas" style="flex:1;width:100%"></canvas>
-      </div>
-      <div class="rightcol">
-        <div class="feature"><div class="fic">🔊</div><div><h4>Rolling-noise &amp; vibration analysis</h4><p>Characteristic wavelengths map to a range of length-scales — a full surface-to-substrate read on every pass.</p></div></div>
-        <div class="feature"><div class="fic">🧅</div><div><h4>Sub-surface defect detection</h4><p>Sees early raveling, delamination &amp; layer separation long before they break the surface.</p></div></div>
-        <div class="feature"><div class="fic">♻️</div><div><h4>Maintenance-free &amp; continuous</h4><p>Fully automatic — no road closures, no manual surveys, fresh data on every routine trip.</p></div></div>
-        <div class="feature" style="border-color:rgba(52,211,153,.3)"><div class="fic" style="background:rgba(52,211,153,.1);border-color:rgba(52,211,153,.3)">📉</div><div><h4>Up to 80% lower maintenance cost</h4><p>Runs at ~50% the operating cost of conventional scanning — data-driven, preventive planning.</p></div></div>
-        <div class="legend"><span><i style="background:var(--cyan)"></i>Surface course</span><span><i style="background:var(--teal)"></i>Binder</span><span><i style="background:var(--blue)"></i>Base</span><span><i style="background:var(--violet)"></i>Sub-grade</span><span><i style="background:var(--red)"></i>Detected defect</span></div>
-      </div>
-    </div>
-  </section>
 
   <!-- ============ SLIDE 6 — ECHOTWIN ============ -->
   <section class="slide" data-anim="echo">
@@ -753,22 +743,21 @@ h2{font-size:34px;line-height:1.1;font-weight:750;letter-spacing:-.01em;margin-b
 
   <!-- ============ NEW — SENSOR FUSION SPEC SHEET ============ -->
   <section class="slide" data-anim="specs">
-    <div class="eyebrow"><span class="pulse"></span> Sensing layer · Technical specifications</div>
-    <h2>Three modalities, <span class="grad-text">one fused data layer</span></h2>
-    <p class="sub">Each sensing technology captures a different physical signal at a different scale. Together they form a complete, georeferenced, time-stamped record of every metre of the network.</p>
+    <div class="eyebrow"><span class="pulse"></span> Sensing · Technical specifications</div>
+    <h2>Live sensing, <span class="grad-text">one fused layer</span></h2>
+    <p class="sub">Two survey technologies capture the road and its assets in a single georeferenced pass.</p>
     <div class="tablewrap">
       <table class="dtable">
-        <thead><tr><th>Modality</th><th>Measures</th><th>Resolution / Accuracy</th><th>Speed / Cadence</th><th>Output</th></tr></thead>
+        <thead><tr><th>Technology</th><th>Measures</th><th>Resolution / accuracy</th><th>Output</th></tr></thead>
         <tbody>
-          <tr><td><b>XenoTrack</b><br><span style="color:var(--cyan);font-size:11px">6D LiDAR + HD cam + RTK-GNSS</span></td><td>IRI, rutting, MPD, cross-slope, PCI, cracks, potholes, ravelling, manholes</td><td><span class="mono">&lt;0.45 mm</span> vertical · 5×5 mm grid · up to 7.5 m width</td><td>Highway speed <span class="mono">≤100 km/h</span> · per-survey pass</td><td><span class="mono">LAS · CRG · CSV · JPG</span></td></tr>
-          <tr><td><b>PaveSense</b><br><span style="color:var(--teal);font-size:11px">Acoustic + vibration</span></td><td>Surface &amp; sub-surface health — raveling, delamination, layer separation, voids</td><td>Multi-wavelength depth profiling (surface → sub-grade)</td><td>Continuous · every routine fleet trip</td><td><span class="mono">Spectra · depth index</span></td></tr>
-          <tr><td><b>EchoTwin</b><br><span style="color:var(--violet);font-size:11px">Vision AI</span></td><td>38 roadside asset classes · condition, reflectivity, tilt, outage, compliance, change</td><td>Object detection + geo-tag <span class="mono">&lt;3 cm</span> (RTK)</td><td>Continuous · municipal fleets, drones, robotics</td><td><span class="mono">GeoJSON · twin tiles</span></td></tr>
-          <tr><td><b>Reference data</b><br><span style="color:var(--amber);font-size:11px">ROMDAS · GPR</span></td><td>Calibration deflection, layer thickness, structural number</td><td>Ground-truth for model calibration</td><td>Periodic / on-demand</td><td><span class="mono">Structural profiles</span></td></tr>
+          <tr><td><b>XenoTrack</b><br><span style="color:var(--cyan);font-size:11px">6D LiDAR + HD camera + RTK-GNSS</span></td><td>PCI, IRI, rutting, cracks &amp; potholes — per segment</td><td><span class="mono">&lt;0.45 mm</span> vertical · at traffic speed</td><td><span class="mono">PCI · distress · imagery</span></td></tr>
+          <tr><td><b>EchoTwin</b><br><span style="color:var(--violet);font-size:11px">Vision AI</span></td><td>Street lights (pilot) — detect, locate &amp; score condition</td><td>Geo-tag <span class="mono">&lt;3 cm</span> (RTK)</td><td><span class="mono">Inventory · condition</span></td></tr>
+          <tr><td><b>Reference</b><br><span style="color:var(--amber);font-size:11px">ROMDAS · GPR (as needed)</span></td><td>Layer thickness &amp; structural ground-truth</td><td>Calibration only</td><td><span class="mono">Structural profiles</span></td></tr>
+          <tr><td><b style="color:var(--dim)">PaveSense</b><br><span style="color:var(--dim);font-size:11px">Acoustic — future phase</span></td><td style="color:var(--dim)">Sub-surface integrity — not in the POC</td><td style="color:var(--dim)">Future</td><td style="color:var(--dim)">—</td></tr>
         </tbody>
       </table>
-      <div class="tableviz"><div class="flowband"><div class="fnode"><span class="fi">📡</span><b>XenoTrack</b></div><div class="fnode"><span class="fi">🔊</span><b>PaveSense</b></div><div class="fnode"><span class="fi">👁️</span><b>EchoTwin</b></div><span class="farrow">➜</span><div class="fnode hl"><span class="fi">🧬</span><div><b>Fused data layer</b><small>one georeferenced, time-synced record</small></div></div></div></div>
+      <div class="tableviz"><div class="flowband"><div class="fnode"><span class="fi">📡</span><b>XenoTrack</b></div><div class="fnode"><span class="fi">👁️</span><b>EchoTwin</b></div><span class="farrow">➜</span><div class="fnode hl"><span class="fi">🧬</span><div><b>Fused data layer</b><small>one georeferenced record</small></div></div></div></div>
     </div>
-    <div class="legend"><span><i style="background:var(--cyan)"></i>Surface geometry</span><span><i style="background:var(--teal)"></i>Sub-surface integrity</span><span><i style="background:var(--violet)"></i>Roadside assets</span><span><i style="background:var(--amber)"></i>Structural ground-truth</span><span style="color:var(--dim)">All streams time-synced &amp; fused on a common linear-referencing system (LRS)</span></div>
   </section>
 
   <!-- ============ SLIDE 7 — CORRELATION ENGINE ============ -->
@@ -916,19 +905,6 @@ h2{font-size:34px;line-height:1.1;font-weight:750;letter-spacing:-.01em;margin-b
   </section>
 
 
-  <!-- ============ SLIDE 8 — PREDICTIVE MODELS ============ -->
-  <section class="slide" data-anim="models">
-    <div class="eyebrow"><span class="pulse"></span> Predictive AI · Deterioration forecasting</div>
-    <h2>Four model families, one ensemble forecast</h2>
-    <p class="sub">The platform runs complementary prediction methods, compares them, and continuously improves accuracy — forecasting future pavement performance before it reaches a critical condition.</p>
-    <div class="models">
-      <div class="model"><h3>📈 Time-series models <span class="tag" style="background:rgba(34,211,238,.12);color:var(--cyan)">trend</span></h3><p class="mdesc">Project condition forward from the historical deterioration trajectory of each segment.</p><div class="spark"><canvas class="sparkc" data-kind="ts" height="90"></canvas></div></div>
-      <div class="model"><h3>🌫️ Grey prediction models <span class="tag" style="background:rgba(45,212,191,.12);color:var(--teal)">sparse data</span></h3><p class="mdesc">Accurate forecasts even with limited history — ideal for newly instrumented networks.</p><div class="spark"><canvas class="sparkc" data-kind="grey" height="90"></canvas></div></div>
-      <div class="model"><h3>🧠 Neural network models <span class="tag" style="background:rgba(139,92,246,.12);color:var(--violet)">non-linear</span></h3><p class="mdesc">Capture complex interactions between loads, materials, climate &amp; distress modes.</p><div class="spark"><canvas class="sparkc" data-kind="nn" height="90"></canvas></div></div>
-      <div class="model"><h3>⚗️ Hybrid physics + expert <span class="tag" style="background:rgba(245,181,61,.12);color:var(--amber)">ensemble</span></h3><p class="mdesc">Blend mechanistic models, statistical methods &amp; expert knowledge into one robust forecast.</p><div class="spark"><canvas class="sparkc" data-kind="hybrid" height="90"></canvas></div></div>
-    </div>
-    <div class="legend"><span><i style="background:var(--green)"></i>Predicted healthy life</span><span><i style="background:var(--amber)"></i>Preventive window</span><span><i style="background:var(--red)"></i>Failure threshold (PCI)</span><span><i style="background:var(--dim)"></i>Observed history</span></div>
-  </section>
 
   <!-- ============ NEW — PAVEMENT LIFECYCLE & TREATMENT TIMING ============ -->
   <section class="slide" data-anim="lifecycle">
@@ -949,161 +925,90 @@ h2{font-size:34px;line-height:1.1;font-weight:750;letter-spacing:-.01em;margin-b
     </div>
   </section>
 
-  <!-- ============ SLIDE 9 — DECISION SYSTEM ============ -->
-  <section class="slide" data-anim="decide">
-    <div class="eyebrow"><span class="pulse"></span> Maintenance Decision-Making System</div>
-    <h2>Scientifically justified plans, <span class="grad-text">optimised to your budget</span></h2>
-    <p class="sub">The decision engine turns forecasts into the best achievable maintenance outcome with available funding — six coordinated functions working together.</p>
-    <div class="assetgrid" style="grid-template-columns:repeat(3,1fr)">
-      <div class="card"><div class="ico">🧩</div><h3>Dynamic section division</h3><p>Auto-divides the network into logical maintenance units by traffic, axle load, soil, climate &amp; condition.</p></div>
-      <div class="card"><div class="ico">📉</div><h3>Long-term performance prediction</h3><p>Forecasts future condition from structure, materials, layer thickness, subgrade &amp; environment.</p></div>
-      <div class="card"><div class="ico">🛣️</div><h3>Pavement treatment decisions</h3><p>ML + a maintenance database generate the optimal treatment recommendation per unit.</p></div>
-      <div class="card"><div class="ico">🌉</div><h3>Structure maintenance</h3><p>Matches actions to bridges &amp; structures by condition, materials &amp; construction method.</p></div>
-      <div class="card"><div class="ico">💰</div><h3>Optimal fund allocation</h3><p>Prioritises projects by urgency &amp; expected benefit so limited budgets do the most good.</p></div>
-      <div class="card"><div class="ico">🔁</div><h3>Effectiveness evaluation</h3><p>Tracks post-treatment performance &amp; feeds results back to sharpen future decisions.</p></div>
-    </div>
-    <div class="statstrip">
-      <div class="st"><div class="sv"><b>MILP</b></div><div class="sl">Constrained budget optimiser</div></div>
-      <div class="st"><div class="sv"><b>5–10 yr</b></div><div class="sl">Multi-year program horizon</div></div>
-      <div class="st"><div class="sv"><b>+18%</b></div><div class="sl">Network PCI per $ vs worst-first</div></div>
-      <div class="st"><div class="sv"><b>6</b></div><div class="sl">Treatment classes matched</div></div>
-      <div class="st"><div class="sv"><b>What-if</b></div><div class="sl">Scenario &amp; sensitivity analysis</div></div>
-    </div>
-  </section>
 
-  <!-- ============ NEW — TREATMENT DECISION MATRIX ============ -->
-  <section class="slide" data-anim="matrix">
-    <div class="eyebrow"><span class="pulse"></span> Decision engine · Treatment matching</div>
-    <h2>The right treatment for <span class="grad-text">the right condition</span></h2>
-    <p class="sub">Machine learning maps each segment's condition, dominant distress and forecast trajectory to the optimal treatment from the maintenance catalogue — balancing cost, expected life-extension and risk.</p>
-    <div class="matrix">
-      <div class="mrow mh"><div class="mcell">Condition band</div><div class="mcell">Dominant signal</div><div class="mcell">Recommended treatment</div><div class="mcell">Cost · life gain</div></div>
-      <div class="mrow"><div class="mcell"><span class="sev sev-l">PCI 85–100</span><br><b>Excellent</b></div><div class="mcell">Minor surface oxidation</div><div class="mcell"><b>Do-nothing / monitor</b><small>routine sensing only</small></div><div class="mcell"><b style="color:var(--green)">$</b> · baseline</div></div>
-      <div class="mrow"><div class="mcell"><span class="sev sev-l">PCI 70–85</span><br><b>Good</b></div><div class="mcell">Early cracks, ravelling</div><div class="mcell"><b>Crack seal · fog seal</b><small>preventive</small></div><div class="mcell"><b style="color:var(--green)">$</b> · +3–6 yr</div></div>
-      <div class="mrow"><div class="mcell"><span class="sev sev-m">PCI 55–70</span><br><b>Fair</b></div><div class="mcell">Surface distress, rutting</div><div class="mcell"><b>Micro-surfacing · thin overlay</b><small>preventive / minor rehab</small></div><div class="mcell"><b style="color:var(--amber)">$$</b> · +7–10 yr</div></div>
-      <div class="mrow"><div class="mcell"><span class="sev sev-m">PCI 40–55</span><br><b>Poor</b></div><div class="mcell">Structural cracking</div><div class="mcell"><b>Mill &amp; overlay</b><small>major rehabilitation</small></div><div class="mcell"><b style="color:var(--amber)">$$$</b> · +12–15 yr</div></div>
-      <div class="mrow"><div class="mcell"><span class="sev sev-h">PCI &lt; 40</span><br><b>Failed</b></div><div class="mcell">Sub-grade failure, voids</div><div class="mcell"><b>Full-depth reconstruction</b><small>capital project</small></div><div class="mcell"><b style="color:var(--red)">$$$$</b> · reset</div></div>
-    </div>
-  </section>
 
-  <!-- ============ NEW — BUDGET OPTIMIZATION ============ -->
-  <section class="slide" data-anim="budget">
-    <div class="eyebrow"><span class="pulse"></span> Capital planning · Multi-year optimisation</div>
-    <h2>Make every budget dollar <span class="grad-text">go further</span></h2>
-    <p class="sub">A constrained optimiser projects network condition over a 10-year horizon under each funding scenario — so planners can defend budgets with data and avoid the silent debt of deferred maintenance.</p>
-    <div class="split">
-      <div class="vizbox">
-        <div class="vizhead"><span>NETWORK PCI PROJECTION — 10-YEAR SCENARIO ANALYSIS</span><span class="viz-live"><span class="d"></span>OPTIMISING</span></div>
-        <canvas id="budgetCanvas" style="flex:1;width:100%"></canvas>
-      </div>
-      <div class="factcol">
-        <div class="factcard" style="border-color:rgba(52,211,153,.3)"><div class="fbig" style="color:var(--green)">Optimised</div><div class="fl">Predictive, preventive-first program — network PCI <b style="color:var(--green)">rises &amp; holds</b> at the same or lower annual spend.</div></div>
-        <div class="factcard" style="border-color:rgba(245,181,61,.3)"><div class="fbig" style="color:var(--amber)">Status-quo</div><div class="fl">Current worst-first spending — PCI <b style="color:var(--amber)">drifts down</b> as the backlog grows.</div></div>
-        <div class="factcard" style="border-color:rgba(248,113,113,.3)"><div class="fbig" style="color:var(--red)">Do-nothing</div><div class="fl">Reactive only — condition <b style="color:var(--red)">collapses</b>, reconstruction debt compounds.</div></div>
-        <div class="factcard"><div class="fl" style="margin-top:0"><b style="color:var(--cyan)">Outputs:</b> ranked project list, year-by-year program, and the marginal PCI gained per dollar for each scenario.</div></div>
-      </div>
-    </div>
-  </section>
 
-  <!-- ============ SCENARIO SIMULATION ============ -->
-  <section class="slide" data-anim="scenarios">
-    <div class="eyebrow"><span class="pulse"></span> Road Intelligence Model · What-if simulation</div>
-    <h2>Plan for the Qatar <span class="grad-text">that is coming</span></h2>
-    <p class="sub">The model is open to new inputs, so Ashghal can stress-test the network against the future — not just the past. Adjust the drivers, and every segment's forecast and cost re-computes.</p>
-    <div class="tgrid" style="grid-template-columns:repeat(3,1fr);flex:0 0 auto">
-      <div class="tcard"><h3>🏙️ City expansion</h3><p style="font-size:12.5px;color:var(--muted);line-height:1.5;margin-bottom:8px">Introduce planned developments &amp; new catchments to re-route demand and re-load corridors.</p><div class="kv" style="font-size:12px;color:var(--muted);padding:4px 0">New developments<b style="color:var(--ink)">+ traffic draw</b></div></div>
-      <div class="tcard"><h3>🚦 Traffic growth</h3><p style="font-size:12.5px;color:var(--muted);line-height:1.5;margin-bottom:8px">Scale AADT / AADTT &amp; heavy-vehicle mix to model rising cumulative axle loading (ESAL).</p><div class="kv" style="font-size:12px;color:var(--muted);padding:4px 0">Volume / freight ↑<b style="color:var(--ink)">→ faster decay</b></div></div>
-      <div class="tcard"><h3>🧪 Usage simulations</h3><p style="font-size:12.5px;color:var(--muted);line-height:1.5;margin-bottom:8px">Run diversions, events &amp; closures to gauge how road usage shifts &amp; where wear concentrates.</p><div class="kv" style="font-size:12px;color:var(--muted);padding:4px 0">Diversions / climate<b style="color:var(--ink)">→ load shift</b></div></div>
-    </div>
-    <div class="vizbox" style="flex:1;margin-top:16px">
-      <div class="vizhead"><span>FORECAST RE-COMPUTES WITH EACH SCENARIO — SEGMENT PCI</span><span class="viz-live"><span class="d"></span>SIMULATING</span></div>
-      <canvas id="scenarioCanvas" style="flex:1;width:100%"></canvas>
-    </div>
-  </section>
 
   <!-- ============ ASSET MODEL — CONCEPT ============ -->
   <section class="slide" data-anim="assetmodel">
-    <div class="eyebrow"><span class="pulse"></span> Asset Intelligence Model · Concept</div>
-    <h2>Field condition × maintenance history = <span class="grad-text">foresight</span></h2>
-    <p class="sub">The asset model pairs what EchoTwin sees in the field with what the maintenance record reveals over time — letting AI recognise the patterns that precede failure across the roadside estate.</p>
-    <div class="twomodel" style="flex:0 0 auto;min-height:auto">
+    <div class="eyebrow"><span class="pulse"></span> Asset intelligence · Concept</div>
+    <h2>Field condition + history = <span class="grad-text">foresight</span></h2>
+    <p class="sub">What EchoTwin sees, plus the maintenance record — the patterns before a fault.</p>
+    <div class="badrow"><span class="pocbadge">💡 Pilot asset: street lights</span><span class="laterbadge">Later: all roadside assets</span></div>
+    <div class="twomodel" style="flex:0 0 auto;min-height:auto;margin-top:16px">
       <div class="mdl" style="background:linear-gradient(180deg,rgba(34,211,238,.06),var(--bg2))">
-        <div class="mh"><span class="mi">👁️</span><h3>What we see — EchoTwin</h3></div>
-        <div class="mt">The live, as-is field condition of every asset, geolocated and tracked over time.</div>
-        <div class="row"><span class="ri">•</span><div>Condition, reflectivity, tilt, outage &amp; compliance</div></div>
-        <div class="row"><span class="ri">•</span><div>Change detection between passes</div></div>
-        <div class="row"><span class="ri">•</span><div>38 asset classes across the corridor</div></div>
+        <div class="mh"><span class="mi">👁️</span><h3>What we see</h3></div>
+        <div class="mt">EchoTwin captures each street light’s live, as-is state.</div>
+        <div class="row"><span class="ri">•</span><div>Location, condition &amp; outage</div></div>
+        <div class="row"><span class="ri">•</span><div>Lean / tilt &amp; obstruction</div></div>
+        <div class="row"><span class="ri">•</span><div>Change between passes</div></div>
       </div>
       <div class="mdl" style="background:linear-gradient(180deg,rgba(245,181,61,.06),var(--bg2));border-color:rgba(245,181,61,.3)">
-        <div class="mh"><span class="mi">🗂️</span><h3>What we know — PM / CM / RM</h3></div>
-        <div class="mt">The maintenance record: every preventive, corrective &amp; reactive action ever logged.</div>
-        <div class="row"><span class="ri" style="color:var(--amber)">P</span><div><b>Preventive</b> — scheduled servicing &amp; inspections</div></div>
-        <div class="row"><span class="ri" style="color:var(--amber)">C</span><div><b>Corrective</b> — repairs after a detected fault</div></div>
-        <div class="row"><span class="ri" style="color:var(--amber)">R</span><div><b>Reactive</b> — emergency response to failures</div></div>
+        <div class="mh"><span class="mi">🗂️</span><h3>What we know</h3></div>
+        <div class="mt">The maintenance record — every action logged.</div>
+        <div class="row"><span class="ri" style="color:var(--amber)">P</span><div><b>Preventive</b> — scheduled servicing</div></div>
+        <div class="row"><span class="ri" style="color:var(--amber)">C</span><div><b>Corrective</b> — repair after a fault</div></div>
+        <div class="row"><span class="ri" style="color:var(--amber)">R</span><div><b>Reactive</b> — emergency response</div></div>
       </div>
     </div>
     <div style="flex:1;display:flex;align-items:center;justify-content:center">
       <div class="flowband">
         <div class="fstack">
           <div class="fnode"><span class="fi">👁️</span><div><b>EchoTwin</b><small>field condition</small></div></div>
-          <div class="fnode"><span class="fi">🗂️</span><div><b>PM / CM / RM</b><small>maintenance history</small></div></div>
+          <div class="fnode"><span class="fi">🗂️</span><div><b>PM / CM / RM</b><small>history</small></div></div>
         </div>
         <span class="farrow">➜</span>
-        <div class="fnode hl"><span class="fi">🧠</span><div><b>AI pattern recognition</b><small>failure signatures · operating envelope</small></div></div>
+        <div class="fnode hl"><span class="fi">🧠</span><div><b>AI patterns</b><small>fault signatures</small></div></div>
         <span class="farrow">➜</span>
-        <div class="fnode"><span class="fi">🔮</span><div><b>Foresight</b><small>predicted faults · remaining life</small></div></div>
+        <div class="fnode"><span class="fi">🔮</span><div><b>Foresight</b><small>early warning</small></div></div>
       </div>
     </div>
   </section>
 
   <!-- ============ ASSET MODEL — ACTIVE ASSETS ============ -->
   <section class="slide" data-anim="assetactive">
-    <div class="eyebrow"><span class="pulse"></span> Asset Intelligence Model · Active assets</div>
-    <h2>Hearing a fault <span class="grad-text">before it happens</span></h2>
-    <p class="sub">For electrically-active assets — street lighting, traffic &amp; lane-control signals, DMS and ITS — operating signatures and telemetry reveal degradation early. AI learns each asset's healthy rhythm and flags the drift that precedes failure.</p>
+    <div class="eyebrow"><span class="pulse"></span> Asset intelligence · Street lights</div>
+    <h2>Catch a fault <span class="grad-text">before the light goes out</span></h2>
+    <p class="sub">Street lights are electrical. Their power signature shows trouble early — the AI learns the healthy rhythm and flags the drift.</p>
     <div class="split">
       <div class="vizbox">
-        <div class="vizhead"><span>ACTIVE ASSET · OPERATING SIGNATURE &amp; ANOMALY DETECTION</span><span class="viz-live"><span class="d"></span>MONITORING</span></div>
+        <div class="vizhead"><span>STREET LIGHT · POWER SIGNATURE &amp; ANOMALY</span><span class="viz-live"><span class="d"></span>MONITORING</span></div>
         <canvas id="assetCanvas" style="flex:1;width:100%"></canvas>
       </div>
       <div class="factcol">
-        <div class="feature"><div class="fic" style="background:rgba(245,181,61,.1);border-color:rgba(245,181,61,.3)">📡</div><div><h4>Telemetry &amp; signatures</h4><p>Current draw, switching, brightness &amp; comms uptime form a per-asset fingerprint.</p></div></div>
-        <div class="feature"><div class="fic" style="background:rgba(248,113,113,.1);border-color:rgba(248,113,113,.3)">⚠️</div><div><h4>Anomaly detection</h4><p>Deviation from the learned healthy envelope flags an emerging fault before outage.</p></div></div>
-        <div class="feature"><div class="fic" style="background:rgba(52,211,153,.1);border-color:rgba(52,211,153,.3)">🔧</div><div><h4>Operating-fault recognition</h4><p>Identifies assets being run outside spec — overload, flicker, comms loss — and roots the cause.</p></div></div>
+        <div class="feature"><div class="fic" style="background:rgba(245,181,61,.1);border-color:rgba(245,181,61,.3)">📡</div><div><h4>Signature</h4><p>Current draw &amp; switching form each light’s fingerprint.</p></div></div>
+        <div class="feature"><div class="fic" style="background:rgba(248,113,113,.1);border-color:rgba(248,113,113,.3)">⚠️</div><div><h4>Anomaly</h4><p>Drift from healthy flags a fault before the outage.</p></div></div>
+        <div class="feature"><div class="fic" style="background:rgba(52,211,153,.1);border-color:rgba(52,211,153,.3)">🔧</div><div><h4>Root cause</h4><p>Flicker, overload or comms loss — spotted &amp; explained.</p></div></div>
       </div>
     </div>
   </section>
 
   <!-- ============ ASSET MODEL — PASSIVE & PM/CM/RM ============ -->
   <section class="slide" data-anim="pmcmrm">
-    <div class="eyebrow"><span class="pulse"></span> Asset Intelligence Model · Passive assets &amp; regime</div>
-    <h2>Patterns across the whole estate — and a <span class="grad-text">smarter regime</span></h2>
-    <p class="sub">Passive assets degrade silently; the maintenance record holds the evidence. The model turns both into a regime that shifts spend from reactive firefighting to planned prevention.</p>
-    <div class="tgrid" style="grid-template-columns:1.1fr 1fr 1fr;flex:0 0 auto">
-      <div class="tcard"><h3>🪧 Passive assets</h3>
-        <div class="kv"><span>Signs &amp; gantries</span><b>Reflectivity · tilt</b></div>
-        <div class="kv"><span>Guardrails &amp; barriers</span><b>Impact · corrosion</b></div>
-        <div class="kv"><span>Road markings</span><b>Wear · continuity</b></div>
-        <div class="kv"><span>Manholes &amp; drainage</span><b>Settlement · blockage</b></div></div>
-      <div class="tcard"><h3>📊 Pattern recognition</h3>
-        <div class="kv"><span>Failure clustering</span><b>by type / location</b></div>
+    <div class="eyebrow"><span class="pulse"></span> Asset intelligence · Smarter regime</div>
+    <h2>From reactive to <span class="grad-text">planned</span></h2>
+    <p class="sub">The maintenance record holds the evidence. AI turns it into a plan — fewer failures, lower cost.</p>
+    <div class="badrow"><span class="pocbadge">💡 Pilot: street lights</span><span class="laterbadge">Same method → every asset</span></div>
+    <div class="tgrid" style="grid-template-columns:1fr 1fr;flex:0 0 auto;margin-top:16px">
+      <div class="tcard"><h3>📊 What the AI finds</h3>
+        <div class="kv"><span>Where faults cluster</span><b>by type / location</b></div>
         <div class="kv"><span>Common root causes</span><b>identified</b></div>
         <div class="kv"><span>Remaining useful life</span><b>estimated</b></div>
-        <div class="kv"><span>Mean time between failures</span><b>tracked</b></div></div>
-      <div class="tcard" style="border-color:rgba(52,211,153,.3)"><h3>🔁 Regime shift</h3>
+        <div class="kv"><span>Time between failures</span><b>tracked</b></div></div>
+      <div class="tcard" style="border-color:rgba(52,211,153,.3)"><h3>🔁 The regime shift</h3>
         <div class="kv"><span style="color:var(--red)">Reactive</span><b style="color:var(--green)">↓ reduce</b></div>
         <div class="kv"><span style="color:var(--amber)">Corrective</span><b>optimise</b></div>
         <div class="kv"><span style="color:var(--green)">Preventive</span><b style="color:var(--green)">↑ increase</b></div>
-        <div class="kv"><span>Inspection routing</span><b>risk-based</b></div></div>
+        <div class="kv"><span>Inspections</span><b>risk-based</b></div></div>
     </div>
     <div class="vizbox" style="flex:1;margin-top:16px">
-      <div class="vizhead"><span>MAINTENANCE REGIME — SHIFTING REACTIVE → PREVENTIVE</span><span class="viz-live"><span class="d"></span>MODELLED</span></div>
+      <div class="vizhead"><span>STREET-LIGHT MAINTENANCE — REACTIVE → PREVENTIVE</span><span class="viz-live"><span class="d"></span>MODELLED</span></div>
       <div style="padding:22px 24px;display:flex;flex-direction:column;gap:18px;justify-content:center;flex:1">
         <div class="regime">
-          <div class="regrow"><div class="rlbl">Today<small>reactive-led, costly</small></div><div class="regbar"><div class="regseg" style="background:#f87171" data-w="45%">45%</div><div class="regseg" style="background:#f5b53d" data-w="35%">35%</div><div class="regseg" style="background:#34d399" data-w="20%">20%</div></div></div>
-          <div class="regrow"><div class="rlbl" style="color:var(--green)">With RoadTwin<small>prevention-led, planned</small></div><div class="regbar"><div class="regseg" style="background:#f87171" data-w="15%">15%</div><div class="regseg" style="background:#f5b53d" data-w="25%">25%</div><div class="regseg" style="background:#34d399" data-w="60%">60%</div></div></div>
+          <div class="regrow"><div class="rlbl">Today<small>reactive-led</small></div><div class="regbar"><div class="regseg" style="background:#f87171" data-w="45%">45%</div><div class="regseg" style="background:#f5b53d" data-w="35%">35%</div><div class="regseg" style="background:#34d399" data-w="20%">20%</div></div></div>
+          <div class="regrow"><div class="rlbl" style="color:var(--green)">With RoadTwin<small>prevention-led</small></div><div class="regbar"><div class="regseg" style="background:#f87171" data-w="15%">15%</div><div class="regseg" style="background:#f5b53d" data-w="25%">25%</div><div class="regseg" style="background:#34d399" data-w="60%">60%</div></div></div>
         </div>
-        <div class="reglegend"><span><i style="background:#f87171"></i>Reactive</span><span><i style="background:#f5b53d"></i>Corrective</span><span><i style="background:#34d399"></i>Preventive</span><span style="color:var(--dim);margin-left:auto">→ fewer failures · lower whole-life cost</span></div>
+        <div class="reglegend"><span><i style="background:#f87171"></i>Reactive</span><span><i style="background:#f5b53d"></i>Corrective</span><span><i style="background:#34d399"></i>Preventive</span><span style="color:var(--dim);margin-left:auto">→ fewer failures · lower cost</span></div>
       </div>
     </div>
   </section>
@@ -1111,50 +1016,22 @@ h2{font-size:34px;line-height:1.1;font-weight:750;letter-spacing:-.01em;margin-b
 
   <!-- ============ SLIDE 10 — ASSET CATALOG ============ -->
   <section class="slide" data-anim="assets">
-    <div class="eyebrow"><span class="pulse"></span> Roadside Asset Catalogue · Live health</div>
-    <h2>Every asset, tracked, scored &amp; predicted</h2>
-    <p class="sub">Beyond pavement, the same as-is + history + predictive-AI loop manages the full roadside inventory. Tap any asset.</p>
-    <div class="assetgrid">
-      <div class="asset"><div class="aico">🚸</div><h4>Traffic sign boards</h4><p>Retro-reflectivity, tilt, legibility &amp; obstruction monitored by vision AI.</p><div class="stat"><span class="health h-ok">● Healthy 94%</span><span class="kbd">12,480 units</span></div></div>
-      <div class="asset"><div class="aico">📺</div><h4>Dynamic message signs</h4><p>Pixel/LED outages, brightness, comms uptime &amp; message-render faults.</p><div class="stat"><span class="health h-warn">▲ 3 faults</span><span class="kbd">214 units</span></div></div>
-      <div class="asset"><div class="aico">🚦</div><h4>Lane control signals</h4><p>Aspect health, lamp failure &amp; over-lane gantry condition.</p><div class="stat"><span class="health h-ok">● Healthy 97%</span><span class="kbd">386 units</span></div></div>
-      <div class="asset"><div class="aico">💡</div><h4>Street lighting</h4><p>Outage detection, illuminance, energy draw &amp; pole-lean alerts.</p><div class="stat"><span class="health h-warn">▲ 41 out</span><span class="kbd">28,900 units</span></div></div>
-      <div class="asset"><div class="aico">🛟</div><h4>Guardrails &amp; barriers</h4><p>Impact damage, corrosion, alignment &amp; missing sections.</p><div class="stat"><span class="health h-crit">✕ 6 critical</span><span class="kbd">920 km</span></div></div>
-      <div class="asset"><div class="aico">🛑</div><h4>Road markings</h4><p>Wear, retro-reflectivity &amp; lane-line continuity from LiDAR + vision.</p><div class="stat"><span class="health h-warn">▲ 18% faded</span><span class="kbd">3,100 km</span></div></div>
-      <div class="asset"><div class="aico">🕳️</div><h4>Manholes &amp; drainage</h4><p>Cover settlement, level offset &amp; blockage indicators.</p><div class="stat"><span class="health h-ok">● Healthy 91%</span><span class="kbd">7,650 units</span></div></div>
-      <div class="asset"><div class="aico">🌉</div><h4>Bridges &amp; structures</h4><p>Geometry change, joint &amp; deck condition for structure decisions.</p><div class="stat"><span class="health h-ok">● Healthy 96%</span><span class="kbd">142 structures</span></div></div>
+    <div class="eyebrow"><span class="pulse"></span> Roadside assets · Start small, scale wide</div>
+    <h2>Begin with street lights — <span class="grad-text">then every asset</span></h2>
+    <p class="sub">The pilot proves the method on street lights. The same engine then covers the whole roadside estate.</p>
+    <div class="badrow"><span class="pocbadge">💡 Phase 1: street lights</span><span class="laterbadge">▸ Later: signs, DMS, guardrails, markings, drainage &amp; more</span></div>
+    <div class="assetgrid" style="margin-top:18px">
+      <div class="asset poc"><div class="aico">💡</div><h4>Street lighting</h4><p>Outage, power anomaly, illuminance &amp; pole-lean.</p><div class="stat"><span class="health h-ok">● Pilot asset</span><span class="kbd">28,900 units</span></div></div>
+      <div class="asset later"><div class="aico">🚸</div><h4>Traffic signs</h4><p>Retro-reflectivity, tilt &amp; legibility.</p><div class="stat"><span class="health h-ok">● Later</span><span class="kbd">12,480 units</span></div></div>
+      <div class="asset later"><div class="aico">📺</div><h4>Dynamic message signs</h4><p>Pixel/LED outages &amp; comms uptime.</p><div class="stat"><span class="health h-ok">● Later</span><span class="kbd">214 units</span></div></div>
+      <div class="asset later"><div class="aico">🚦</div><h4>Lane control signals</h4><p>Aspect health &amp; gantry condition.</p><div class="stat"><span class="health h-ok">● Later</span><span class="kbd">386 units</span></div></div>
+      <div class="asset later"><div class="aico">🛟</div><h4>Guardrails &amp; barriers</h4><p>Impact, corrosion &amp; alignment.</p><div class="stat"><span class="health h-ok">● Later</span><span class="kbd">920 km</span></div></div>
+      <div class="asset later"><div class="aico">🛑</div><h4>Road markings</h4><p>Wear &amp; lane-line continuity.</p><div class="stat"><span class="health h-ok">● Later</span><span class="kbd">3,100 km</span></div></div>
+      <div class="asset later"><div class="aico">🕳️</div><h4>Manholes &amp; drainage</h4><p>Cover settlement &amp; blockage.</p><div class="stat"><span class="health h-ok">● Later</span><span class="kbd">7,650 units</span></div></div>
+      <div class="asset later"><div class="aico">🌉</div><h4>Bridges &amp; structures</h4><p>Geometry, joints &amp; deck condition.</p><div class="stat"><span class="health h-ok">● Later</span><span class="kbd">142 structures</span></div></div>
     </div>
   </section>
 
-  <!-- ============ NEW — DIGITAL TWIN ARCHITECTURE ============ -->
-  <section class="slide" data-anim="twin">
-    <div class="eyebrow"><span class="pulse"></span> Platform · Digital-twin data architecture</div>
-    <h2>A living twin that <span class="grad-text">plugs into your stack</span></h2>
-    <p class="sub">Sensor data becomes a continuously-updated digital twin on a common linear-referencing system — open formats out, two-way integration with the systems your teams already run.</p>
-    <div class="archcols">
-      <div class="archcol">
-        <div class="ahdr" style="background:rgba(34,211,238,.12);color:var(--cyan)">① INGEST &amp; FUSE</div>
-        <div class="anode"><b>Edge processing</b><span>On-vehicle AI — distress &amp; asset detection at capture</span></div>
-        <div class="anode"><b>Linear referencing (LRS)</b><span>All streams aligned to route + chainage + GPS</span></div>
-        <div class="anode"><b>Data lake</b><span>LAS point clouds · imagery · acoustic spectra · GeoJSON</span></div>
-        <div class="anode"><b>Quality &amp; calibration</b><span>ROMDAS / GPR ground-truth, outlier rejection</span></div>
-      </div>
-      <div class="archcol">
-        <div class="ahdr" style="background:rgba(139,92,246,.12);color:var(--violet)">② TWIN &amp; INTELLIGENCE</div>
-        <div class="anode"><b>3D geometric twin</b><span>As-built model · textured surface · asset inventory</span></div>
-        <div class="anode"><b>Condition indices</b><span>PCI · IRI · rut · per-segment, time-versioned</span></div>
-        <div class="anode"><b>Predictive models</b><span>Deterioration forecasts &amp; remaining-life estimates</span></div>
-        <div class="anode"><b>Decision &amp; optimiser</b><span>Treatment matching · multi-year budget program</span></div>
-      </div>
-      <div class="archcol">
-        <div class="ahdr" style="background:rgba(245,181,61,.12);color:var(--amber)">③ DELIVER &amp; INTEGRATE</div>
-        <div class="anode"><b>GIS</b><span>Esri / QGIS layers · streetmap visualisation</span></div>
-        <div class="anode"><b>EAM / ERP</b><span>Work orders to Maximo, SAP PM, Cityworks</span></div>
-        <div class="anode"><b>BIM &amp; CDE</b><span>IFC export for structures &amp; corridor models</span></div>
-        <div class="anode"><b>Open API &amp; dashboards</b><span>REST/GeoJSON · web dashboards · mobile field app</span></div>
-      </div>
-    </div>
-  </section>
 
   <!-- ============ SINGLE PANE — DASHBOARD ============ -->
   <section class="slide" data-anim="dash">
@@ -1217,29 +1094,22 @@ h2{font-size:34px;line-height:1.1;font-weight:750;letter-spacing:-.01em;margin-b
 
   <!-- ============ GOVERNANCE ============ -->
   <section class="slide" data-anim="gov">
-    <div class="eyebrow"><span class="pulse"></span> Methodology · Governance &amp; ways of working</div>
-    <h2>Clear roles, <span class="grad-text">tight feedback loops</span></h2>
-    <p class="sub">A lean joint team with defined responsibilities and a regular cadence keeps the POC on track and keeps Ashghal's experts in the loop at every step.</p>
-    <div class="tgrid" style="grid-template-columns:repeat(2,1fr);flex:0 0 auto">
-      <div class="tcard"><h3>👥 Joint team</h3>
-        <div class="kv"><span>Programme &amp; delivery</span><b>RoadTwin / Traffic Tech</b></div>
-        <div class="kv"><span>Survey, modelling &amp; platform</span><b>RoadTwin / Traffic Tech</b></div>
-        <div class="kv"><span>Data, access &amp; field permits</span><b>Ashghal</b></div>
-        <div class="kv"><span>Engineering review &amp; sign-off</span><b>Ashghal + scientists</b></div></div>
-      <div class="tcard"><h3>🔄 Cadence &amp; assurance</h3>
-        <div class="kv"><span>Kick-off &amp; mobilisation</span><b>Week 1</b></div>
-        <div class="kv"><span>Weekly progress sync</span><b>Every week</b></div>
-        <div class="kv"><span>Model calibration reviews</span><b>Phases 2–3</b></div>
-        <div class="kv"><span>Milestone demos &amp; sign-off</span><b>End of each phase</b></div></div>
+    <div class="eyebrow"><span class="pulse"></span> Delivery · Team &amp; responsibilities</div>
+    <h2>Clear roles, <span class="grad-text">tight feedback</span></h2>
+    <p class="sub">A lean team: Traffic Tech delivers, SEERO advises on the science, Ashghal steers.</p>
+    <div class="tgrid" style="grid-template-columns:repeat(3,1fr);flex:0 0 auto">
+      <div class="tcard"><h3>🛠️ Traffic Tech</h3><p style="font-size:13.5px;color:var(--muted);line-height:1.5">Programme delivery, survey, AI models &amp; the platform.</p></div>
+      <div class="tcard" style="border-color:rgba(45,212,191,.3)"><h3>🧪 SEERO Engineering</h3><p style="font-size:13.5px;color:var(--muted);line-height:1.5">Engineering &amp; scientific consultant — road-compound science, model logic &amp; calibration.</p></div>
+      <div class="tcard"><h3>🏛️ Ashghal</h3><p style="font-size:13.5px;color:var(--muted);line-height:1.5">Data, access &amp; permits; engineering review; acceptance.</p></div>
     </div>
     <div style="flex:1;display:flex;flex-direction:column;justify-content:center;margin-top:16px">
-      <div style="font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--dim);font-weight:700;margin-bottom:10px">Responsibility matrix (RACI)</div>
+      <div style="font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--dim);font-weight:700;margin-bottom:10px">Responsibility matrix (RACI)</div>
       <div class="raci">
-        <div class="rc h" style="justify-content:flex-start">Activity</div><div class="rc h">Ashghal</div><div class="rc h">RoadTwin / Traffic Tech</div><div class="rc h">Joint</div>
+        <div class="rc h" style="justify-content:flex-start">Activity</div><div class="rc h">Ashghal</div><div class="rc h">Traffic Tech</div><div class="rc h">SEERO</div>
         <div class="rc task">Data, access &amp; permits</div><div class="rc"><span class="rbadge rb-a">A</span></div><div class="rc"><span class="rbadge rb-c">C</span></div><div class="rc"><span class="rbadge rb-i">I</span></div>
-        <div class="rc task">Survey, modelling &amp; platform</div><div class="rc"><span class="rbadge rb-c">C</span></div><div class="rc"><span class="rbadge rb-r">R</span></div><div class="rc"><span class="rbadge rb-i">I</span></div>
-        <div class="rc task">Engineering review &amp; calibration</div><div class="rc"><span class="rbadge rb-r">R</span></div><div class="rc"><span class="rbadge rb-c">C</span></div><div class="rc"><span class="rbadge rb-a">A</span></div>
-        <div class="rc task">Acceptance &amp; go / no-go</div><div class="rc"><span class="rbadge rb-a">A</span></div><div class="rc"><span class="rbadge rb-c">C</span></div><div class="rc"><span class="rbadge rb-r">R</span></div>
+        <div class="rc task">Survey, platform &amp; AI models</div><div class="rc"><span class="rbadge rb-i">I</span></div><div class="rc"><span class="rbadge rb-r">R</span></div><div class="rc"><span class="rbadge rb-c">C</span></div>
+        <div class="rc task">Model logic &amp; scientific calibration</div><div class="rc"><span class="rbadge rb-c">C</span></div><div class="rc"><span class="rbadge rb-c">C</span></div><div class="rc"><span class="rbadge rb-r">R</span></div>
+        <div class="rc task">Engineering review &amp; acceptance</div><div class="rc"><span class="rbadge rb-a">A</span></div><div class="rc"><span class="rbadge rb-c">C</span></div><div class="rc"><span class="rbadge rb-c">C</span></div>
       </div>
       <div class="racikey"><span><b style="color:var(--cyan)">R</b>Responsible</span><span><b style="color:var(--green)">A</b>Accountable</span><span><b style="color:var(--amber)">C</b>Consulted</span><span><b style="color:var(--muted)">I</b>Informed</span></div>
     </div>
@@ -1384,15 +1254,8 @@ h2{font-size:34px;line-height:1.1;font-weight:750;letter-spacing:-.01em;margin-b
     <div class="closing">
       <div id="closeLogo" style="margin-bottom:26px"></div>
       <h1>One platform.<br><span class="grad-text">Every metre of road, understood.</span></h1>
-      <p class="sub" style="text-align:center">Surface, sub-surface and roadside assets — sensed live, correlated with history and science, forecast by predictive AI, and acted on with budget-optimised decisions.</p>
-      <div class="archring">
-        <div class="chip">📡 XenoTrack · 6D LiDAR</div>
-        <div class="chip">🔊 PaveSense · Acoustic</div>
-        <div class="chip">👁️ EchoTwin · Vision AI</div>
-        <div class="chip">🧠 Predictive Models</div>
-        <div class="chip">🎯 Decision Engine</div>
-      </div>
-      <div class="hero-cred" id="closeCred" style="justify-content:center;margin-top:34px"></div>
+      <p class="sub" style="text-align:center;font-size:21px;max-width:820px">Sense the road &amp; its assets. Learn from history. Predict what to fix and when — proven on one corridor for Ashghal.</p>
+      <div class="hero-cred" id="closeCred" style="justify-content:center;margin-top:38px"></div>
     </div>
   </section>
 
@@ -2325,14 +2188,15 @@ function rtLockup(opt){ // {mark,word,sub,id}
 const TTG_SRC="data:image/png;base64,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";
 function ttLogo(w){return `<img src="${TTG_SRC}" width="${w}" height="${Math.round(w*84/472)}" alt="Traffic Tech" style="display:block"/>`;}
 function ttFramed(w){return `<span class="tt-frame">${ttLogo(w)}</span>`;}
+function seeroFramed(w){return `<img-seero>`.replace('<img-seero>', `<span class="tt-frame"><img src="seero.png" width="${w}" height="${Math.round(w*220/491)}" alt="SEERO Engineering Consulting" style="display:block"/></span>`);}
 
 // inject
 document.getElementById('logoTL').innerHTML=rtMark(38,'tl'); // compact mark only — keeps the eyebrow clear
-document.getElementById('logoTR').innerHTML=ttFramed(160);
+document.getElementById('logoTR').innerHTML=`<div class="cobrand"><div class="cbcol"><div class="cbcap">Delivery</div>${ttFramed(120)}</div><div class="cbdiv"></div><div class="cbcol"><div class="cbcap">Consultant</div>${seeroFramed(74)}</div></div>`;
 document.getElementById('heroLogo').innerHTML=rtLockup({mark:60,word:38,sub:'Predictive Road &amp; Asset Intelligence · POC',id:'hero'});
-document.getElementById('heroCred').innerHTML=`<span class="tt-by">Prepared for <b style="color:#8aa0c2">Ashghal</b> — Public Works Authority, Qatar &nbsp;·&nbsp; by</span>${ttFramed(180)}`;
+document.getElementById('heroCred').innerHTML=`<span class="tt-by">Delivered by</span>${ttFramed(176)}<span class="tt-by" style="margin-left:6px">Engineering &amp; scientific consultant</span>${seeroFramed(116)}`;
 document.getElementById('closeLogo').innerHTML=`<div style="display:flex;justify-content:center">${rtLockup({mark:64,word:42,sub:'',id:'close'})}</div>`;
-document.getElementById('closeCred').innerHTML=`<span class="tt-by">Prepared for Ashghal · by</span>${ttFramed(200)}`;
+document.getElementById('closeCred').innerHTML=`<span class="tt-by">Prepared for Ashghal · delivered by</span>${ttFramed(168)}<span class="tt-by">·&nbsp; consultant</span>${seeroFramed(112)}`;
 
 // initial
 triggerAnim('hero');
