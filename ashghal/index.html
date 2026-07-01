@@ -513,6 +513,69 @@ h2{font-size:40px}
 .asset.poc::after{content:'POC';position:absolute;top:12px;right:12px;font-size:10px;font-weight:800;color:#06121f;background:var(--cyan);padding:2px 8px;border-radius:12px}
 .asset.later{opacity:.62}
 
+/* ===== READABILITY v2 — larger text across the deck ===== */
+h2{font-size:43px}
+.eyebrow{font-size:15px;letter-spacing:.13em}
+.sub{font-size:20.5px;max-width:1000px}
+.feature h4{font-size:18px}.feature p{font-size:16px}
+.feature .fic{width:46px;height:46px;font-size:22px}
+.tcard h3{font-size:20px}.tcard p{font-size:15.5px !important}
+.tcard .kv{font-size:15.5px;padding:7px 0}
+.obj h4{font-size:22px}.obj p{font-size:16px}
+.omeasure{font-size:15px}
+.dtable th{font-size:13px;padding:14px 16px}
+.dtable td{font-size:16px;padding:13px 16px}
+.dtable .mono{font-size:14.5px}
+.mdl .mh h3{font-size:25px}.mdl .row{font-size:16px;padding:10px 0}.mdl .mt{font-size:16px}
+.mdl .row .ri{font-size:17px}
+.legend span{font-size:14.5px}
+.vizhead{font-size:14px}
+.factcard .fl{font-size:15px}.factcard .fbig{font-size:30px}
+.kpi .lbl{font-size:16px}.kpi .big{font-size:50px}
+.rchip{font-size:12.5px}
+.ag h3{font-size:23px}.ag p{font-size:14.5px}.ag li{font-size:14px}.agout{font-size:13px}
+.raci .rc{font-size:16px;padding:14px 16px}.raci .rc.h{font-size:13px}
+.rbadge{width:27px;height:27px;font-size:13px}
+.racikey span{font-size:14px}
+.gl{font-size:14.5px}.gl small{font-size:12.5px}.gh-weeks span{font-size:11.5px}.gh-l{font-size:12px}
+.dtile .dv{font-size:24px}.dtile .dl{font-size:12.5px}.dalert{font-size:13.5px}
+.dpanel .dt{font-size:12px}
+.msnode .msl{font-size:13px}.msnode .msl b{font-size:15px}
+.asset h4{font-size:18px}.asset p{font-size:14.5px}.asset .aico{font-size:32px}
+.statstrip .sl{font-size:13px}.statstrip .sv{font-size:28px}
+.note{font-size:15px}
+.chip{font-size:15px;padding:8px 15px}
+.pdeliver{font-size:13px}.phase h3{font-size:18px}.phase li{font-size:14px}.phase .pno{font-size:13px}.phase .pdur{font-size:13px}
+.reglegend span{font-size:14px}.regrow .rlbl{font-size:15px}.regseg{font-size:13px}
+.fnode{font-size:15px}.fnode small{font-size:12px}.fnode .fi{font-size:21px}
+.cardviz{gap:22px}
+/* next-steps row on close */
+.nextrow{display:flex;gap:14px;margin-top:28px;flex-wrap:wrap;justify-content:center}
+.nstep{display:flex;align-items:center;gap:11px;background:rgba(16,26,46,.6);border:1px solid var(--line);border-radius:26px;padding:12px 22px;font-size:17px;color:var(--ink);font-weight:600}
+.nstep b{width:28px;height:28px;flex:none;border-radius:50%;background:var(--grad);color:#06121f;display:flex;align-items:center;justify-content:center;font-size:15px}
+
+/* context fit after font bump */
+.statstrip{margin-top:18px}
+.cardviz{padding:4px 0;gap:16px}
+.eq{height:80px}
+.costviz{height:92px}
+.heaticon{font-size:36px}
+.road2{height:36px}
+/* dash fit after font bump */
+.dpanel{padding:12px 14px}
+.dtile{padding:6px 11px}
+.dtile .dv{font-size:19px}
+.dtile .dl{font-size:10.5px}
+.dtiles{gap:6px}
+.dalert{padding:5px 0;font-size:12.5px}
+.dpanel .dt{font-size:11.5px;margin-bottom:7px}
+/* gantt fit after font bump */
+.gl{font-size:12.5px;padding:5px 14px}
+.gl small{font-size:10.5px;margin-top:0}
+.gtrack{height:33px}
+.gh-weeks span{padding:7px 0}
+.gh-l{padding:8px 14px}
+.gmile{width:11px;height:11px}
 @media (max-width:1200px){
   .slide{padding:32px 36px 70px}
   h1{font-size:42px}.kpi .big{font-size:38px}
@@ -632,67 +695,7 @@ h2{font-size:40px}
   </section>
 
 
-  <!-- ============ SLIDE 2 — THE SHIFT ============ -->
-  <section class="slide" data-anim="shift">
-    <div class="eyebrow"><span class="pulse"></span> The shift · Reactive → Predictive</div>
-    <h2>From “fix it when it breaks” to <span class="grad-text">“fix it before it breaks”</span></h2>
-    <p class="sub">Traditional road maintenance is reactive, manual and periodic. We close the loop: continuous sensing → AI correlation → optimised, budget-aware action.</p>
-    <div class="split" style="grid-template-columns:1fr 1fr;margin-top:26px">
-      <div class="vizbox">
-        <div class="vizhead"><span>❌ TODAY — Reactive Maintenance</span></div>
-        <div style="padding:24px 26px;display:flex;flex-direction:column;gap:16px">
-          <div class="feature" style="border-color:rgba(248,113,113,.25)"><div class="fic" style="background:rgba(248,113,113,.1);border-color:rgba(248,113,113,.3)">🚧</div><div><h4>Manual, periodic surveys</h4><p>Windshield inspections every 1–3 years; data stale before it’s filed.</p></div></div>
-          <div class="feature" style="border-color:rgba(248,113,113,.25)"><div class="fic" style="background:rgba(248,113,113,.1);border-color:rgba(248,113,113,.3)">💸</div><div><h4>Worst-first spending</h4><p>Budget chases failures; cheap preventive windows are missed.</p></div></div>
-          <div class="feature" style="border-color:rgba(248,113,113,.25)"><div class="fic" style="background:rgba(248,113,113,.1);border-color:rgba(248,113,113,.3)">🕳️</div><div><h4>Surface-only visibility</h4><p>Sub-surface delamination &amp; asset faults are invisible until they fail.</p></div></div>
-        </div>
-      </div>
-      <div class="vizbox" style="border-color:rgba(34,211,238,.35)">
-        <div class="vizhead"><span style="color:var(--cyan)">✓ ROADTWIN AI — Predictive Platform</span><span class="viz-live"><span class="d"></span>LIVE</span></div>
-        <div style="padding:24px 26px;display:flex;flex-direction:column;gap:16px">
-          <div class="feature"><div class="fic">📡</div><div><h4>Continuous, automated sensing</h4><p>Fleet-mounted LiDAR &amp; vision capture every pass — road surface &amp; assets.</p></div></div>
-          <div class="feature"><div class="fic">🧠</div><div><h4>AI correlation &amp; forecasting</h4><p>Live state × history × materials science × predictive models = deterioration curve per segment.</p></div></div>
-          <div class="feature"><div class="fic">🎯</div><div><h4>Optimised, budget-aware plans</h4><p>The right treatment, at the right time, prioritised by ROI within funding limits.</p></div></div>
-        </div>
-      </div>
-    </div>
-    <div class="statstrip cmp" style="margin-top:18px">
-      <div class="st"><div class="sv"><span class="a">1–3 yr</span><span class="ar">→</span><span class="b">continuous</span></div><div class="sl">Survey cadence</div></div>
-      <div class="st"><div class="sv"><span class="a">surface only</span><span class="ar">→</span><span class="b">+ sub-surface + assets</span></div><div class="sl">Visibility</div></div>
-      <div class="st"><div class="sv"><span class="a">worst-first</span><span class="ar">→</span><span class="b">ROI-ranked</span></div><div class="sl">Spending</div></div>
-      <div class="st"><div class="sv"><span class="a">years old</span><span class="ar">→</span><span class="b">every pass</span></div><div class="sl">Data freshness</div></div>
-    </div>
-  </section>
 
-  <!-- ============ SLIDE 3 — ARCHITECTURE / PIPELINE ============ -->
-  <section class="slide" data-anim="pipe">
-    <div class="eyebrow"><span class="pulse"></span> Platform architecture · End-to-end data flow</div>
-    <h2>Sense → Correlate → Predict → Decide → Act</h2>
-    <p class="sub">Three complementary sensing layers feed one correlation &amp; decision brain — a continuous, self-improving loop.</p>
-    <div class="pipe">
-      <div class="stage"><div class="ico">📡</div><div class="num">01 · SENSE</div><h3>Capture as-is</h3><p>Live condition of pavement &amp; assets.</p>
-        <div class="items"><div class="it">XenoTrack 6D LiDAR</div><div class="it">HD camera imagery</div><div class="it">EchoTwin vision AI</div></div>
-        <div class="stagewm">📡</div><div class="flowarrow">➜</div></div>
-      <div class="stage"><div class="ico">🔗</div><div class="num">02 · CORRELATE</div><h3>Fuse &amp; contextualise</h3><p>Align live state with the past &amp; the science.</p>
-        <div class="items"><div class="it">Historical condition</div><div class="it">Traffic &amp; axle loads</div><div class="it">Materials-science inputs</div></div>
-        <div class="stagewm">🔗</div><div class="flowarrow">➜</div></div>
-      <div class="stage"><div class="ico">🧠</div><div class="num">03 · PREDICT</div><h3>Forecast deterioration</h3><p>Model the future of every segment.</p>
-        <div class="items"><div class="it">Time-series &amp; grey models</div><div class="it">Neural networks</div><div class="it">Hybrid physics + ML</div></div>
-        <div class="stagewm">🧠</div><div class="flowarrow">➜</div></div>
-      <div class="stage"><div class="ico">🎯</div><div class="num">04 · DECIDE</div><h3>Optimise the plan</h3><p>Best treatment within budget.</p>
-        <div class="items"><div class="it">Dynamic section division</div><div class="it">Treatment matching</div><div class="it">Fund allocation</div></div>
-        <div class="stagewm">🎯</div><div class="flowarrow">➜</div></div>
-      <div class="stage"><div class="ico">🛠️</div><div class="num">05 · ACT &amp; LEARN</div><h3>Execute &amp; verify</h3><p>Close the loop, improve the models.</p>
-        <div class="items"><div class="it">Work orders &amp; crews</div><div class="it">Effectiveness tracking</div><div class="it">Model feedback</div></div>
-        <div class="stagewm">🛠️</div></div>
-    </div>
-    <div class="legend"><span><i style="background:var(--cyan)"></i>Sensing layer</span><span><i style="background:var(--violet)"></i>AI brain</span><span><i style="background:var(--amber)"></i>Decision &amp; ops</span><span><i style="background:var(--green)"></i>Continuous feedback loop</span></div>
-    <div class="statstrip" style="margin-top:14px">
-      <div class="st"><div class="sv"><b>LRS</b></div><div class="sl">Common linear-referencing</div></div>
-      <div class="st"><div class="sv"><b>Digital twin</b></div><div class="sl">Geometry · condition · assets</div></div>
-      <div class="st"><div class="sv"><b>Open API</b></div><div class="sl">GIS · CMMS · ITS integration</div></div>
-      <div class="st"><div class="sv"><b>Closed loop</b></div><div class="sl">Self-improving each cycle</div></div>
-    </div>
-  </section>
 
   <!-- ============ SLIDE 4 — XENOTRACK ============ -->
   <section class="slide" data-anim="xeno">
@@ -719,86 +722,9 @@ h2{font-size:40px}
   </section>
 
 
-  <!-- ============ SLIDE 6 — ECHOTWIN ============ -->
-  <section class="slide" data-anim="echo">
-    <div class="eyebrow"><span class="pulse"></span> Road Assets · EchoTwin AI · Living Digital Twin</div>
-    <h2>Vision AI turns every fleet vehicle into a <span class="grad-text">roadside-asset sensor</span></h2>
-    <p class="sub">A visual-intelligence engine scans the streetscape, detects and geolocates every asset, scores its health, and flags changes — building a living digital twin of the entire corridor.</p>
-    <div class="split r">
-      <div class="rightcol">
-        <div class="feature"><div class="fic">👁️</div><div><h4>Visual intelligence engine</h4><p>Municipal fleets, drones &amp; robotics detect, classify &amp; geolocate assets automatically.</p></div></div>
-        <div class="feature"><div class="fic">🔄</div><div><h4>Automated change detection</h4><p>Spots new, moved, damaged or missing assets between passes — and reports to the right agency.</p></div></div>
-        <div class="feature"><div class="fic">🩺</div><div><h4>Per-asset health &amp; compliance</h4><p>Real-time condition, reflectivity, tilt, outage &amp; compliance status for every object.</p></div></div>
-        <div class="vizbox" style="flex:1">
-          <div class="vizhead"><span>DETECTION STREAM</span></div>
-          <div class="log" id="echoLog"></div>
-        </div>
-      </div>
-      <div class="vizbox">
-        <div class="vizhead"><span>ECHOTWIN · STREETSCAPE ASSET DETECTION</span><span class="viz-live"><span class="d"></span>DETECTING</span></div>
-        <svg id="echoSvg" viewBox="0 0 640 460" style="flex:1;width:100%"></svg>
-      </div>
-    </div>
-  </section>
 
-  <!-- ============ NEW — SENSOR FUSION SPEC SHEET ============ -->
-  <section class="slide" data-anim="specs">
-    <div class="eyebrow"><span class="pulse"></span> Sensing · Technical specifications</div>
-    <h2>Live sensing, <span class="grad-text">one fused layer</span></h2>
-    <p class="sub">Two survey technologies capture the road and its assets in a single georeferenced pass.</p>
-    <div class="tablewrap">
-      <table class="dtable">
-        <thead><tr><th>Technology</th><th>Measures</th><th>Resolution / accuracy</th><th>Output</th></tr></thead>
-        <tbody>
-          <tr><td><b>XenoTrack</b><br><span style="color:var(--cyan);font-size:11px">6D LiDAR + HD camera + RTK-GNSS</span></td><td>PCI, IRI, rutting, cracks &amp; potholes — per segment</td><td><span class="mono">&lt;0.45 mm</span> vertical · at traffic speed</td><td><span class="mono">PCI · distress · imagery</span></td></tr>
-          <tr><td><b>EchoTwin</b><br><span style="color:var(--violet);font-size:11px">Vision AI</span></td><td>Street lights (pilot) — detect, locate &amp; score condition</td><td>Geo-tag <span class="mono">&lt;3 cm</span> (RTK)</td><td><span class="mono">Inventory · condition</span></td></tr>
-          <tr><td><b>Reference</b><br><span style="color:var(--amber);font-size:11px">ROMDAS · GPR (as needed)</span></td><td>Layer thickness &amp; structural ground-truth</td><td>Calibration only</td><td><span class="mono">Structural profiles</span></td></tr>
-          <tr><td><b style="color:var(--dim)">PaveSense</b><br><span style="color:var(--dim);font-size:11px">Acoustic — future phase</span></td><td style="color:var(--dim)">Sub-surface integrity — not in the POC</td><td style="color:var(--dim)">Future</td><td style="color:var(--dim)">—</td></tr>
-        </tbody>
-      </table>
-      <div class="tableviz"><div class="flowband"><div class="fnode"><span class="fi">📡</span><b>XenoTrack</b></div><div class="fnode"><span class="fi">👁️</span><b>EchoTwin</b></div><span class="farrow">➜</span><div class="fnode hl"><span class="fi">🧬</span><div><b>Fused data layer</b><small>one georeferenced record</small></div></div></div></div>
-    </div>
-  </section>
 
-  <!-- ============ SLIDE 7 — CORRELATION ENGINE ============ -->
-  <section class="slide" data-anim="corr">
-    <div class="eyebrow"><span class="pulse"></span> The Brain · Multi-source correlation</div>
-    <h2>From <span class="grad-text">as-is condition</span> to <span class="grad-text">deep understanding</span></h2>
-    <p class="sub">Live sensing alone is a snapshot. We correlate it with history, traffic, materials science and the judgement of road-compound scientists — so the AI understands <i>why</i> a segment behaves the way it does.</p>
-    <div class="split" style="grid-template-columns:1fr 1.15fr">
-      <div class="rightcol">
-        <div class="feature"><div class="fic" style="background:rgba(34,211,238,.1);border-color:rgba(34,211,238,.3)">📷</div><div><h4>Live as-is state</h4><p>XenoTrack surface · PaveSense sub-surface · EchoTwin assets.</p></div></div>
-        <div class="feature"><div class="fic" style="background:rgba(59,130,246,.1);border-color:rgba(59,130,246,.3)">📚</div><div><h4>Historical condition records</h4><p>Past inspections, treatments &amp; ROMDAS / GPR surveys per segment.</p></div></div>
-        <div class="feature"><div class="fic" style="background:rgba(245,181,61,.1);border-color:rgba(245,181,61,.3)">🚚</div><div><h4>Traffic &amp; axle-load data</h4><p>Volumes, heavy-vehicle mix &amp; cumulative loading.</p></div></div>
-        <div class="feature"><div class="fic" style="background:rgba(45,212,191,.1);border-color:rgba(45,212,191,.3)">🧪</div><div><h4>Road-compound scientists</h4><p>Mix design, layer thickness, subgrade, climate &amp; materials expertise.</p></div></div>
-      </div>
-      <div class="vizbox">
-        <div class="vizhead"><span>CORRELATION ENGINE — FUSING SIGNALS INTO A DETERIORATION MODEL</span><span class="viz-live"><span class="d"></span>FUSING</span></div>
-        <canvas id="corrCanvas" style="flex:1;width:100%"></canvas>
-      </div>
-    </div>
-  </section>
 
-  <!-- ============ ROAD MODEL — HISTORICAL INPUTS ============ -->
-  <section class="slide" data-anim="roadinputs">
-    <div class="eyebrow"><span class="pulse"></span> Road Intelligence Model · Inputs</div>
-    <h2>Estimating condition from <span class="grad-text">the road's own history</span></h2>
-    <p class="sub">Before a single scan, the model reconstructs how each segment should have aged — feeding the scientists' deterioration formulas with the historical record Ashghal already holds. These are the same drivers proven in pavement-performance research.</p>
-    <div class="tablewrap">
-      <table class="dtable">
-        <thead><tr><th>Input category</th><th>Variables</th><th>Why it matters</th><th>Source</th></tr></thead>
-        <tbody>
-          <tr><td><b>Construction &amp; build quality</b></td><td>Road construction index, build year &amp; age, as-built initial condition (initial IRI)</td><td>Sets the starting point &amp; quality of the deterioration curve</td><td><span class="mono">Ashghal as-built records</span></td></tr>
-          <tr><td><b>Pavement structure</b></td><td>Layer composition &amp; thickness, structural number (SN), subgrade type</td><td>Governs load-bearing capacity &amp; rate of structural decay</td><td><span class="mono">Design / QCS records</span></td></tr>
-          <tr><td><b>Traffic &amp; loading</b></td><td>Vehicle weight, travel frequency, axle config → cumulative ESAL, AADT / AADTT</td><td>The primary driver of fatigue &amp; rutting</td><td><span class="mono">ITS / traffic counts</span></td></tr>
-          <tr><td><b>Climate &amp; environment</b></td><td>Temperature extremes &amp; cycling, humidity, precipitation</td><td>Drives binder ageing, thermal &amp; moisture damage</td><td><span class="mono">Met / weather data</span></td></tr>
-          <tr><td><b>Maintenance history</b></td><td>Past treatments, overlays &amp; repairs per segment</td><td>Resets &amp; bends the curve — must be accounted for</td><td><span class="mono">Maintenance / CMMS</span></td></tr>
-        </tbody>
-      </table>
-      <div class="tableviz"><div class="flowband"><div class="fnode"><span class="fi">🗃️</span><b>Historical inputs</b></div><span class="farrow">➜</span><div class="fnode hl"><span class="fi">⚗️</span><div><b>Formulas + ML</b><small>mechanistic-empirical + gradient boosting</small></div></div><span class="farrow">➜</span><div class="fnode"><span class="fi">📉</span><b>Estimated PCI</b></div></div></div>
-    </div>
-    <div class="note"><b>Method:</b> mechanistic-empirical deterioration logic (the scientists' formulas) combined with machine-learning regressors (e.g. gradient-boosted trees) trained on these features.</div>
-  </section>
 
   <!-- ============ ROAD MODEL — CORRECTION FACTOR ============ -->
   <section class="slide" data-anim="correction">
@@ -838,52 +764,7 @@ h2{font-size:40px}
   </section>
 
 
-  <!-- ============ NEW — DISTRESS TAXONOMY & INDICES ============ -->
-  <section class="slide" data-anim="distress">
-    <div class="eyebrow"><span class="pulse"></span> Condition assessment · Indices &amp; distress taxonomy</div>
-    <h2>From raw scans to <span class="grad-text">standardised condition indices</span></h2>
-    <p class="sub">Edge-AI classifies every distress by type, severity and extent, then rolls them into the industry-standard indices engineers already trust — fully traceable to ASTM &amp; AASHTO methods.</p>
-    <div class="split" style="grid-template-columns:1.25fr 1fr">
-      <div class="tablewrap" style="margin-top:18px">
-        <table class="dtable">
-          <thead><tr><th>Distress type</th><th>Detected by</th><th>Severity levels</th><th>Drives</th></tr></thead>
-          <tbody>
-            <tr><td><b>Fatigue / alligator cracking</b></td><td>LiDAR + vision</td><td><span class="sev sev-l">Low</span> <span class="sev sev-m">Med</span> <span class="sev sev-h">High</span></td><td>PCI</td></tr>
-            <tr><td><b>Longitudinal / transverse cracks</b></td><td>LiDAR + vision</td><td><span class="sev sev-l">L</span> <span class="sev sev-m">M</span> <span class="sev sev-h">H</span></td><td>PCI</td></tr>
-            <tr><td><b>Rutting</b></td><td>LiDAR profile</td><td>by depth (mm)</td><td>PCI · safety</td></tr>
-            <tr><td><b>Potholes</b></td><td>LiDAR + vision</td><td>by area + depth</td><td>PCI · work order</td></tr>
-            <tr><td><b>Ravelling / weathering</b></td><td>Vision + acoustic</td><td><span class="sev sev-l">L</span> <span class="sev sev-m">M</span> <span class="sev sev-h">H</span></td><td>PCI</td></tr>
-            <tr><td><b>Delamination / voids</b></td><td>Acoustic (sub-surface)</td><td>by extent</td><td>Structural</td></tr>
-            <tr><td><b>Roughness</b></td><td>LiDAR (IRI)</td><td>continuous</td><td>Ride quality</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="factcol" style="margin-top:18px">
-        <div class="factcard"><div class="fbig" style="color:var(--amber)">PCI <span style="font-size:14px;color:var(--muted)">0–100</span></div><div class="fl"><b style="color:var(--ink)">Pavement Condition Index</b> — ASTM D6433. Weighted deduct-value model across all distress types &amp; severities. <span style="color:var(--green)">85–100 Good</span> · <span style="color:var(--amber)">55–70 Fair</span> · <span style="color:var(--red)">&lt;40 Poor</span>.</div></div>
-        <div class="factcard"><div class="fbig" style="color:var(--cyan)">IRI <span style="font-size:14px;color:var(--muted)">m/km</span></div><div class="fl"><b style="color:var(--ink)">International Roughness Index</b> — ASTM E1926. Quarter-car ride-quality model from the longitudinal profile.</div></div>
-        <div class="factcard"><div class="fbig" style="color:var(--teal)">RUT <span style="font-size:14px;color:var(--muted)">mm</span> · MPD</div><div class="fl"><b style="color:var(--ink)">Rut depth &amp; macro-texture</b> — transverse deformation &amp; skid-relevant surface texture (mean profile depth).</div></div>
-      </div>
-    </div>
-  </section>
 
-  <!-- ============ ROAD MODEL — PREDICTION ============ -->
-  <section class="slide" data-anim="predict">
-    <div class="eyebrow"><span class="pulse"></span> Road Intelligence Model · Forecasting</div>
-    <h2>From a matched present to a <span class="grad-text">predictable future</span></h2>
-    <p class="sub">A calibrated model is a predictive model. Each segment's PCI is projected forward year by year — with a confidence band — pinpointing when it will cross preventive, rehabilitation and reconstruction thresholds.</p>
-    <div class="split r">
-      <div class="factcol">
-        <div class="factcard"><div class="fbig" style="color:var(--cyan)">Per-segment</div><div class="fl">Every segment gets its own forecast trajectory — not a network average.</div></div>
-        <div class="factcard"><div class="fbig" style="color:var(--violet)">Confidence</div><div class="fl">Forecasts carry an uncertainty band that tightens as more history &amp; scans accumulate.</div></div>
-        <div class="factcard" style="border-color:rgba(245,181,61,.3)"><div class="fbig" style="color:var(--amber)">Timing</div><div class="fl">The model returns the <b style="color:var(--ink)">year of intervention</b> — when each segment will need preventive or major treatment.</div></div>
-        <div class="factcard"><div class="fl" style="margin-top:0"><b style="color:var(--cyan)">Backed by an ensemble</b> of time-series, grey, neural-network &amp; hybrid physics models.</div></div>
-      </div>
-      <div class="vizbox">
-        <div class="vizhead"><span>SEGMENT PCI FORECAST — NEXT 10 YEARS</span><span class="viz-live"><span class="d"></span>PREDICTING</span></div>
-        <canvas id="predictCanvas" style="flex:1;width:100%"></canvas>
-      </div>
-    </div>
-  </section>
 
   <!-- ============ SINGLE PANE — CORRIDOR HEATMAP ============ -->
   <section class="slide" data-anim="cmap">
@@ -906,64 +787,11 @@ h2{font-size:40px}
 
 
 
-  <!-- ============ NEW — PAVEMENT LIFECYCLE & TREATMENT TIMING ============ -->
-  <section class="slide" data-anim="lifecycle">
-    <div class="eyebrow"><span class="pulse"></span> The economics of timing · Deterioration curve</div>
-    <h2>Why timing is everything: <span class="grad-text">$1 now vs $6–10 later</span></h2>
-    <p class="sub">Pavement condition decays slowly, then collapses. Predicting the curve lets us treat in the cheap preventive window — before the steep drop into costly rehabilitation and reconstruction.</p>
-    <div class="split r">
-      <div class="factcol">
-        <div class="factcard" style="border-color:rgba(52,211,153,.3)"><div class="fbig" style="color:var(--green)">$1</div><div class="fl"><b style="color:var(--ink)">Preventive</b> · crack seal, fog seal, micro-surfacing in the <b style="color:var(--green)">75–90 PCI</b> window.</div></div>
-        <div class="factcard" style="border-color:rgba(245,181,61,.3)"><div class="fbig" style="color:var(--amber)">$4–5</div><div class="fl"><b style="color:var(--ink)">Rehabilitation</b> · mill &amp; overlay once condition slips to <b style="color:var(--amber)">55–70 PCI</b>.</div></div>
-        <div class="factcard" style="border-color:rgba(248,113,113,.3)"><div class="fbig" style="color:var(--red)">$6–10</div><div class="fl"><b style="color:var(--ink)">Reconstruction</b> · full-depth rebuild after the curve collapses below <b style="color:var(--red)">40 PCI</b>.</div></div>
-        <div class="factcard"><div class="fl" style="margin-top:0"><b style="color:var(--cyan)">RoadTwin advantage:</b> predictive curves pinpoint the preventive window per-segment, keeping the network high &amp; spend low.</div></div>
-      </div>
-      <div class="vizbox">
-        <div class="vizhead"><span>DETERIORATION CURVE — DO-NOTHING vs PREVENTIVE STRATEGY</span><span class="viz-live"><span class="d"></span>FORECAST</span></div>
-        <canvas id="lifeCanvas" style="flex:1;width:100%"></canvas>
-      </div>
-    </div>
-  </section>
 
 
 
 
 
-  <!-- ============ ASSET MODEL — CONCEPT ============ -->
-  <section class="slide" data-anim="assetmodel">
-    <div class="eyebrow"><span class="pulse"></span> Asset intelligence · Concept</div>
-    <h2>Field condition + history = <span class="grad-text">foresight</span></h2>
-    <p class="sub">What EchoTwin sees, plus the maintenance record — the patterns before a fault.</p>
-    <div class="badrow"><span class="pocbadge">💡 Pilot asset: street lights</span><span class="laterbadge">Later: all roadside assets</span></div>
-    <div class="twomodel" style="flex:0 0 auto;min-height:auto;margin-top:16px">
-      <div class="mdl" style="background:linear-gradient(180deg,rgba(34,211,238,.06),var(--bg2))">
-        <div class="mh"><span class="mi">👁️</span><h3>What we see</h3></div>
-        <div class="mt">EchoTwin captures each street light’s live, as-is state.</div>
-        <div class="row"><span class="ri">•</span><div>Location, condition &amp; outage</div></div>
-        <div class="row"><span class="ri">•</span><div>Lean / tilt &amp; obstruction</div></div>
-        <div class="row"><span class="ri">•</span><div>Change between passes</div></div>
-      </div>
-      <div class="mdl" style="background:linear-gradient(180deg,rgba(245,181,61,.06),var(--bg2));border-color:rgba(245,181,61,.3)">
-        <div class="mh"><span class="mi">🗂️</span><h3>What we know</h3></div>
-        <div class="mt">The maintenance record — every action logged.</div>
-        <div class="row"><span class="ri" style="color:var(--amber)">P</span><div><b>Preventive</b> — scheduled servicing</div></div>
-        <div class="row"><span class="ri" style="color:var(--amber)">C</span><div><b>Corrective</b> — repair after a fault</div></div>
-        <div class="row"><span class="ri" style="color:var(--amber)">R</span><div><b>Reactive</b> — emergency response</div></div>
-      </div>
-    </div>
-    <div style="flex:1;display:flex;align-items:center;justify-content:center">
-      <div class="flowband">
-        <div class="fstack">
-          <div class="fnode"><span class="fi">👁️</span><div><b>EchoTwin</b><small>field condition</small></div></div>
-          <div class="fnode"><span class="fi">🗂️</span><div><b>PM / CM / RM</b><small>history</small></div></div>
-        </div>
-        <span class="farrow">➜</span>
-        <div class="fnode hl"><span class="fi">🧠</span><div><b>AI patterns</b><small>fault signatures</small></div></div>
-        <span class="farrow">➜</span>
-        <div class="fnode"><span class="fi">🔮</span><div><b>Foresight</b><small>early warning</small></div></div>
-      </div>
-    </div>
-  </section>
 
   <!-- ============ ASSET MODEL — ACTIVE ASSETS ============ -->
   <section class="slide" data-anim="assetactive">
@@ -983,35 +811,6 @@ h2{font-size:40px}
     </div>
   </section>
 
-  <!-- ============ ASSET MODEL — PASSIVE & PM/CM/RM ============ -->
-  <section class="slide" data-anim="pmcmrm">
-    <div class="eyebrow"><span class="pulse"></span> Asset intelligence · Smarter regime</div>
-    <h2>From reactive to <span class="grad-text">planned</span></h2>
-    <p class="sub">The maintenance record holds the evidence. AI turns it into a plan — fewer failures, lower cost.</p>
-    <div class="badrow"><span class="pocbadge">💡 Pilot: street lights</span><span class="laterbadge">Same method → every asset</span></div>
-    <div class="tgrid" style="grid-template-columns:1fr 1fr;flex:0 0 auto;margin-top:16px">
-      <div class="tcard"><h3>📊 What the AI finds</h3>
-        <div class="kv"><span>Where faults cluster</span><b>by type / location</b></div>
-        <div class="kv"><span>Common root causes</span><b>identified</b></div>
-        <div class="kv"><span>Remaining useful life</span><b>estimated</b></div>
-        <div class="kv"><span>Time between failures</span><b>tracked</b></div></div>
-      <div class="tcard" style="border-color:rgba(52,211,153,.3)"><h3>🔁 The regime shift</h3>
-        <div class="kv"><span style="color:var(--red)">Reactive</span><b style="color:var(--green)">↓ reduce</b></div>
-        <div class="kv"><span style="color:var(--amber)">Corrective</span><b>optimise</b></div>
-        <div class="kv"><span style="color:var(--green)">Preventive</span><b style="color:var(--green)">↑ increase</b></div>
-        <div class="kv"><span>Inspections</span><b>risk-based</b></div></div>
-    </div>
-    <div class="vizbox" style="flex:1;margin-top:16px">
-      <div class="vizhead"><span>STREET-LIGHT MAINTENANCE — REACTIVE → PREVENTIVE</span><span class="viz-live"><span class="d"></span>MODELLED</span></div>
-      <div style="padding:22px 24px;display:flex;flex-direction:column;gap:18px;justify-content:center;flex:1">
-        <div class="regime">
-          <div class="regrow"><div class="rlbl">Today<small>reactive-led</small></div><div class="regbar"><div class="regseg" style="background:#f87171" data-w="45%">45%</div><div class="regseg" style="background:#f5b53d" data-w="35%">35%</div><div class="regseg" style="background:#34d399" data-w="20%">20%</div></div></div>
-          <div class="regrow"><div class="rlbl" style="color:var(--green)">With RoadTwin<small>prevention-led</small></div><div class="regbar"><div class="regseg" style="background:#f87171" data-w="15%">15%</div><div class="regseg" style="background:#f5b53d" data-w="25%">25%</div><div class="regseg" style="background:#34d399" data-w="60%">60%</div></div></div>
-        </div>
-        <div class="reglegend"><span><i style="background:#f87171"></i>Reactive</span><span><i style="background:#f5b53d"></i>Corrective</span><span><i style="background:#34d399"></i>Preventive</span><span style="color:var(--dim);margin-left:auto">→ fewer failures · lower cost</span></div>
-      </div>
-    </div>
-  </section>
 
 
   <!-- ============ SLIDE 10 — ASSET CATALOG ============ -->
@@ -1116,26 +915,6 @@ h2{font-size:40px}
   </section>
 
 
-  <!-- ============ NEW — DEPLOYMENT ROADMAP ============ -->
-  <section class="slide" data-anim="roadmap">
-    <div class="eyebrow"><span class="pulse"></span> Methodology · Phased approach &amp; key activities</div>
-    <h2>How we will deliver it — <span class="grad-text">four phases</span></h2>
-    <p class="sub">A low-risk, staged approach — value from the first corridor, scaling to a self-improving network twin without disrupting operations.</p>
-    <div class="timeline">
-      <div class="phase"><div class="pline"></div><div class="pdot"></div><div class="pno">Phase 1</div><h3>Baseline &amp; pilot</h3><div class="pdur">Weeks 1–3</div>
-        <ul><li>Mount sensors on pilot fleet (45-min install)</li><li>Scan priority corridor · build first twin</li><li>Calibrate against ROMDAS / GPR</li><li>Establish PCI / IRI baseline</li></ul>
-        <div class="phasewm">🛰️</div><div class="pdeliver">◆ Deliverable: inception report &amp; condition baseline</div></div>
-      <div class="phase"><div class="pline"></div><div class="pdot"></div><div class="pno">Phase 2</div><h3>Correlate &amp; train</h3><div class="pdur">Weeks 3–7</div>
-        <ul><li>Ingest historical condition &amp; traffic data</li><li>Train &amp; validate predictive models</li><li>Apply correction factor &amp; calibrate</li><li>Onboard road-compound scientists</li></ul>
-        <div class="phasewm">🧠</div><div class="pdeliver">◆ Deliverable: calibrated models &amp; dashboard</div></div>
-      <div class="phase"><div class="pline"></div><div class="pdot"></div><div class="pno">Phase 3</div><h3>Decide &amp; act</h3><div class="pdur">Weeks 7–14</div>
-        <ul><li>Generate forecasts &amp; treatment plans</li><li>Run multi-year budget optimisation</li><li>Push work orders to EAM / ERP</li><li>Extend to roadside-asset management</li></ul>
-        <div class="phasewm">🎯</div><div class="pdeliver">◆ Deliverable: forecasts, costs &amp; work orders</div></div>
-      <div class="phase"><div class="pdot"></div><div class="pno">Phase 4</div><h3>Scale &amp; learn</h3><div class="pdur">Weeks 13–16</div>
-        <ul><li>Validate results against KPIs</li><li>Continuous capture on every fleet trip</li><li>Track effectiveness · close the loop</li><li>Plan network-wide rollout</li></ul>
-        <div class="phasewm">📈</div><div class="pdeliver">◆ Deliverable: rollout plan &amp; business case</div></div>
-    </div>
-  </section>
 
   <!-- ============ TIMELINE — GANTT ============ -->
   <section class="slide" data-anim="gantt">
@@ -1167,9 +946,9 @@ h2{font-size:40px}
         <thead><tr><th>Phase</th><th>Milestone</th><th>Key deliverables</th><th>Week</th></tr></thead>
         <tbody>
           <tr><td><b>1 · Mobilise</b></td><td>M1 · Data foundation ready</td><td>Inception report · corridor segmentation · data-intake &amp; integration plan</td><td><span class="mono">Wk 3</span></td></tr>
-          <tr><td><b>2 · Survey</b></td><td>M2 · Condition baseline</td><td>XenoTrack PCI baseline · EchoTwin asset inventory · distress geo-database</td><td><span class="mono">Wk 7</span></td></tr>
-          <tr><td><b>3 · Model</b></td><td>M3 · Models validated</td><td>Calibrated road model (predicted vs actual report) · asset failure-pattern model</td><td><span class="mono">Wk 11</span></td></tr>
-          <tr><td><b>4 · Predict</b></td><td>M4 · Dashboard live</td><td>Forecasts &amp; cost analysis · scenario simulator · single-pane-of-glass dashboard</td><td><span class="mono">Wk 14</span></td></tr>
+          <tr><td><b>2 · Survey</b></td><td>M2 · Condition baseline</td><td>XenoTrack PCI baseline · EchoTwin street-light inventory · distress geo-database</td><td><span class="mono">Wk 7</span></td></tr>
+          <tr><td><b>3 · Model</b></td><td>M3 · Models validated</td><td>Calibrated road model (predicted vs actual, ~90%) · street-light condition model</td><td><span class="mono">Wk 11</span></td></tr>
+          <tr><td><b>4 · Predict</b></td><td>M4 · Dashboard live</td><td>Forecasts &amp; cost · single-pane-of-glass dashboard</td><td><span class="mono">Wk 14</span></td></tr>
           <tr><td><b>5 · Handover</b></td><td>M5 · POC complete</td><td>Final report · validation &amp; KPI results · scale-up roadmap &amp; business case</td><td><span class="mono">Wk 16</span></td></tr>
         </tbody>
       </table>
@@ -1197,65 +976,25 @@ h2{font-size:40px}
     <div class="fillband"><div class="gate"><div class="gnode"><span class="gi">🧪</span>POC delivered</div><span class="farrow">➜</span><div class="gnode"><span class="gi">📊</span>KPIs met &amp; validated</div><span class="farrow">➜</span><div class="gnode go"><span class="gi">✅</span>GO for network rollout</div></div></div>
   </section>
 
-  <!-- ============ RISKS ============ -->
-  <section class="slide" data-anim="risks">
-    <div class="eyebrow"><span class="pulse"></span> Delivery · Risks &amp; mitigations</div>
-    <h2>Known risks, <span class="grad-text">planned answers</span></h2>
-    <p class="sub">A POC is the right place to surface risk early. Each is met with a concrete mitigation built into the methodology — leaving low residual risk.</p>
-    <div class="risks">
-      <div class="risk"><h4>📂 Sparse or fragmented history</h4><p>Historical construction, traffic or maintenance data may be incomplete for some segments.</p><div class="rmit"><b>Mitigation:</b> the correction factor &amp; live XenoTrack scanning anchor the model even with thin history; grey models handle sparse data.</div><div class="rmeta"><span class="rchip">Likelihood<b>Med</b></span><span class="rchip">Impact<b>Med</b></span><span class="rchip res">Residual<b>Low</b></span></div></div>
-      <div class="risk"><h4>🔌 Data access &amp; integration</h4><p>Access to ITS, CMMS &amp; weather feeds can take time to arrange.</p><div class="rmit"><b>Mitigation:</b> early data-intake plan (M1), flexible connectors, and graceful fallback to file-based exports.</div><div class="rmeta"><span class="rchip">Likelihood<b>Med</b></span><span class="rchip">Impact<b>Med</b></span><span class="rchip res">Residual<b>Low</b></span></div></div>
-      <div class="risk"><h4>🛣️ Field &amp; survey logistics</h4><p>Lane access, permits &amp; traffic management for scanning the corridor.</p><div class="rmit"><b>Mitigation:</b> roof-mounted survey at traffic speed — no closures; scheduling coordinated with Ashghal operations.</div><div class="rmeta"><span class="rchip">Likelihood<b>Low</b></span><span class="rchip">Impact<b>Low</b></span><span class="rchip res">Residual<b>Low</b></span></div></div>
-      <div class="risk"><h4>📏 Model acceptance</h4><p>Forecasts must earn engineers' trust to be actionable.</p><div class="rmit"><b>Mitigation:</b> transparent, formula-grounded models reviewed &amp; signed off by Ashghal's road-compound scientists at each calibration.</div><div class="rmeta"><span class="rchip">Likelihood<b>Med</b></span><span class="rchip">Impact<b>High</b></span><span class="rchip res">Residual<b>Low</b></span></div></div>
-    </div>
-  </section>
 
 
-  <!-- ============ SLIDE 11 — BENEFITS ============ -->
-  <section class="slide" data-anim="benefits">
-    <div class="eyebrow"><span class="pulse"></span> Outcomes · Why it pays</div>
-    <h2>Lower cost. Longer life. <span class="grad-text">Fewer surprises.</span></h2>
-    <p class="sub">Predictive maintenance carries higher up-front investment but delivers significant long-term savings and improved asset performance.</p>
-    <div class="kpis">
-      <div class="kpi"><div class="big" data-count="80" data-suffix="%">0%</div><div class="lbl">Maintenance cost reduction (PaveSense data-driven planning)</div></div>
-      <div class="kpi"><div class="big" data-count="50" data-suffix="%">0%</div><div class="lbl">Lower survey operating cost vs. conventional scanning</div></div>
-      <div class="kpi"><div class="big" data-count="40" data-suffix="%">0%</div><div class="lbl">Reduced Mean-Time-To-Repair (MTTR)</div></div>
-      <div class="kpi"><div class="big" data-count="3" data-suffix="×">0×</div><div class="lbl">Extended asset service life through timely preventive action</div></div>
-    </div>
-    <div class="benefitlist">
-      <div class="bi"><span class="ck">✓</span> Fewer asset failures &amp; emergency repairs</div>
-      <div class="bi"><span class="ck">✓</span> More accurate, always-fresh condition data</div>
-      <div class="bi"><span class="ck">✓</span> Better maintenance timing &amp; cost efficiency</div>
-      <div class="bi"><span class="ck">✓</span> Verified repair effectiveness &amp; closed-loop learning</div>
-      <div class="bi"><span class="ck">✓</span> Higher productivity &amp; return on investment</div>
-      <div class="bi"><span class="ck">✓</span> Safer roads &amp; lower carbon footprint</div>
-    </div>
-    <div class="fillband"><div class="otile"><span class="oi">🛡️</span><span class="ot">Safer roads</span><span class="os">fewer failures</span></div><div class="otile"><span class="oi">💰</span><span class="ot">Lower lifecycle cost</span><span class="os">prevention-first</span></div><div class="otile"><span class="oi">🛣️</span><span class="ot">Longer asset life</span><span class="os">timely treatment</span></div><div class="otile"><span class="oi">📈</span><span class="ot">Higher ROI</span><span class="os">budget-optimised</span></div><div class="otile"><span class="oi">🌍</span><span class="ot">Lower carbon</span><span class="os">less rework</span></div></div>
-  </section>
 
-  <!-- ============ NEXT STEPS ============ -->
-  <section class="slide" data-anim="next">
-    <div class="eyebrow"><span class="pulse"></span> Moving forward · Next steps</div>
-    <h2>From proposal to <span class="grad-text">pilot, quickly</span></h2>
-    <p class="sub">Four steps to mobilise the POC and put predictive road &amp; asset intelligence in Ashghal's hands.</p>
-    <div class="steps">
-      <div class="step"><div class="sn">1</div><div><h4>Confirm pilot corridor &amp; scope</h4><p>Agree the ~20–50 km corridor and POC objectives &amp; acceptance criteria with Ashghal.</p></div></div>
-      <div class="step"><div class="sn">2</div><div><h4>Data access &amp; mobilisation</h4><p>Sign NDA / data-sharing, grant access to historical &amp; ITS data, and schedule the survey.</p></div></div>
-      <div class="step"><div class="sn">3</div><div><h4>Run the 16-week POC</h4><p>Execute the programme — baseline, build, validate, predict — with weekly reviews and milestone demos.</p></div></div>
-      <div class="step"><div class="sn">4</div><div><h4>Evaluate &amp; scale</h4><p>Review validated results against KPIs, then plan the network-wide rollout with a clear business case.</p></div></div>
-    </div>
-    <div class="note" style="margin-top:22px"><b>Let's build the self-aware road for Qatar — together.</b></div>
-  </section>
 
 
   <!-- ============ SLIDE 12 — CLOSING ============ -->
   <section class="slide" data-anim="close">
     <canvas class="hero-wrap" id="closeCanvas"></canvas>
     <div class="closing">
-      <div id="closeLogo" style="margin-bottom:26px"></div>
-      <h1>One platform.<br><span class="grad-text">Every metre of road, understood.</span></h1>
-      <p class="sub" style="text-align:center;font-size:21px;max-width:820px">Sense the road &amp; its assets. Learn from history. Predict what to fix and when — proven on one corridor for Ashghal.</p>
-      <div class="hero-cred" id="closeCred" style="justify-content:center;margin-top:38px"></div>
+      <div id="closeLogo" style="margin-bottom:22px"></div>
+      <h1>Let’s prove it on <span class="grad-text">one corridor.</span></h1>
+      <p class="sub" style="text-align:center;font-size:21px;max-width:840px">Confirm the corridor, share the data, run the 16-week pilot — then scale with the evidence.</p>
+      <div class="nextrow">
+        <div class="nstep"><b>1</b> Confirm corridor &amp; scope</div>
+        <div class="nstep"><b>2</b> Data access &amp; NDA</div>
+        <div class="nstep"><b>3</b> Run the pilot</div>
+        <div class="nstep"><b>4</b> Evaluate &amp; scale</div>
+      </div>
+      <div class="hero-cred" id="closeCred" style="justify-content:center;margin-top:34px"></div>
     </div>
   </section>
 
