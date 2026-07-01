@@ -648,11 +648,11 @@ h2{font-size:43px}
     <h2>What the pilot will <span class="grad-text">prove</span></h2>
     <p class="sub">Six clear outcomes that de-risk a wider rollout.</p>
     <div class="objgrid">
-      <div class="obj"><div class="obody"><div class="on">1</div><div><h4>A true baseline</h4><p>Measure real pavement condition on the demo corridor.</p></div></div><div class="omeasure">◎ PCI on 100% of segments — by XenoTrack</div></div>
+      <div class="obj"><div class="obody"><div class="on">1</div><div><h4>A true baseline</h4><p>Measure real pavement condition on the demo corridor.</p></div></div><div class="omeasure">◎ PCI on 100% of segments — by 6D LiDAR</div></div>
       <div class="obj"><div class="obody"><div class="on">2</div><div><h4>Learn from history</h4><p>Rebuild condition from Ashghal’s own records.</p></div></div><div class="omeasure">◎ Model calibrated to today</div></div>
       <div class="obj"><div class="obody"><div class="on">3</div><div><h4>Predict the future</h4><p>Forecast each segment and when to act.</p></div></div><div class="omeasure">◎ ~90% accuracy vs actuals</div></div>
       <div class="obj"><div class="obody"><div class="on">4</div><div><h4>Cost &amp; timing</h4><p>What restoration costs, and the year it is needed.</p></div></div><div class="omeasure">◎ Per segment</div></div>
-      <div class="obj"><div class="obody"><div class="on">5</div><div><h4>Asset intelligence</h4><p>Detect &amp; score street lights on the demo street.</p></div></div><div class="omeasure">◎ Live field condition — by EchoTwin</div></div>
+      <div class="obj"><div class="obody"><div class="on">5</div><div><h4>Asset intelligence</h4><p>Detect &amp; score street lights on the demo street.</p></div></div><div class="omeasure">◎ Live field condition — by Vision AI</div></div>
       <div class="obj"><div class="obody"><div class="on">6</div><div><h4>One screen</h4><p>All insight on a single map view.</p></div></div><div class="omeasure">◎ Accepted by Ashghal users</div></div>
     </div>
   </section>
@@ -669,12 +669,12 @@ h2{font-size:43px}
         <div class="row"><span class="ri">A</span><div><b>Scientists’ formulas</b> — proven deterioration logic.</div></div>
         <div class="row"><span class="ri">B</span><div><b>History + machine learning</b> — build, layers, traffic, climate.</div></div>
         <div class="row"><span class="ri">C</span><div><b>Correction factor</b> — match today, then forecast.</div></div>
-        <div class="row"><span class="ri">✓</span><div><b>Ground truth</b> — XenoTrack PCI per segment.</div></div>
+        <div class="row"><span class="ri">✓</span><div><b>Ground truth</b> — 6D LiDAR PCI per segment.</div></div>
       </div>
       <div class="mdl asset">
         <div class="mh"><span class="mi">💡</span><h3>Asset model</h3></div>
         <div class="mt">Scores condition &amp; flags faults across roadside assets.</div>
-        <div class="row"><span class="ri">A</span><div><b>Field condition</b> — EchoTwin sees every asset.</div></div>
+        <div class="row"><span class="ri">A</span><div><b>Field condition</b> — Vision AI sees every asset.</div></div>
         <div class="row"><span class="ri">B</span><div><b>Maintenance history</b> — patterns before failure.</div></div>
         <div class="row"><span class="ri">C</span><div><b>Pilot focus</b> — street lights on the demo street.</div></div>
         <div class="row"><span class="ri">✓</span><div><b>Output</b> — condition &amp; early fault signals.</div></div>
@@ -698,8 +698,26 @@ h2{font-size:43px}
 
 
   <!-- ============ SLIDE 4 — XENOTRACK ============ -->
+  <!-- ============ SLIDE 7 — CORRELATION ENGINE ============ -->
+  <section class="slide" data-anim="corr">
+    <div class="eyebrow"><span class="pulse"></span> RoadTwin AI · The brain at the centre</div>
+    <h2>RoadTwin AI — <span class="grad-text">the brain at the centre</span></h2>
+    <p class="sub">At the centre sits RoadTwin AI. It fuses live sensing with history, traffic and road science — so it understands <i>why</i> each segment behaves as it does.</p>
+    <div class="split" style="grid-template-columns:1fr 1.15fr">
+      <div class="rightcol">
+        <div class="feature"><div class="fic" style="background:rgba(34,211,238,.1);border-color:rgba(34,211,238,.3)">📷</div><div><h4>Live as-is state</h4><p>6D LiDAR road surface · Vision AI assets.</p></div></div>
+        <div class="feature"><div class="fic" style="background:rgba(59,130,246,.1);border-color:rgba(59,130,246,.3)">📚</div><div><h4>Historical condition records</h4><p>Past inspections, treatments &amp; ROMDAS / GPR surveys per segment.</p></div></div>
+        <div class="feature"><div class="fic" style="background:rgba(245,181,61,.1);border-color:rgba(245,181,61,.3)">🚚</div><div><h4>Traffic &amp; axle-load data</h4><p>Volumes, heavy-vehicle mix &amp; cumulative loading.</p></div></div>
+        <div class="feature"><div class="fic" style="background:rgba(45,212,191,.1);border-color:rgba(45,212,191,.3)">🧪</div><div><h4>Road-compound scientists</h4><p>Mix design, layer thickness, subgrade, climate &amp; materials expertise.</p></div></div>
+      </div>
+      <div class="vizbox">
+        <div class="vizhead"><span>CORRELATION ENGINE — FUSING SIGNALS INTO A DETERIORATION MODEL</span><span class="viz-live"><span class="d"></span>FUSING</span></div>
+        <canvas id="corrCanvas" style="flex:1;width:100%"></canvas>
+      </div>
+    </div>
+  </section>
   <section class="slide" data-anim="xeno">
-    <div class="eyebrow"><span class="pulse"></span> Road Health · Surface · XenoTrack</div>
+    <div class="eyebrow"><span class="pulse"></span> Road Health · Surface · 6D LiDAR</div>
     <h2>6D LiDAR road scanning — <span class="grad-text">millimetre-precise pavement digitization</span></h2>
     <p class="sub">Roof-mounted solid-state LiDAR + HD camera + RTK-GNSS fuse 3D geometry, 2D imagery and position into a georeferenced digital twin — while edge-AI flags every crack and pothole in real time.</p>
     <div class="split r">
@@ -715,7 +733,7 @@ h2{font-size:43px}
         <div class="feature"><div class="fic">🌐</div><div><h4>Georeferenced results, not raw points</h4><p>PCI, distress &amp; imagery per segment, aligned to your GIS. We surface decisions — not millions of points.</p></div></div>
       </div>
       <div class="vizbox">
-        <div class="vizhead"><span>XENOTRACK · LiDAR SURFACE SCAN — Segment A14 / Lane 2</span><span class="viz-live"><span class="d"></span>SCANNING</span></div>
+        <div class="vizhead"><span>6D LiDAR — SURFACE SCAN — Segment A14 / Lane 2</span><span class="viz-live"><span class="d"></span>SCANNING</span></div>
         <canvas id="xenoCanvas" style="flex:1;width:100%"></canvas>
       </div>
     </div>
@@ -727,6 +745,53 @@ h2{font-size:43px}
 
 
   <!-- ============ ROAD MODEL — CORRECTION FACTOR ============ -->
+  <!-- ============ NEW — DISTRESS TAXONOMY & INDICES ============ -->
+  <section class="slide" data-anim="distress">
+    <div class="eyebrow"><span class="pulse"></span> Condition assessment · Indices &amp; distress taxonomy</div>
+    <h2>From raw scans to <span class="grad-text">standardised condition indices</span></h2>
+    <p class="sub">Edge-AI classifies every distress by type, severity and extent, then rolls them into the industry-standard indices engineers already trust — fully traceable to ASTM &amp; AASHTO methods.</p>
+    <div class="split" style="grid-template-columns:1.25fr 1fr">
+      <div class="tablewrap" style="margin-top:18px">
+        <table class="dtable">
+          <thead><tr><th>Distress type</th><th>Detected by</th><th>Severity levels</th><th>Drives</th></tr></thead>
+          <tbody>
+            <tr><td><b>Fatigue / alligator cracking</b></td><td>LiDAR + vision</td><td><span class="sev sev-l">Low</span> <span class="sev sev-m">Med</span> <span class="sev sev-h">High</span></td><td>PCI</td></tr>
+            <tr><td><b>Longitudinal / transverse cracks</b></td><td>LiDAR + vision</td><td><span class="sev sev-l">L</span> <span class="sev sev-m">M</span> <span class="sev sev-h">H</span></td><td>PCI</td></tr>
+            <tr><td><b>Rutting</b></td><td>LiDAR profile</td><td>by depth (mm)</td><td>PCI · safety</td></tr>
+            <tr><td><b>Potholes</b></td><td>LiDAR + vision</td><td>by area + depth</td><td>PCI · work order</td></tr>
+            <tr><td><b>Ravelling / weathering</b></td><td>Vision AI</td><td><span class="sev sev-l">L</span> <span class="sev sev-m">M</span> <span class="sev sev-h">H</span></td><td>PCI</td></tr>
+            
+            <tr><td><b>Roughness</b></td><td>LiDAR (IRI)</td><td>continuous</td><td>Ride quality</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="factcol" style="margin-top:18px">
+        <div class="factcard"><div class="fbig" style="color:var(--amber)">PCI <span style="font-size:14px;color:var(--muted)">0–100</span></div><div class="fl"><b style="color:var(--ink)">Pavement Condition Index</b> — ASTM D6433. Weighted deduct-value model across all distress types &amp; severities. <span style="color:var(--green)">85–100 Good</span> · <span style="color:var(--amber)">55–70 Fair</span> · <span style="color:var(--red)">&lt;40 Poor</span>.</div></div>
+        <div class="factcard"><div class="fbig" style="color:var(--cyan)">IRI <span style="font-size:14px;color:var(--muted)">m/km</span></div><div class="fl"><b style="color:var(--ink)">International Roughness Index</b> — ASTM E1926. Quarter-car ride-quality model from the longitudinal profile.</div></div>
+        <div class="factcard"><div class="fbig" style="color:var(--teal)">RUT <span style="font-size:14px;color:var(--muted)">mm</span> · MPD</div><div class="fl"><b style="color:var(--ink)">Rut depth &amp; macro-texture</b> — transverse deformation &amp; skid-relevant surface texture (mean profile depth).</div></div>
+      </div>
+    </div>
+  </section>
+  <!-- ============ ROAD MODEL — HISTORICAL INPUTS ============ -->
+  <section class="slide" data-anim="roadinputs">
+    <div class="eyebrow"><span class="pulse"></span> Road Intelligence Model · Inputs</div>
+    <h2>Estimating condition from <span class="grad-text">the road's own history</span></h2>
+    <p class="sub">Before a single scan, the model reconstructs how each segment should have aged — feeding the scientists' deterioration formulas with the historical record Ashghal already holds. These are the same drivers proven in pavement-performance research.</p>
+    <div class="tablewrap">
+      <table class="dtable">
+        <thead><tr><th>Input category</th><th>Variables</th><th>Why it matters</th><th>Source</th></tr></thead>
+        <tbody>
+          <tr><td><b>Construction &amp; build quality</b></td><td>Road construction index, build year &amp; age, as-built initial condition (initial IRI)</td><td>Sets the starting point &amp; quality of the deterioration curve</td><td><span class="mono">Ashghal as-built records</span></td></tr>
+          <tr><td><b>Pavement structure</b></td><td>Layer composition &amp; thickness, structural number (SN), subgrade type</td><td>Governs load-bearing capacity &amp; rate of structural decay</td><td><span class="mono">Design / QCS records</span></td></tr>
+          <tr><td><b>Traffic &amp; loading</b></td><td>Vehicle weight, travel frequency, axle config → cumulative ESAL, AADT / AADTT</td><td>The primary driver of fatigue &amp; rutting</td><td><span class="mono">ITS / traffic counts</span></td></tr>
+          <tr><td><b>Climate &amp; environment</b></td><td>Temperature extremes &amp; cycling, humidity, precipitation</td><td>Drives binder ageing, thermal &amp; moisture damage</td><td><span class="mono">Met / weather data</span></td></tr>
+          <tr><td><b>Maintenance history</b></td><td>Past treatments, overlays &amp; repairs per segment</td><td>Resets &amp; bends the curve — must be accounted for</td><td><span class="mono">Maintenance / CMMS</span></td></tr>
+        </tbody>
+      </table>
+      <div class="tableviz"><div class="flowband"><div class="fnode"><span class="fi">🗃️</span><b>Historical inputs</b></div><span class="farrow">➜</span><div class="fnode hl"><span class="fi">⚗️</span><div><b>Formulas + ML</b><small>mechanistic-empirical + gradient boosting</small></div></div><span class="farrow">➜</span><div class="fnode"><span class="fi">📉</span><b>Estimated PCI</b></div></div></div>
+    </div>
+    <div class="note"><b>Method:</b> mechanistic-empirical deterioration logic (the scientists' formulas) combined with machine-learning regressors (e.g. gradient-boosted trees) trained on these features.</div>
+  </section>
   <section class="slide" data-anim="correction">
     <div class="eyebrow"><span class="pulse"></span> Road Intelligence Model · Calibration</div>
     <h2>The correction factor: <span class="grad-text">making history match reality</span></h2>
@@ -747,8 +812,8 @@ h2{font-size:43px}
   <!-- ============ ROAD MODEL — VALIDATION (XENOTRACK) ============ -->
   <section class="slide" data-anim="validate">
     <div class="eyebrow"><span class="pulse"></span> Road Intelligence Model · Ground-truth validation</div>
-    <h2>XenoTrack is the <span class="grad-text">reference value</span></h2>
-    <p class="sub">We break the pilot corridor into segments and measure an actual PCI for each with XenoTrack's 6D LiDAR. The model's calibrated estimate is held against this reference — segment by segment — until predictions and actuals agree.</p>
+    <h2>6D LiDAR is the <span class="grad-text">reference value</span></h2>
+    <p class="sub">We break the pilot corridor into segments and measure an actual PCI for each with the 6D LiDAR scan. The model's calibrated estimate is held against this reference — segment by segment — until predictions and actuals agree.</p>
     <div class="split">
       <div class="vizbox">
         <div class="vizhead"><span>PREDICTED vs ACTUAL PCI — PER SEGMENT</span><span class="viz-live"><span class="d"></span>MATCHING</span></div>
@@ -756,7 +821,7 @@ h2{font-size:43px}
       </div>
       <div class="factcol">
         <div class="factcard"><div class="fbig" style="color:var(--cyan)">Segmented</div><div class="fl">The corridor is divided into uniform segments; each carries its own PCI, history &amp; prediction.</div></div>
-        <div class="factcard"><div class="fbig" style="color:var(--teal)">Reference</div><div class="fl"><b style="color:var(--ink)">Actuals</b> from XenoTrack are the truth; model output is scored against them (e.g. MAE / R²).</div></div>
+        <div class="factcard"><div class="fbig" style="color:var(--teal)">Reference</div><div class="fl"><b style="color:var(--ink)">Actuals</b> from the 6D LiDAR scan are the truth; model output is scored against them (e.g. MAE / R²).</div></div>
         <div class="factcard" style="border-color:rgba(52,211,153,.3)"><div class="fbig" style="color:var(--green)">Matched</div><div class="fl">When predicted ≈ actual across segments, the historical model is validated — and the future becomes predictable.</div></div>
         <div class="note" style="margin-top:4px"><b>Note:</b> we surface PCI &amp; distress, not the millions of raw point-cloud returns.</div>
       </div>
@@ -794,6 +859,27 @@ h2{font-size:43px}
 
 
   <!-- ============ ASSET MODEL — ACTIVE ASSETS ============ -->
+  <!-- ============ SLIDE 6 — ECHOTWIN ============ -->
+  <section class="slide" data-anim="echo">
+    <div class="eyebrow"><span class="pulse"></span> Road Assets · Vision AI · Living digital twin</div>
+    <h2>Vision AI turns every fleet vehicle into a <span class="grad-text">roadside-asset sensor</span></h2>
+    <p class="sub">Vision AI scans the street, detects &amp; geolocates every asset, and scores its condition. Pilot focus: street lights.</p>
+    <div class="split r">
+      <div class="rightcol">
+        <div class="feature"><div class="fic">👁️</div><div><h4>Visual intelligence engine</h4><p>Municipal fleets, drones &amp; robotics detect, classify &amp; geolocate assets automatically.</p></div></div>
+        <div class="feature"><div class="fic">🔄</div><div><h4>Automated change detection</h4><p>Spots new, moved, damaged or missing assets between passes — and reports to the right agency.</p></div></div>
+        <div class="feature"><div class="fic">🩺</div><div><h4>Per-asset health &amp; compliance</h4><p>Real-time condition, reflectivity, tilt, outage &amp; compliance status for every object.</p></div></div>
+        <div class="vizbox" style="flex:1">
+          <div class="vizhead"><span>DETECTION STREAM</span></div>
+          <div class="log" id="echoLog"></div>
+        </div>
+      </div>
+      <div class="vizbox">
+        <div class="vizhead"><span>VISION AI · STREETSCAPE ASSET DETECTION</span><span class="viz-live"><span class="d"></span>DETECTING</span></div>
+        <svg id="echoSvg" viewBox="0 0 640 460" style="flex:1;width:100%"></svg>
+      </div>
+    </div>
+  </section>
   <section class="slide" data-anim="assetactive">
     <div class="eyebrow"><span class="pulse"></span> Asset intelligence · Street lights</div>
     <h2>Catch a fault <span class="grad-text">before the light goes out</span></h2>
@@ -925,9 +1011,9 @@ h2{font-size:43px}
       <div class="ghead"><div class="gh-l">Workstream</div>
         <div class="gh-weeks"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span><span>16</span></div></div>
       <div class="grow"><div class="gl">Mobilise &amp; data foundation<small>kick-off · data intake · GIS</small></div><div class="gtrack"><div class="gbar" style="left:0%;background:var(--cyan)" data-w="18.75%"></div></div></div>
-      <div class="grow"><div class="gl">Survey &amp; condition baseline<small>XenoTrack + EchoTwin · PCI</small></div><div class="gtrack"><div class="gbar" style="left:12.5%;background:var(--teal)" data-w="31.25%"></div></div></div>
+      <div class="grow"><div class="gl">Survey &amp; condition baseline<small>6D LiDAR + Vision AI · PCI</small></div><div class="gtrack"><div class="gbar" style="left:12.5%;background:var(--teal)" data-w="31.25%"></div></div></div>
       <div class="grow"><div class="gl">Road model build &amp; calibration<small>historical model · correction factor</small></div><div class="gtrack"><div class="gbar" style="left:25%;background:var(--blue)" data-w="43.75%"></div></div></div>
-      <div class="grow"><div class="gl">Asset model build<small>EchoTwin + PM/CM/RM analytics</small></div><div class="gtrack"><div class="gbar" style="left:31.25%;background:var(--violet)" data-w="37.5%"></div></div></div>
+      <div class="grow"><div class="gl">Asset model build<small>Vision AI + PM/CM/RM analytics</small></div><div class="gtrack"><div class="gbar" style="left:31.25%;background:var(--violet)" data-w="37.5%"></div></div></div>
       <div class="grow"><div class="gl">Prediction, cost &amp; dashboard<small>forecasts · single pane of glass</small></div><div class="gtrack"><div class="gbar" style="left:50%;background:var(--amber)" data-w="37.5%"></div></div></div>
       <div class="grow"><div class="gl">Validation, report &amp; handover<small>acceptance · findings · roadmap</small></div><div class="gtrack"><div class="gbar" style="left:75%;background:var(--green)" data-w="25%"></div></div></div>
       <div class="grow"><div class="gl" style="color:var(--amber)">◆ Milestones</div><div class="gtrack">
@@ -946,7 +1032,7 @@ h2{font-size:43px}
         <thead><tr><th>Phase</th><th>Milestone</th><th>Key deliverables</th><th>Week</th></tr></thead>
         <tbody>
           <tr><td><b>1 · Mobilise</b></td><td>M1 · Data foundation ready</td><td>Inception report · corridor segmentation · data-intake &amp; integration plan</td><td><span class="mono">Wk 3</span></td></tr>
-          <tr><td><b>2 · Survey</b></td><td>M2 · Condition baseline</td><td>XenoTrack PCI baseline · EchoTwin street-light inventory · distress geo-database</td><td><span class="mono">Wk 7</span></td></tr>
+          <tr><td><b>2 · Survey</b></td><td>M2 · Condition baseline</td><td>6D LiDAR PCI baseline · Vision AI street-light inventory · distress geo-database</td><td><span class="mono">Wk 7</span></td></tr>
           <tr><td><b>3 · Model</b></td><td>M3 · Models validated</td><td>Calibrated road model (predicted vs actual, ~90%) · street-light condition model</td><td><span class="mono">Wk 11</span></td></tr>
           <tr><td><b>4 · Predict</b></td><td>M4 · Dashboard live</td><td>Forecasts &amp; cost · single-pane-of-glass dashboard</td><td><span class="mono">Wk 14</span></td></tr>
           <tr><td><b>5 · Handover</b></td><td>M5 · POC complete</td><td>Final report · validation &amp; KPI results · scale-up roadmap &amp; business case</td><td><span class="mono">Wk 16</span></td></tr>
@@ -962,7 +1048,7 @@ h2{font-size:43px}
     <h2>How we will know it <span class="grad-text">worked</span></h2>
     <p class="sub">Objective, pre-agreed acceptance criteria — so the POC ends with an evidence-based go / no-go for network-wide rollout.</p>
     <div class="kpis">
-      <div class="kpi"><div class="big">≥ 90%</div><div class="lbl">Road model agreement with XenoTrack actuals (R² / match)</div></div>
+      <div class="kpi"><div class="big">≥ 90%</div><div class="lbl">Road model agreement with 6D LiDAR actuals (R² / match)</div></div>
       <div class="kpi"><div class="big">100%</div><div class="lbl">Pilot corridor segmented &amp; baselined for PCI</div></div>
       <div class="kpi"><div class="big">10-yr</div><div class="lbl">Per-segment forecast &amp; cost horizon delivered</div></div>
       <div class="kpi"><div class="big">1</div><div class="lbl">Single pane of glass, accepted by Ashghal users</div></div>
@@ -1370,10 +1456,10 @@ function corrAnim(){
   const c=document.getElementById('corrCanvas');if(!c)return;
   let raf,t=0;
   const sources=[
-    {label:'Live as-is',col:'#22d3ee',y:0.18},
+    {label:'6D LiDAR',col:'#22d3ee',y:0.18},
     {label:'History',col:'#3b82f6',y:0.40},
-    {label:'Traffic/loads',col:'#f5b53d',y:0.62},
-    {label:'Materials science',col:'#2dd4bf',y:0.84},
+    {label:'Traffic',col:'#f5b53d',y:0.62},
+    {label:'Road science',col:'#2dd4bf',y:0.84},
   ];
   let packets=[];
   function loop(){
@@ -1600,7 +1686,7 @@ function correctionAnim(){
     for(let i=0;i<=120;i++){const fx=i/120;const est=raw(fx)*(1-p)+actual(fx)*p;i===0?ctx.moveTo(X(fx),Y(est)):ctx.lineTo(X(fx),Y(est));}ctx.stroke();
     // labels
     ctx.textAlign='left';ctx.font='bold 11px Inter,sans-serif';
-    ctx.fillStyle='rgba(52,211,153,.7)';ctx.fillText('actual (XenoTrack)',X(0.04),Y(actual(0.04))+14);
+    ctx.fillStyle='rgba(52,211,153,.7)';ctx.fillText('actual (6D LiDAR)',X(0.04),Y(actual(0.04))+14);
     ctx.fillStyle=lerpC(p);ctx.fillText(p<0.5?'raw estimate':'calibrated estimate',X(0.5),Y(raw(0.5)*(1-p)+actual(0.5)*p)-12);
     // correction factor gauge
     ctx.fillStyle='#8aa0c2';ctx.textAlign='right';ctx.font='10px ui-monospace,monospace';
@@ -1638,7 +1724,7 @@ function validateAnim(){
     for(let i=0;i<n;i++){const cx=padL+slot*(i+0.5);ctx.fillText('S'+(i+1),cx,h-padB+6);}
     // legend + match
     ctx.textAlign='left';ctx.textBaseline='middle';ctx.font='bold 11px Inter,sans-serif';
-    ctx.fillStyle='rgba(45,212,191,.95)';ctx.fillText('■ actual (XenoTrack)',padL+2,padT+4);
+    ctx.fillStyle='rgba(45,212,191,.95)';ctx.fillText('■ actual (6D LiDAR)',padL+2,padT+4);
     ctx.fillStyle='rgba(245,181,61,.95)';ctx.fillText('■ predicted',padL+150,padT+4);
     ctx.fillStyle='#34d399';ctx.textAlign='right';ctx.fillText('match R² '+(0.5+0.41*p).toFixed(2),w-padR,padT+4);
     raf=requestAnimationFrame(loop);
