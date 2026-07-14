@@ -36,8 +36,15 @@ body{
   -webkit-font-smoothing:antialiased;
 }
 
-/* ---------- Deck framework ---------- */
-.deck{position:fixed;inset:0;}
+/* ---------- Deck framework ----------
+   Fixed 1920x1080 design stage, uniformly scaled to fit the window.
+   Layout inside the stage is identical at every window size. */
+.deck{
+  position:fixed;left:50%;top:50%;
+  width:1920px;height:1080px;
+  transform:translate(-50%,-50%) scale(var(--deckscale,1));
+  transform-origin:center center;
+}
 .slide{
   position:absolute;inset:0;
   display:flex;flex-direction:column;
@@ -576,11 +583,7 @@ h2{font-size:52px}
 .gh-weeks span{padding:7px 0}
 .gh-l{padding:8px 14px}
 .gmile{width:11px;height:11px}
-@media (max-width:1200px){
-  .slide{padding:32px 36px 70px}
-  h1{font-size:50px}.kpi .big{font-size:46px}
-  .gauges{grid-template-columns:repeat(2,1fr)}
-}
+/* (viewport media query removed — the fixed 1920x1080 stage scales uniformly instead) */
 
 /* ===== FILL v3 — larger type + visuals sized to occupy slide gaps ===== */
 /* agenda journey fills the stage */
@@ -686,11 +689,10 @@ h2{font-size:52px}
 </style>
 </head>
 <body>
+<div class="deck" id="deck">
 <div class="progress" id="progress"></div>
 <div class="logo-tl" id="logoTL"></div>
 <div class="logo-tr" id="logoTR"></div>
-
-<div class="deck" id="deck">
 
   <!-- ============ SLIDE 1 — HERO ============ -->
   <section class="slide active" data-anim="hero">
@@ -1186,9 +1188,7 @@ h2{font-size:52px}
     </div>
   </section>
 
-</div>
-
-<!-- nav -->
+<!-- nav (inside the stage so it scales with the slides) -->
 <div class="nav">
   <button class="arrow" id="prev">‹</button>
   <div class="dots" id="dots"></div>
@@ -1197,7 +1197,18 @@ h2{font-size:52px}
 <div class="hint kbd"><b>←</b> <b>→</b> navigate · <b>F</b> fullscreen</div>
 <div class="slideno"><span id="cur">1</span> / <span id="tot">12</span></div>
 
+</div>
+
 <script>
+/* ====================== STAGE SCALING ====================== */
+/* The deck is laid out on a fixed 1920x1080 stage and scaled to fit the window. */
+function fitDeck(){
+  const s=Math.min(window.innerWidth/1920,window.innerHeight/1080);
+  document.documentElement.style.setProperty('--deckscale',s);
+}
+window.addEventListener('resize',fitDeck);
+fitDeck();
+
 /* ====================== DECK ENGINE ====================== */
 const slides=[...document.querySelectorAll('.slide')];
 const dotsWrap=document.getElementById('dots');
